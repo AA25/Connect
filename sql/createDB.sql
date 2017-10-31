@@ -2,7 +2,7 @@ create database connect;
 
 use connect;
 
-create table Developers ( devId int not null auto_increment primary key,
+create table developers ( devId int not null auto_increment primary key,
     -> firstName varchar(56) not null,
     -> lastName varchar(56) not null,
     -> dob date not null,

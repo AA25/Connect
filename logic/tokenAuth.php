@@ -1,14 +1,37 @@
-<?php 
-    $header = array('alg' => 'HS256', 'typ' => 'JWT');
-    $base64Header = base64_encode(json_encode($header));
-    $payload = array('iss' => 'connectServerr', 'name' => 'Ade');
-    $base64Payload = base64_encode(json_encode($payload));
-    // $base64Header = base64_encode('{"typ":"JWT", "alg":"HS256"}');
-    // $base64Payload = base64_encode('{"iss":"connectServerr", "name":"Ade"}');
-    $encodedStr = $base64Header.'.'.$base64Payload;
-    $sig = hash_hmac('sha256', $encodedStr, 'secret');
-    // $base64Sig = base64_encode($sig);
-    //echo $sig;
-    $jwt = $base64Header.'.'.$base64Payload.'.'.$sig;
-    echo $jwt;
-?>
+<?php
+// JWT token looks like header.payload.signature
+// The header of the JWT token
+$headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
+
+// The payload of the JWT token
+$payloadEnc = base64_encode('{"iss": "connectServer","name": "Ade"}');
+
+// header and payload concat
+$headerPayload = $headerEnc . '.' . $payloadEnc;
+
+//Setting the secret key
+$secretKey = 'ademola';
+
+// Creating the signature, a hash with the sha256 algorithm and the secret key.
+$signature = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
+
+// Creating the JWT token
+$jwtToken = $headerPayload . '.' . $signature;
+
+echo $jwtToken;
+
+// $recToken = 'eyJhbGciOiAiSFMyNTYiLCJ0eXAiOiAiSldUIn0=.eyJpc3MiOiAiY29ubmVjdFNlcnZlciIsIm5hbWUiOiAiQWRlIn0=.ODCoorU4MfMU8HgMETig0kGVTWD6cVdeR2KGgO5md0c=';
+// $secretKey = 'ademola';
+
+// $jwtValues = explode('.', $recToken);
+
+// $recSig = $jwtValues[2];
+
+// $recHeaderPayload = $jwtValues[0] . '.' . $jwtValues[1];
+
+// $resultedsignature = base64_encode(hash_hmac('sha256', $recHeaderPayload, $secret_key, true));
+
+// if($resultedsignature == $recSig) {
+//     echo "Success";
+// }
+?> 
