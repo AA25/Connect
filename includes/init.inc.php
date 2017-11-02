@@ -24,7 +24,10 @@ function get_db()
     $pass = 'connect';
 
     $dsn = "mysql:host=$host; dbname=$db";
-    $pdo = new PDO($dsn, $userdb, $pass);
+    $pdo = new PDO($dsn, $userdb, $pass, array(
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ));
     
     return $pdo;
 };

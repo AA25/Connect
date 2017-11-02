@@ -1,5 +1,5 @@
 <?php
-// JWT token looks like header.payload.signature
+// JWT token structure is like header.payload.signature
 // The header of the JWT token
 $headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
 

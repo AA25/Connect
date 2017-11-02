@@ -16,7 +16,7 @@
         $db = get_db();
         //var_dump($db);
     ?>
-    <!-- <form method="post" action="logic/register.php" id="registerDevForm" class="">
+    <form method="post" action="logic/register.php" id="registerDevForm" class="">
         <div class="">
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" placeholder="Enter first name" name="firstName" >
@@ -50,9 +50,20 @@
             <textarea rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
         </div>
         <button type="submit" class="" style="">Register</button>
-    </form> -->
+    </form>
     
     <form method="post" action="" id="loginDevForm">
+        <div>
+            <label for="email">Email: </label>
+            <input type="text" class="" placeholder="Enter email address" name="email">
+        </div>
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" class="" placeholder="Enter password" name="password">
+        </div>
+        <input id="loginBtn" type="submit" name="Submit" value="Log In">
+    </form>
+    <form method="post" action="" id="loginBusForm">
         <div>
             <label for="email">Email: </label>
             <input type="text" class="" placeholder="Enter email address" name="email">
