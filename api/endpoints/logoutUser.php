@@ -36,6 +36,22 @@
             setcookie('phone', '', $cookieExp, $cookiePath ); // empty value and old timestamp
             unset($_COOKIE['phone']);
         }
+        if (isset($_COOKIE['type'])) {
+            setcookie('type', '', $cookieExp, $cookiePath ); // empty value and old timestamp
+            unset($_COOKIE['type']);
+        }
+        if (isset($_COOKIE['busName'])) {
+            setcookie('busName', '', $cookieExp, $cookiePath ); // empty value and old timestamp
+            unset($_COOKIE['busName']);
+        }
+        if (isset($_COOKIE['busIndustry'])) {
+            setcookie('busIndustry', '', $cookieExp, $cookiePath ); // empty value and old timestamp
+            unset($_COOKIE['busIndustry']);
+        }
+        if (isset($_COOKIE['busBio'])) {
+            setcookie('busBio', '', $cookieExp, $cookiePath ); // empty value and old timestamp
+            unset($_COOKIE['busBio']);
+        }
         echo json_encode(array('Success' => 'Successfully logged out')); 
     }else{
         //No permission to log out from current account

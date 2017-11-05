@@ -16,6 +16,10 @@
             $r = prepDevSQL($pdo);
         }elseif($loginJSON['location'] == 'businesses'){
             $r = prepBusSQL($pdo);
+        }else{
+            //Where location isnt developers or businesses
+            echo json_encode(array('Error' => 'Error'));
+            break;
         }
 
         $r->execute([
@@ -47,25 +51,25 @@
 
     function prepDevSQL(&$pdo){
         return $pdo->prepare(
-            "select firstName, lastName, dob, languages, email, devBio, phone from developers where email = :email and password = :password"
+            "select firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
         );  
     }
 
     function prepBusSQL(&$pdo){
         return $pdo->prepare(
-            "select busName, busIndustry, busBio, firstName, lastName, email, phone from businesses where email = :email and password = :password"
+            "select busName, busIndustry, busBio, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
         );  
     }
 
     function pushDevDetails(&$userInfo, $info){
         $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; $userInfo['dob'] = $info['dob'];
         $userInfo['languages'] = $info['languages']; $userInfo['email'] = $info['email']; $userInfo['devBio'] = $info['devBio'];
-        $userInfo['phone'] = $info['phone'];
+        $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
     function pushBusDetails(&$userInfo, $info){
         $userInfo['busName'] = $info['busName']; $userInfo['busIndustry'] = $info['busIndustry']; $userInfo['busBio'] = $info['busBio'];
         $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; $userInfo['email'] = $info['email'];
-        $userInfo['phone'] = $info['phone'];
+        $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
 
     function createJWT($userInfo){
@@ -108,6 +112,7 @@
             setcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
             setcookie('devBio', $userInfo['devBio'], $cookieExp, $cookiePath);  
             setcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            setcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
             // setcookie('type', 'developer', time() + (86400 * 30), "/");  
         }elseif($location == 'businesses'){
             setcookie('JWT', $userToken, $cookieExp, $cookiePath);  
@@ -119,6 +124,7 @@
             setcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
             setcookie('email', $userInfo['email'], $cookieExp, $cookiePath);  
             setcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            setcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
             // setcookie('type', 'business', time() + (86400 * 30), "/");  
         }
     }
