@@ -9,24 +9,24 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $registerJSON = json_decode(file_get_contents('php://input'),true);
 
-if(!empty($registerJSON['firstName']) && !empty($registerJSON['lastName'])){
+if(!empty($registerJSON['busName']) && !empty($registerJSON['busIndustry'])){
     //http://thisinterestsme.com/php-pdo-transaction-example/
     //We start our transaction.
     $pdo->beginTransaction();
     try{
         $r = $pdo->prepare(
             "insert into
-            developers (firstName, lastName, dob, languages, email, password, devBio, phone)
-            values(:firstName, :lastName, :dob, :languages, :email, :password, :devBio, :phone);"
+            businesses (busName, busIndustry, busBio, firstName, lastName, password, email, phone)
+            values(:busName, :busIndustry, :busBio, :firstName, :lastName, :password, :email, :phone);"
           );
         $r->execute([
+            'busName' => $registerJSON['busName'],
+            'busIndustry' => $registerJSON['busIndustry'],
+            'busBio' => $registerJSON['busBio'],
             'firstName' => $registerJSON['firstName'],
             'lastName' => $registerJSON['lastName'],
-            'dob' => $registerJSON['dob'],
-            'languages' => $registerJSON['languages'],
-            'email' => $registerJSON['email'],
             'password' => $registerJSON['password'],
-            'devBio' => $registerJSON['devBio'],
+            'email' => $registerJSON['email'],
             'phone' => $registerJSON['phone']
         ]);
     
