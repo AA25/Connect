@@ -40,8 +40,8 @@
             }
             $userToken = createJWT($userInfo);
             //echo json_encode(array('Success' => $userToken));
-            setUserCookies($userInfo,$loginJSON['location'], $userToken);
-            echo json_encode(array('Success' => 'Successful login'));
+            setUserCookies($userInfo, $loginJSON['location'], $userToken);
+            echo json_encode(array('Success' => $userToken));
         }else{
             echo json_encode(array('Error' => 'Incorrect login details'));
         }
@@ -72,60 +72,31 @@
         $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
 
-    function createJWT($userInfo){
-        $userInfoJSON = json_encode($userInfo);
-        // JWT token structure is like header.payload.signature
-        // The header of the JWT token
-        $headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
-
-        // The payload of the JWT token
-        $payloadEnc = base64_encode($userInfoJSON);
-        // $payloadEnc = base64_encode(
-        // //'{"iss": "connectServer","name": "Ade"}'
-        // );
-
-        // header and payload concat
-        $headerPayload = $headerEnc . '.' . $payloadEnc;
-
-        //Setting the secret key
-        $secretKey = 'ademola';
-
-        // Creating the signature, a hash with the sha256 algorithm and the secret key
-        $signature = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
-
-        // Creating the JWT token
-        $jwtToken = $headerPayload . '.' . $signature;
-
-        return $jwtToken;
-    }
-
     function setUserCookies($userInfo,$location,$userToken){
         $cookiePath = "/";
         $cookieExp = time()+(60*60*24);//one day -> seconds*minutes*hours
         if($location == 'developers'){
-            setcookie('JWT', $userToken, $cookieExp, $cookiePath);  
-            setcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);
-            setcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);  
-            setcookie('dob', $userInfo['dob'], $cookieExp, $cookiePath);  
-            setcookie('languages', $userInfo['languages'], $cookieExp, $cookiePath);  
-            setcookie('email', $userInfo['email'], $cookieExp, $cookiePath);    
-            setcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
-            setcookie('devBio', $userInfo['devBio'], $cookieExp, $cookiePath);  
-            setcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
-            setcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
-            // setcookie('type', 'developer', time() + (86400 * 30), "/");  
+            setrawcookie('JWT', $userToken, $cookieExp, $cookiePath);  
+            setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);
+            setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);  
+            setrawcookie('dob', $userInfo['dob'], $cookieExp, $cookiePath);  
+            setrawcookie('languages', $userInfo['languages'], $cookieExp, $cookiePath);  
+            setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);    
+            setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
+            setrawcookie('devBio', $userInfo['devBio'], $cookieExp, $cookiePath);  
+            setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
         }elseif($location == 'businesses'){
-            setcookie('JWT', $userToken, $cookieExp, $cookiePath);  
-            setcookie('busName', $userInfo['busName'], $cookieExp, $cookiePath);
-            setcookie('busIndustry', $userInfo['busIndustry'], $cookieExp, $cookiePath);  
-            setcookie('busBio', $userInfo['busBio'], $cookieExp, $cookiePath);  
-            setcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);  
-            setcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);    
-            setcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
-            setcookie('email', $userInfo['email'], $cookieExp, $cookiePath);  
-            setcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
-            setcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
-            // setcookie('type', 'business', time() + (86400 * 30), "/");  
+            setrawcookie('JWT', $userToken, $cookieExp, $cookiePath);  
+            setrawcookie('busName', $userInfo['busName'], $cookieExp, $cookiePath);
+            setrawcookie('busIndustry', $userInfo['busIndustry'], $cookieExp, $cookiePath);  
+            setrawcookie('busBio', $userInfo['busBio'], $cookieExp, $cookiePath);  
+            setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);  
+            setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);    
+            setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
+            setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);  
+            setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
         }
     }
 ?>

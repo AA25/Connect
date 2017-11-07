@@ -59,7 +59,7 @@ function verifyJWT($sentJWT){
 
     $headerPayload =  $headerEnc . '.' . $payloadEnc;
     //If the signatures match, then that means the JWT sent is valid.
-    $secretKey = 'ademola';
+    $secretKey = 'secret';
     $serverSig = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
     // echo $jwtSig .PHP_EOL;
     // echo $serverSig .PHP_EOL;
@@ -69,7 +69,48 @@ function verifyJWT($sentJWT){
         return false;
     }
 } 
-  
+
+function getDataFromJWT($verifiedJWT){
+    $jwtParts = explode(".",$verifiedJWT);
+    
+    $jwtPayloadDec = base64_decode($jwtParts[1]);
+
+    $userData = json_decode($jwtPayloadDec, true);
+
+    return $userData;
+}
+
+function createJWT($userInfo){
+    // $test = array(
+    //     "devBio" => "bio, that was a freaky story eh!!! ***£$@£ eyeye",
+    //     "email" => "John@Doe.com",
+    //     "languages" => "english, german, italian"
+    // );
+    // $testJSON = json_encode($test);
+
+    $userInfoJSON = json_encode($userInfo);
+    // JWT token structure is like header.payload.signature
+    // The header of the JWT token
+    $headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
+
+    // The payload of the JWT token
+    $payloadEnc = base64_encode($userInfoJSON);
+    //$payloadEnc = base64_encode('{"iss": "connectServer","name": "Ade"}');
+
+    // header and payload concat
+    $headerPayload = $headerEnc . '.' . $payloadEnc;
+
+    //Setting the secret key
+    $secretKey = 'secret';
+
+    // Creating the signature, a hash with the sha256 algorithm and the secret key
+    $signature = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
+
+    // Creating the JWT token
+    $jwtToken = $headerPayload . '.' . $signature;
+
+    return $jwtToken;
+}
 
 date_default_timezone_set('Europe/London');
 
