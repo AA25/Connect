@@ -12,6 +12,7 @@
     //This page should only be accessible if JWT is verified and you're a business
     //$verifiedJWT = 'eyJhbGciOiAiSFMyNTYiLCJ0eXAiOiAiSldUIn0=.eyJTdWNjZXNzIjoiU3VjY2Vzc2Z1bCBsb2dpbiIsImZpcnN0TmFtZSI6InRlc3QiLCJsYXN0TmFtZSI6InRlc3QiLCJkb2IiOiIxOTk0LTA2LTI1IiwibGFuZ3VhZ2VzIjoiZW5nbGlzaCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImRldkJpbyI6ImJpbyIsInBob25lIjoiMSIsInR5cGUiOiJkZXZlbG9wZXIifQ==.jUOCuAkQzTvVCX9Fx1PJ8MTnH9XhZAYB/HjCQGj1Rg4=';
     $verifiedJWT = $_COOKIE['JWT'];
+    $verifiedJWT = str_replace(' ', '+', $verifiedJWT);
     //echo json_encode(Array('Cookie' => $verifiedJWT));
     $userVerifiedData = getDataFromJWT($verifiedJWT);  
     //echo json_encode(Array('Server' => verifyJWT($verifiedJWT)));
@@ -62,7 +63,7 @@
                 'projectCountry' => $projectJSON['projectCountry'],
                 'projectLanguage' => $projectJSON['projectLanguage'],
                 'projectCurrency' => $projectJSON['projectCurrency'],
-                'dateEntered' => date("Y-m-d"),
+                'dateEntered' => date("Y-m-d H:i:s"),
                 'startDate' => date("Y-m-d")
             ]);
 
