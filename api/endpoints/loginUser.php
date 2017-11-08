@@ -2,11 +2,11 @@
     require "../../includes/init.inc.php";
     $pdo = get_db();
 
-    // important to tell your browser what we will be sending
-    // header("Access-Control-Allow-Origin: *");
-    // header("Content-Type: application/json; charset=UTF-8");
-    // header("Access-Control-Allow-Methods: POST");
-    // header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    //important to tell your browser what we will be sending
+    header("Access-Control-Allow-Origin: *");
+    header("Content-Type: application/json; charset=UTF-8");
+    header("Access-Control-Allow-Methods: POST");
+    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     $loginJSON = json_decode(file_get_contents('php://input'),true);
     
@@ -41,7 +41,7 @@
             $userToken = createJWT($userInfo);
             //echo json_encode(array('Success' => $userToken));
             setUserCookies($userInfo, $loginJSON['location'], $userToken);
-            echo json_encode(array('Success' => $userToken));
+            echo json_encode(array('Success' => 'Successful login'));
         }else{
             echo json_encode(array('Error' => 'Incorrect login details'));
         }
@@ -72,31 +72,32 @@
         $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
 
+    //TODO Remember to return back users details so it can be saved in the local storage or if you want we can use REDIS and store the data there!
     function setUserCookies($userInfo,$location,$userToken){
         $cookiePath = "/";
         $cookieExp = time()+(60*60*24);//one day -> seconds*minutes*hours
         if($location == 'developers'){
             setrawcookie('JWT', $userToken, $cookieExp, $cookiePath);  
-            setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);
-            setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);  
-            setrawcookie('dob', $userInfo['dob'], $cookieExp, $cookiePath);  
-            setrawcookie('languages', $userInfo['languages'], $cookieExp, $cookiePath);  
-            setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);    
-            setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
-            setrawcookie('devBio', $userInfo['devBio'], $cookieExp, $cookiePath);  
-            setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
-            setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
+            // setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);
+            // setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);  
+            // setrawcookie('dob', $userInfo['dob'], $cookieExp, $cookiePath);  
+            // setrawcookie('languages', $userInfo['languages'], $cookieExp, $cookiePath);  
+            // setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);    
+            // setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
+            // setrawcookie('devBio', $userInfo['devBio'], $cookieExp, $cookiePath);  
+            // setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            // setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
         }elseif($location == 'businesses'){
             setrawcookie('JWT', $userToken, $cookieExp, $cookiePath);  
-            setrawcookie('busName', $userInfo['busName'], $cookieExp, $cookiePath);
-            setrawcookie('busIndustry', $userInfo['busIndustry'], $cookieExp, $cookiePath);  
-            setrawcookie('busBio', $userInfo['busBio'], $cookieExp, $cookiePath);  
-            setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);  
-            setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);    
-            setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
-            setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);  
-            setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
-            setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
+            // setrawcookie('busName', $userInfo['busName'], $cookieExp, $cookiePath);
+            // setrawcookie('busIndustry', $userInfo['busIndustry'], $cookieExp, $cookiePath);  
+            // setrawcookie('busBio', $userInfo['busBio'], $cookieExp, $cookiePath);  
+            // setrawcookie('firstName', $userInfo['firstName'], $cookieExp, $cookiePath);  
+            // setrawcookie('lastName', $userInfo['lastName'], $cookieExp, $cookiePath);    
+            // setrawcookie('password', $userInfo['password'], $cookieExp, $cookiePath);  
+            // setrawcookie('email', $userInfo['email'], $cookieExp, $cookiePath);  
+            // setrawcookie('phone', $userInfo['phone'], $cookieExp, $cookiePath);  
+            // setrawcookie('type', $userInfo['type'], $cookieExp, $cookiePath); 
         }
     }
 ?>

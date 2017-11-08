@@ -134,8 +134,8 @@ function logOut(){
     $.ajax({
         url: "./api/endpoints/logoutUser.php",
         data: {},
-        type: 'post',
-        method: 'POST',
+        type: 'get',
+        method: 'GET',
         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
             console.log("error ajax post to checklogin");

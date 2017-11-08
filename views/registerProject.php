@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <form method="post" action="" id="registerProjectForm" class="">
+    <form method="post" action="" id="registerProjectForm">
         <div class="">
             <label for="projectCategory">Project Category:</label>
             <select name="projectCategory">

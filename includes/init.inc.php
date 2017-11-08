@@ -61,12 +61,13 @@ function verifyJWT($sentJWT){
     //If the signatures match, then that means the JWT sent is valid.
     $secretKey = 'secret';
     $serverSig = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
-    // echo $jwtSig .PHP_EOL;
-    // echo $serverSig .PHP_EOL;
+    
     if($jwtSig == $serverSig){
         return true;
+        //echo 'verified';
     }else{
         return false;
+        //echo 'broken';
     }
 } 
 
