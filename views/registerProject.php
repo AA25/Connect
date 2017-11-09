@@ -44,8 +44,9 @@
             <label for="projectCurrency">Project Currency:</label>
             <select name="projectCurrency">
                 <option disabled selected value> Select the appropriate currency for this project</option>
-                <option value="euro">€ Euro</option>
-                <option value="pound">£ Pound</option>
+                <option value="€">Euro</option>
+                <option value="£">Pound</option>
+                <option value="$">Dollar</option>
             </select>        
         </div>
         <div class="">

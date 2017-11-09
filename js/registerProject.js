@@ -19,8 +19,8 @@ $('#registerProjectForm').submit(function (e){
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
-        success: function(result) {
-            console.log(result);
+        success: function(response) {
+            console.log(response);
         }
     });
 });
