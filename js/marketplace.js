@@ -30,14 +30,15 @@ function loadMore(){
 
 function renderProjects(projectsArray){
     projectsArray.forEach(function(element) {
-        insertRow = '<tr>'+
-        '<td>'+element['projectCountry']+'</td>' +
-        '<td>'+element['projectCategory']+'</td>' +
-        '<td>'+element['projectBio']+'</td>' +
-        '<td>'+element['projectCurrency']+element['projectBudget']+'</td>' +
+        insertRow = '<tr onclick="window.location=\'../views/projectDesc.php?productId='+element['projectId']+'\'">'+
+            '<td>'+element['projectCountry']+'</td>' +
+            '<td>'+element['projectCategory']+'</td>' +
+            '<td>'+element['projectBio']+'</td>' +
+            '<td>'+element['projectCurrency']+element['projectBudget']+'</td>' +
         '</tr>';
         $('#marketplaceTableBody').append(insertRow);
     }, this);    
 }
+
 
 window.onload = retrieveProjects();

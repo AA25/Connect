@@ -12,7 +12,7 @@ require "../../includes/init.inc.php";
     //echo json_encode(Array('returnAmount' => $_GET['returnAmount'], 'returnFrom' => $_GET['returnFrom']));
 
     $result = $pdo->prepare("
-        select projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects order by dateEntered desc limit :returnFrom, :returnAmount
+        select projectId, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects order by dateEntered desc limit :returnFrom, :returnAmount
     ");
     // $pdo->bindParam(':returnFrom', (int)$_GET['returnFrom'], PDO::PARAM_INT);
     // $pdo->bindParam(':returnAmount', (int)$_GET['returnAmount'], PDO::PARAM_INT);
@@ -40,6 +40,7 @@ require "../../includes/init.inc.php";
         // $returnProjects['projectCurrency']  = $info['projectCurrency'];
         array_push($returnProjects, 
             Array(
+                'projectId'         => $info['projectId'],
                 'projectCategory'   => $info['projectCategory'],
                 'projectBio'        => $info['projectBio'],
                 'projectBudget'     => $info['projectBudget'],
