@@ -117,6 +117,8 @@
         </div>
         <input id="loginBtn" type="submit" name="Submit" value="Log In">
     </form>
+
+    <a href="/views/myaccount.php">My Account</a>
     
 </body>
     <script src="js/jQuery/jquery.min.js"></script>

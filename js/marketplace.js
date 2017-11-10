@@ -30,7 +30,7 @@ function loadMore(){
 
 function renderProjects(projectsArray){
     projectsArray.forEach(function(element) {
-        insertRow = '<tr onclick="window.location=\'../views/projectDesc.php?productId='+element['projectId']+'\'">'+
+        insertRow = '<tr onclick="window.location=\'../views/projectDesc.php?projectId='+element['projectId']+'\'">'+
             '<td>'+element['projectCountry']+'</td>' +
             '<td>'+element['projectCategory']+'</td>' +
             '<td>'+element['projectBio']+'</td>' +

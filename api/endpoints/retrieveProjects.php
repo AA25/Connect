@@ -32,12 +32,6 @@ require "../../includes/init.inc.php";
     }
 
     function pushProjectDetails(&$returnProjects, $info){
-
-        // $returnProjects['projectCategory']  = $info['projectCategory'];
-        // $returnProjects['projectBio']       = $info['projectBio'];
-        // $returnProjects['projectBudget']    = $info['projectBudget'];
-        // $returnProjects['projectCountry']   = $info['projectCountry'];
-        // $returnProjects['projectCurrency']  = $info['projectCurrency'];
         array_push($returnProjects, 
             Array(
                 'projectId'         => $info['projectId'],
@@ -47,7 +41,6 @@ require "../../includes/init.inc.php";
                 'projectCountry'    => $info['projectCountry'],
                 'projectCurrency'   => $info['projectCurrency']
             )
-        // $info['projectCategory'], $info['projectBio'], $info['projectBudget'], $info['projectCountry'], $info['projectCurrency']
         );
     }
 ?>

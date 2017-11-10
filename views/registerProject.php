@@ -1,6 +1,3 @@
-<?php 
-    // require __DIR__."/includes/init.inc.php"; 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

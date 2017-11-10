@@ -16,6 +16,7 @@
     //echo json_encode(Array('Cookie' => $verifiedJWT));
     $userVerifiedData = getDataFromJWT($verifiedJWT);  
     //echo json_encode(Array('Server' => verifyJWT($verifiedJWT)));
+    //This page should only be accessible if JWT is verified and you're a business
     if(verifyJWT($verifiedJWT) && $userVerifiedData['type'] == 'business'){
         prepareInsertProject($pdo, $userVerifiedData);
         //echo json_encode(Array('Error' => 'Permission access'));

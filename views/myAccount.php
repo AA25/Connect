@@ -12,22 +12,7 @@
 <body>
 
     <div>
-        <div id="projectMarketplace">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Location</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Budget</th>
-                </tr>
-                </thead>
-                <tbody id="marketplaceTableBody"></tbody>
-            </table>
-        </div>
-        <button onclick="loadMore()">
-            LOAD
-        </button>
+        
     </div>
     
 
@@ -36,5 +21,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../js/smoothScroll/smoothScroll.js"></script>
     <script src="../js/navBar.js"></script>
-    <script src="../js/marketplace.js"></script>
+    <script src="../js/myAccount.js"></script>
 </html>
