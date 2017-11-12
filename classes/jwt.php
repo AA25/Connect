@@ -9,14 +9,15 @@
         }
     
         function verifyJWT($sentJwt){
-            $sentJwtParts = explode(".",$sentJWT);
-        
+            $sentJwt = str_replace(' ', '+', $sentJwt);
+            $sentJwtParts = explode(".",$sentJwt);
+            
             //We want to decode and encode it again incase values have been changed
             $sentJwtHeaderDec = base64_decode($sentJwtParts[0]);
             $sentJwtPayloadDec = base64_decode($sentJwtParts[1]);
             $sentJwtHeaderEnc = base64_encode($sentJwtHeaderDec);
             $sentJwtPayloadEnc = base64_encode($sentJwtPayloadDec);
-        
+            
             $sentJwtSig = $sentJwtParts[2];
         
             $serverHeaderPayload =  $sentJwtHeaderEnc . '.' . $sentJwtPayloadEnc;
@@ -24,6 +25,7 @@
             $secretKey = 'secret';
             $serverSig = base64_encode(hash_hmac('sha256', $serverHeaderPayload, $secretKey, true));
             
+
             if($sentJwtSig == $serverSig){
                 return true;
             }else{
