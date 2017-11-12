@@ -69,7 +69,7 @@
             // Creating the JWT token
             $jwtToken = $headerPayload . '.' . $signature;
     
-            $this->token = $jwtToken;
+            $this->token = (string)$jwtToken;
         }
     }
     
