@@ -47,7 +47,7 @@
         }
     
         //Creates a jwt based on the user details projects and sets it as the token
-        function setToken($userDetails){
+        function setToken($userInfo){
             $userInfoJSON = json_encode($userInfo);
             // JWT token structure is header.payload.signature
     
