@@ -79,11 +79,11 @@ $('#loginDevForm').submit(function (e){
         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
             console.log("error ajax post to checklogin");
-            console.log(textStatus);
+            //console.log(textStatus);
         },
         success: function formSuccess(response) {
-            response = JSON.parse(response);
-            //console.log(response['Success']);
+            //response = JSON.parse(response);
+            console.log(response);
             //response['Success'] ? decodeJWT(response['Success']) : console.log(response);
 
             //response = JSON.parse(atob(response));

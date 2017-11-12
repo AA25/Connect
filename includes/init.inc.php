@@ -11,7 +11,7 @@
 //     }
 // }
 spl_autoload_register(function($className){
-    $path = __DIR__.'/classes/';
+    $path = __DIR__.'/../classes/';
     require $path.$className.'.php';
 });
   
@@ -45,73 +45,73 @@ function checkSession($sentJWT){
     }
 }
 
-function verifyJWT($sentJWT){
-    $jwtParts = explode(".",$sentJWT);
+// function verifyJWT($sentJWT){
+//     $jwtParts = explode(".",$sentJWT);
 
-    $jwtHeaderDec = base64_decode($jwtParts[0]);
-    $jwtPayloadDec = base64_decode($jwtParts[1]);
+//     $jwtHeaderDec = base64_decode($jwtParts[0]);
+//     $jwtPayloadDec = base64_decode($jwtParts[1]);
 
-    //We want to decode and encode it again incase values have been changed
-    $headerEnc = base64_encode($jwtHeaderDec);
-    $payloadEnc = base64_encode($jwtPayloadDec);
+//     //We want to decode and encode it again incase values have been changed
+//     $headerEnc = base64_encode($jwtHeaderDec);
+//     $payloadEnc = base64_encode($jwtPayloadDec);
 
-    $jwtSig = $jwtParts[2];
+//     $jwtSig = $jwtParts[2];
 
-    $headerPayload =  $headerEnc . '.' . $payloadEnc;
-    //If the signatures match, then that means the JWT sent is valid.
-    $secretKey = 'secret';
-    $serverSig = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
+//     $headerPayload =  $headerEnc . '.' . $payloadEnc;
+//     //If the signatures match, then that means the JWT sent is valid.
+//     $secretKey = 'secret';
+//     $serverSig = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
     
-    if($jwtSig == $serverSig){
-        return true;
-        //echo 'verified';
-    }else{
-        return false;
-        //echo 'broken';
-    }
-} 
+//     if($jwtSig == $serverSig){
+//         return true;
+//         //echo 'verified';
+//     }else{
+//         return false;
+//         //echo 'broken';
+//     }
+// } 
 
-function getDataFromJWT($verifiedJWT){
-    $jwtParts = explode(".",$verifiedJWT);
+// function getDataFromJWT($verifiedJWT){
+//     $jwtParts = explode(".",$verifiedJWT);
     
-    $jwtPayloadDec = base64_decode($jwtParts[1]);
+//     $jwtPayloadDec = base64_decode($jwtParts[1]);
 
-    $userData = json_decode($jwtPayloadDec, true);
+//     $userData = json_decode($jwtPayloadDec, true);
 
-    return $userData;
-}
+//     return $userData;
+// }
 
-function createJWT($userInfo){
-    // $test = array(
-    //     "devBio" => "bio, that was a freaky story eh!!! ***£$@£ eyeye",
-    //     "email" => "John@Doe.com",
-    //     "languages" => "english, german, italian"
-    // );
-    // $testJSON = json_encode($test);
+// function createJWT($userInfo){
+//     // $test = array(
+//     //     "devBio" => "bio, that was a freaky story eh!!! ***£$@£ eyeye",
+//     //     "email" => "John@Doe.com",
+//     //     "languages" => "english, german, italian"
+//     // );
+//     // $testJSON = json_encode($test);
 
-    $userInfoJSON = json_encode($userInfo);
-    // JWT token structure is like header.payload.signature
-    // The header of the JWT token
-    $headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
+//     $userInfoJSON = json_encode($userInfo);
+//     // JWT token structure is like header.payload.signature
+//     // The header of the JWT token
+//     $headerEnc = base64_encode('{"alg": "HS256","typ": "JWT"}');
 
-    // The payload of the JWT token
-    $payloadEnc = base64_encode($userInfoJSON);
-    //$payloadEnc = base64_encode('{"iss": "connectServer","name": "Ade"}');
+//     // The payload of the JWT token
+//     $payloadEnc = base64_encode($userInfoJSON);
+//     //$payloadEnc = base64_encode('{"iss": "connectServer","name": "Ade"}');
 
-    // header and payload concat
-    $headerPayload = $headerEnc . '.' . $payloadEnc;
+//     // header and payload concat
+//     $headerPayload = $headerEnc . '.' . $payloadEnc;
 
-    //Setting the secret key
-    $secretKey = 'secret';
+//     //Setting the secret key
+//     $secretKey = 'secret';
 
-    // Creating the signature, a hash with the sha256 algorithm and the secret key
-    $signature = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
+//     // Creating the signature, a hash with the sha256 algorithm and the secret key
+//     $signature = base64_encode(hash_hmac('sha256', $headerPayload, $secretKey, true));
 
-    // Creating the JWT token
-    $jwtToken = $headerPayload . '.' . $signature;
+//     // Creating the JWT token
+//     $jwtToken = $headerPayload . '.' . $signature;
 
-    return $jwtToken;
-}
+//     return $jwtToken;
+// }
 
 date_default_timezone_set('Europe/London');
 

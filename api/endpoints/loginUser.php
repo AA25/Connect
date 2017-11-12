@@ -38,9 +38,12 @@
                     pushBusDetails($userInfo, $info);        
                 }
             }
-            $userToken = createJWT($userInfo);
-            //echo json_encode(array('Success' => $userToken));
-            setUserCookies($userInfo, $loginJSON['location'], $userToken);
+
+            //$userToken = createJWT($userInfo);
+            $userToken = new Jwt('');
+            $userToken->setToken($userInfo);
+            $value = $userToken->getToken();
+            setUserCookies($userInfo, $loginJSON['location'], $userToken->getToken());
             echo json_encode(array('Success' => 'Successful login'));
         }else{
             echo json_encode(array('Error' => 'Incorrect login details'));
