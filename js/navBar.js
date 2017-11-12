@@ -72,7 +72,7 @@ $('#loginDevForm').submit(function (e){
     e.preventDefault();
     var data = formData('loginDevForm','developers');
     $.ajax({
-        url: "./api/endpoints/loginUser.php",
+        url: "./logic/loginUser.php",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -96,7 +96,7 @@ $('#loginBusForm').submit(function (e){
     e.preventDefault();
     var data = formData('loginBusForm','businesses');
     $.ajax({
-        url: "./api/endpoints/loginUser.php",
+        url: "./logic/loginUser.php",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -132,7 +132,7 @@ function errorDisplay(response){
 
 function logOut(){
     $.ajax({
-        url: "./api/endpoints/logoutUser.php",
+        url: "./logic/logoutUser.php",
         data: {},
         type: 'get',
         method: 'GET',
@@ -142,7 +142,7 @@ function logOut(){
             console.log(textStatus);
         },
         success: function formSuccess(response) {
-            response = JSON.parse(response);
+            console.log(response);
         }
     });
 }

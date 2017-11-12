@@ -1,12 +1,13 @@
 <?php 
-    require "../../includes/init.inc.php";
+    //TODO Login and logout should not be an api but be placed in the logic folder
+    require "../includes/init.inc.php";
     $pdo = get_db();
 
     //important to tell your browser what we will be sending
-    header("Access-Control-Allow-Origin: *");
+    // header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Allow-Methods: POST");
-    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    // header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     $loginJSON = json_decode(file_get_contents('php://input'),true);
     

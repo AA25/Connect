@@ -1,13 +1,17 @@
 <?php 
-    require "../../includes/init.inc.php";
+    require "../includes/init.inc.php";
 
     //important to tell your browser what we will be sending
-    header("Access-Control-Allow-Origin: *");
+    // header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Allow-Methods: GET");
-    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    // header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-    if(verifyJWT($_COOKIE['JWT'])){
+    $token = new Jwt ($_COOKIE['JWT']);
+    //echo $_COOKIE['JWT'];
+    //echo $token->token;
+    //echo ($token->verifyJWT($token->token));
+    if($token->verifyJWT($token->token)){
         $cookiePath = "/";
         $cookieExp = time()-3600;
         if (isset($_COOKIE['JWT'])) {
