@@ -1,5 +1,7 @@
+console.log(document.cookie['JWT']);
 //When the register form is clicked, an ajax request is made to register the product
 $('#registerProjectForm').submit(function (e){
+    //console.log($document.cookie);
     e.preventDefault();
     //Pull the data from the form
     var data = {
@@ -16,6 +18,9 @@ $('#registerProjectForm').submit(function (e){
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ","+"));
+        },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
@@ -24,3 +29,4 @@ $('#registerProjectForm').submit(function (e){
         }
     });
 });
+
