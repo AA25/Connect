@@ -4,7 +4,7 @@
         public $token;
 
         function __construct($token){
-            //$this->userDetails = $userDetails;
+            $sentJwt = str_replace(' ', '+', $token);
             $this->token = $token;
         }
     
