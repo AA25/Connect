@@ -1,5 +1,4 @@
 <?php 
-    //TODO Since this is an api we cant always look at the cookie so make the request contain the token instead
     require "../../includes/init.inc.php";
     $pdo = get_db();
 

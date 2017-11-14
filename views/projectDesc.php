@@ -1,50 +1,29 @@
 <? 
-    require "../includes/init.inc.php";
-    $pdo = get_db();
-
-    //important to tell your browser what we will be sending
-    header("Access-Control-Allow-Origin: *");
-    header("Content-Type: application/json; charset=UTF-8");
-    header("Access-Control-Allow-Methods: GET");
-    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
-    $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate from projects where projectId = :projectId");
-    $result->execute([
-        'projectId' => $_GET['projectId']
-    ]);
-    if($result->rowCount() > 0){
-        $returnProject = [];
-        foreach($result as $row){
-            pushProjectDetails($returnProject, $row);
-        }
-        //echo json_encode($returnProject);
-        renderProject();
-    }else{
-        //echo json_encode(Array('Error' => "Oops, the project you're looking doesn't seem to exist"));
-        renderError();
-    }
-
-    function pushProjectDetails(&$returnProject, $info){
-        array_push($returnProject, 
-            Array(
-                'projectCategory'   => $info['projectCategory'],
-                'projectBio'        => $info['projectBio'],
-                'projectCurrency'   => $info['projectCurrency'],
-                'projectBudget'     => $info['projectBudget'],
-                'projectCountry'    => $info['projectCountry'],
-                'projectDeadline'   => $info['projectDeadline'],
-                'projectLanguage'   => $info['projectLanguage'],
-                'dateEntered'       => $info['dateEntered'],
-                'startDate'         => $info['startDate']
-            )
-        );
-    }
-
-    function renderProject(){
-        echo "The project view!";
-    }
-
-    function renderError(){
-        echo "Oops, the project you're looking doesn't seem to exist";
-    }
+//TODO Introduce bootstrap js locally instead of a externallink
 ?>
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Connect Project Description</title>
+        <!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/connectStyle.css"/>
+    </head>
+    <body>
+
+        <div>
+
+        </div>
+        
+    </body>
+        <script src="../js/jQuery/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../js/smoothScroll/smoothScroll.js"></script>
+        <script src="../js/navBar.js"></script>
+        <script src="../js/projectDesc.js"></script>
+    </html>
+
