@@ -12,13 +12,14 @@ require "../../includes/init.inc.php";
     //echo json_encode(Array('returnAmount' => $_GET['returnAmount'], 'returnFrom' => $_GET['returnFrom']));
 
     $result = $pdo->prepare("
-        select projectId, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects order by dateEntered desc limit :returnFrom, :returnAmount
+        select projectId, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where projectStatus = :projectStatus order by dateEntered desc limit :returnFrom, :returnAmount
     ");
     // $pdo->bindParam(':returnFrom', (int)$_GET['returnFrom'], PDO::PARAM_INT);
     // $pdo->bindParam(':returnAmount', (int)$_GET['returnAmount'], PDO::PARAM_INT);
     $result->execute([
         'returnFrom' => (int)$_GET['returnFrom'],
-        'returnAmount' => (int)$_GET['returnAmount']
+        'returnAmount' => (int)$_GET['returnAmount'],
+        'projectStatus' => 0
     ]);
     if($result->rowCount() > 0){
         $returnProjects = ['Projects' => []];
