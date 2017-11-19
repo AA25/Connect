@@ -38,3 +38,7 @@ create table businesses (busId int not null auto_increment primary key,
     create table projectState (projectState int not null auto_increment primary key,
     -> projectId int not null,
     -> currentState int not null);
+
+    create table projectRequests (projectReqId int not null auto_increment primary key, projectId int, devId int, devMsg varchar(500) not null, status varchar(15) not null);
+
+    create table projectDevelopers (projectDevId int not null auto_increment primary key, devId int, projectId int);

@@ -12,7 +12,7 @@
 <body>
 
     <div>
-        
+        <!--This page should allow users to update their account details -->
     </div>
     
 
