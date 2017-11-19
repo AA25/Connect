@@ -10,7 +10,8 @@ create table developers ( devId int not null auto_increment primary key,
     -> email varchar(56) not null unique,
     -> password varchar(500) not null,
     -> speciality varchar(56) not null,
-    -> devBio varchar(500) not null);
+    -> devBio varchar(500) not null),
+    -> currentProj int;
 
 create table businesses (busId int not null auto_increment primary key,
     -> busName varchar(56) not null,
@@ -33,7 +34,8 @@ create table businesses (busId int not null auto_increment primary key,
     -> projectLanguage varchar(56) not null,
     -> projectCurrency varchar(56) not null,
     -> dateEntered date not null,
-    -> startDate date not null);
+    -> startDate date not null,
+    -> projectStatus int);
 
     create table projectState (projectState int not null auto_increment primary key,
     -> projectId int not null,

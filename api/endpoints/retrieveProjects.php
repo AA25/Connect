@@ -8,21 +8,38 @@ require "../../includes/init.inc.php";
     header("Access-Control-Allow-Methods: GET");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-    //TODO Use limit x,y to return y amount from x+1
-    //echo json_encode(Array('returnAmount' => $_GET['returnAmount'], 'returnFrom' => $_GET['returnFrom']));
+    $returnProjects = ['userType' => 'guest','Projects' => []];
+
+    //This API doesnt require an authorization header containing the JWT token
+    //However if it does additional  info of what type of account is trying to access the data will be return
+    //This can be useful for the webpage to display the data a certain way depending on the account viewing it
+    $headers = apache_request_headers();
+    if(isset($headers['Authorization'])){
+        //Getting the token sent
+        $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
+        $verifiedJWT = new Jwt ($tokenInAuth);
+        //Getting data out from the sent token object
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        //If the token passes verification then we know the data it contains is also valid and true
+        if($verifiedJWT->verifyJWT($verifiedJWT->token)){
+            //Setting the userType to be the type of the account accessing this data
+            $returnProjects['userType'] = $userVerifiedData['type'];
+        }
+    }
 
     $result = $pdo->prepare("
         select projectId, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where projectStatus = :projectStatus order by dateEntered desc limit :returnFrom, :returnAmount
     ");
-    // $pdo->bindParam(':returnFrom', (int)$_GET['returnFrom'], PDO::PARAM_INT);
-    // $pdo->bindParam(':returnAmount', (int)$_GET['returnAmount'], PDO::PARAM_INT);
+
     $result->execute([
         'returnFrom' => (int)$_GET['returnFrom'],
         'returnAmount' => (int)$_GET['returnAmount'],
         'projectStatus' => 0
     ]);
+
     if($result->rowCount() > 0){
-        $returnProjects = ['Projects' => []];
+        
         foreach($result as $info){
             //array_push($returnProjects['Projects'], $info);
             pushProjectDetails($returnProjects['Projects'], $info);
