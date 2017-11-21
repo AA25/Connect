@@ -18,7 +18,7 @@
         // $db = get_db();
         //var_dump($db);
     ?>
-    <!-- <form method="post" action="" id="registerDevForm" class="">
+    <form method="post" action="" id="registerDevForm" class="">
         <div class="">
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" placeholder="Enter first name" name="firstName" >
@@ -52,7 +52,7 @@
             <textarea rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
         </div>
         <button type="submit" class="" style="">Register</button>
-    </form> -->
+    </form>
     
     <!-- <form method="post" action="" id="registerBusForm" class="">
         <div class="">
