@@ -47,3 +47,31 @@ function projectRequests() {
         }
     });
 }
+
+function respondToRequest(buttonClicked) {
+    var optionPicked = buttonClicked.getAttribute("data-request-response");
+    var devId = buttonClicked.getAttribute("data-dev");
+    $.ajax({
+        url: '../api/endpoints/updateProjectRequest.php',
+        data: {
+            'optionPicked': optionPicked,
+            'devId': devId
+        },
+        type: 'post',
+        method: 'POST',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response);
+                //then remove it from the table html
+            }
+        }
+    });
+}

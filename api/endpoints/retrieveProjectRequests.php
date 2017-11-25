@@ -28,7 +28,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
         $returnProjectReqs = ['Success' => []];
         $result = $pdo->prepare(
             //"select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail and projectRequests.status = 'pending'"
-            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
+            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, developers.devId, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
             from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
             inner join developers on  projectRequests.devId = developers.devId) 
             inner join businesses on projectRequests.busId = businesses.busId) 
@@ -54,6 +54,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
                 'projectCategory'   => $requests['projectCategory'],
                 'devName'           => $requests['firstName'].' '.$requests['lastName'],
                 'devEmail'          => $requests['email'],
+                'devId'             => $requests['devId'],
                 'devMsg'            => $requests['devMsg'],
                 'status'            => $requests['status']
             )
