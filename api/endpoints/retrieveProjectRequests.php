@@ -27,10 +27,16 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnProjectReqs = ['Success' => []];
         $result = $pdo->prepare(
-            "select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail and projectRequests.status = 'pending'"
+            //"select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail and projectRequests.status = 'pending'"
+            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
+            from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
+            inner join developers on  projectRequests.devId = developers.devId) 
+            inner join businesses on projectRequests.busId = businesses.busId) 
+            where businesses.email = :busEmail and projectRequests.status = :status"
         );
         $result->execute([
-            'busEmail' => $userVerifiedData['email']
+            'busEmail' => $userVerifiedData['email'],
+            'status' => 'pending'
         ]);
         if($result->rowCount() > 0){
             foreach($result as $requests){
@@ -43,10 +49,13 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     function pushProjectDetails(&$returnProjectReqs, $requests){
         array_push($returnProjectReqs, 
             Array(
-                'projectReqId'  => $requests['projectReqId'],
-                'projectId'     => $requests['projectId'],
-                'devMsg'        => $requests['devMsg'],
-                'status'        => $requests['status']
+                'projectReqId'      => $requests['projectReqId'],
+                'projectId'         => $requests['projectId'],
+                'projectCategory'   => $requests['projectCategory'],
+                'devName'           => $requests['firstName'].' '.$requests['lastName'],
+                'devEmail'          => $requests['email'],
+                'devMsg'            => $requests['devMsg'],
+                'status'            => $requests['status']
             )
         );
     }

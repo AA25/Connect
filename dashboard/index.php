@@ -14,14 +14,14 @@
 
     <div>
         <div id="dashboardSidebar">
-            <div id="dashboardSidebarOptions">
+            <div id="dashboardSidebarOptions" class="row">
                 <ul>
                     <li onclick="projectRequests()">View Requests</li>
                 </ul>
             </div>
         </div>
-        <div id="renderOption">
-
+        <div id="renderOption" style="width:70%">
+            
         </div>
     </div>
     

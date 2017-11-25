@@ -44,3 +44,6 @@ create table businesses (busId int not null auto_increment primary key,
     create table projectRequests (projectReqId int not null auto_increment primary key, projectId int, devId int, devMsg varchar(500) not null, status varchar(15) not null);
 
     create table projectDevelopers (projectDevId int not null auto_increment primary key, devId int, projectId int);
+
+    -- A splendid query that joins 3 tables together and extract certain information based on a few conditions
+    select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) inner join developers on  projectRequests.devId = developers.devId) inner join businesses on projectRequests.busId = businesses.busId) where businesses.email = 'test2@test.com' and projectRequests.status = 'pending';
