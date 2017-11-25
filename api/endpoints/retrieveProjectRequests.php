@@ -27,7 +27,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnProjectReqs = ['Success' => []];
         $result = $pdo->prepare(
-            "select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail"
+            "select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail and projectRequests.status = 'pending'"
         );
         $result->execute([
             'busEmail' => $userVerifiedData['email']
