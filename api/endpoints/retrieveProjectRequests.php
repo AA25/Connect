@@ -1,5 +1,5 @@
 <?php 
-require "../includes/init.inc.php";
+require "../../includes/init.inc.php";
 $pdo = get_db();
 
 header("Access-Control-Allow-Origin: *");
@@ -22,8 +22,32 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
         echo json_encode(Array('Error' => 'Please log in to view this page'));
     }
 
-    prepareSelectRequest();
-    //I need a query where I can pull the project requests to all projects owned by a business 
-    //update insert project request query to also insert the bus id (with the use of the projectid)
 
+    //I need a query where I can pull the project requests to all projects owned by a business
+    function prepareSelectRequest($pdo, $userVerifiedData){
+        $returnProjectReqs = ['Success' => []];
+        $result = $pdo->prepare(
+            "select projectReqId, projectId, devMsg, status from projectRequests inner join businesses on projectRequests.busId = businesses.busId where businesses.email = :busEmail"
+        );
+        $result->execute([
+            'busEmail' => $userVerifiedData['email']
+        ]);
+        if($result->rowCount() > 0){
+            foreach($result as $requests){
+                pushProjectDetails($returnProjectReqs['Success'],$requests);
+            }
+        }
+        echo json_encode($returnProjectReqs);
+    }; 
+
+    function pushProjectDetails(&$returnProjectReqs, $requests){
+        array_push($returnProjectReqs, 
+            Array(
+                'projectReqId'  => $requests['projectReqId'],
+                'projectId'     => $requests['projectId'],
+                'devMsg'        => $requests['devMsg'],
+                'status'        => $requests['status']
+            )
+        );
+    }
 ?>

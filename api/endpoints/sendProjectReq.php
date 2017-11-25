@@ -41,20 +41,21 @@
 
     function insertProjectRequest($pdo, $userVerifiedData, $projectReqJSON){
         $devId = getPrimaryKey($pdo,$userVerifiedData);
-        echo gettype($projectReqJSON['devMsg']);
+        $busId = getBusIdFromProjId($pdo,$projectReqJSON['projectId']);
         $pdo->beginTransaction();
         try{
             //Now we insert a new project with the busId 
             $result = $pdo->prepare(
                 "insert into
-                projectRequests (projectId, devId, devMsg, status)
-                values(:projectId, :devId, :devMsg, :status);"
+                projectRequests (projectId, devId, devMsg, status, busId)
+                values(:projectId, :devId, :devMsg, :status, :busId);"
             );
             $result->execute([
                 'projectId' => $projectReqJSON['projectId'],
                 'devId' => $devId,
                 'devMsg' => $projectReqJSON['devMsg'],
                 'status' => 'Pending',
+                'busId' => $busId
             ]);
 
             //We've got this far without an exception, so commit the changes.
@@ -76,11 +77,22 @@
             foreach($result as $row){
                 $pk = $row['devId'];
             }
-        }else{
-            //echo json_encode(Array('Error' => $projectReqJSON['projectId']));
-            insertProjectRequest($pdo, $userVerifiedData, $projectReqJSON);
         }
         return $pk;
+    }
+
+    function getBusIdFromProjId($pdo,$projectId){
+        $busId = "";
+        $result = $pdo->prepare("select businessId from projects where projectId = :projectId");
+        $result->execute([
+            'projectId' => $projectId
+        ]);
+        if($result->rowCount() > 0){
+            foreach($result as $row){
+                $busId = $row['businessId'];
+            }
+        }
+        return $busId;
     }
 
 ?>

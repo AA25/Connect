@@ -16,7 +16,7 @@
         <div id="dashboardSidebar">
             <div id="dashboardSidebarOptions">
                 <ul>
-                    <li onclick="">View Requests</li>
+                    <li onclick="projectRequests()">View Requests</li>
                 </ul>
             </div>
         </div>

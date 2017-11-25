@@ -42,7 +42,7 @@ function projectRequests() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response);
+                console.log(response['Success']);
             }
         }
     });
