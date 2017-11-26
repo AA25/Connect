@@ -24,29 +24,7 @@ function accessDashboardPermission() {
     });
 };
 
-window.onload = accessDashboardPermission();
-
-function projectRequests() {
-    $.ajax({
-        url: '../api/endpoints/retrieveProjectRequests.php',
-        data: { 'userType': userType },
-        type: 'get',
-        method: 'GET',
-        beforeSend: function(request) {
-            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-        },
-        success: function(response) {
-            if (response['Error']) {
-                console.log(response);
-            } else {
-                console.log(response['Success']);
-            }
-        }
-    });
-}
+//window.onload = accessDashboardPermission();
 
 function respondToRequest(buttonClicked) {
     var data = {
@@ -71,6 +49,35 @@ function respondToRequest(buttonClicked) {
             } else {
                 console.log(response);
                 //then remove it from the table html
+            }
+        }
+    });
+}
+
+function renderProjectRequests(type) {
+    $(function() {
+        $("#renderOption").load("../dashboard/options/" + type + "/projectRequests.html");
+        projectRequests();
+    });
+}
+
+function projectRequests() {
+    $.ajax({
+        url: '../api/endpoints/retrieveProjectRequests.php',
+        data: { 'userType': userType },
+        type: 'get',
+        method: 'GET',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response['Success']);
             }
         }
     });

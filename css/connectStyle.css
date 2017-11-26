@@ -1,0 +1,9 @@
+html,
+body {
+    height: 100% !important;
+    width: 100% !important;
+    font-family: 'Arial';
+    font-size: 1em;
+    background-color: white;
+    color: black;
+}
