@@ -15,12 +15,35 @@
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
         //This API endpoint should only be accessible if JWT token  is verified and user is a developer
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'developer'){
-            checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON);
+            checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON);
         }else{
             echo json_encode(Array('Error' => 'Permission denied'));
         }
     }else{
         echo json_encode(Array('Error' => 'No Authorization Header'));
+    }
+
+    function checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON){
+        //Need to check that the developer is not already part of a project
+        $currentProject = '';
+        $check = $pdo->prepare("
+            select currentProject from developers where email = :devEmail
+        ");
+        
+        $check->execute([
+            'devEmail'  => $userVerifiedData['email']
+        ]);
+
+        if($check->rowCount() > 0){
+            foreach($result as $row){
+                $currentProject = $row['currentProject'];
+            }
+        }
+        if($currentProject == null){
+            checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON);
+        }else{
+            echo json_encode(Array('Error' => 'User already part of a project'));
+        }
     }
 
     function checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON){
