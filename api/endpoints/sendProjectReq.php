@@ -29,7 +29,7 @@
         $check = $pdo->prepare("
             select currentProject from developers where email = :devEmail
         ");
-        
+
         $check->execute([
             'devEmail'  => $userVerifiedData['email']
         ]);
@@ -47,15 +47,14 @@
     }
 
     function checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON){
-        //Retrieve businessId from the business trying to add a new project
-        $result = $pdo->prepare("select * from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :email and projectRequests.projectId = :projectId");
+        //A query that selects all pending requests made by this particular developer to a specific project
+        $result = $pdo->prepare("select * from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :email and projectRequests.projectId = :projectId and projectRequests.status = :status");
         $result->execute([
-            'email' => $userVerifiedData['email'],
-            'projectId' => $projectReqJSON['projectId']
+            'email'     => $userVerifiedData['email'],
+            'projectId' => $projectReqJSON['projectId'],
+            'status'    => 'Pending'
         ]);
-        //If num of rows returned is greater than 0 we know we have a result meaning a request for this project has already been made
-        //MAYBE we should check to see if there are any Pending|Accepted requests for this project if not then the request can go forward as declined requests are kept in the db until deleted by dev
-        //Need to also make sure that currentProject is null
+        //If num of rows returned is greater than 0 we know we have a result meaning theres already a pending request for this specific project made by the user
         if($result->rowCount() > 0){
             echo json_encode(Array('Error' => 'Request for this project has already been made'));
         }else{
