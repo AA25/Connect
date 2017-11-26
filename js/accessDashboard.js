@@ -51,11 +51,13 @@ function projectRequests() {
 function respondToRequest(buttonClicked) {
     var optionPicked = buttonClicked.getAttribute("data-request-response");
     var devId = buttonClicked.getAttribute("data-dev");
+    var projectId = buttonClicked.getAttribute("data-project");
     $.ajax({
         url: '../api/endpoints/updateProjectRequest.php',
         data: {
-            'optionPicked': optionPicked,
-            'devId': devId
+            'busResponse': optionPicked,
+            'devId': devId,
+            'projectId': projectId
         },
         type: 'post',
         method: 'POST',

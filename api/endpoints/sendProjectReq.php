@@ -31,6 +31,8 @@
             'projectId' => $projectReqJSON['projectId']
         ]);
         //If num of rows returned is greater than 0 we know we have a result meaning a request for this project has already been made
+        //MAYBE we should check to see if there are any Pending|Accepted requests for this project if not then the request can go forward as declined requests are kept in the db until deleted by dev
+        //Need to also make sure that currentProject is null
         if($result->rowCount() > 0){
             echo json_encode(Array('Error' => 'Request for this project has already been made'));
         }else{

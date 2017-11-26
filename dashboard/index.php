@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
-                        <th>Project ID</th>
+                        <th>Project name</th>
                         <th>Project category</th>
                         <th>Request sent by</th>
                         <th>Request status</th>
@@ -57,8 +57,8 @@
 
                                 <a href="">Click here to view their profile to find out more about them</a>
                                 <br><br>
-                                <button data-request-response="Accepted" data-dev=1 onclick="respondToRequest(this)">Accept</button>
-                                <button data-request-response="Rejected" data-dev=1 onlick="respondToRequest(this)">Reject</button>
+                                <button data-request-response="Accepted" data-dev=1 data-project=1 onclick="respondToRequest(this)">Accept</button>
+                                <button data-request-response="Rejected" data-dev=1 data-project=1 onlick="respondToRequest(this)">Reject</button>
                             </div>
                         </td> 
                     </tr>
