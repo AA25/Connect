@@ -58,7 +58,7 @@
                                 <a href="">Click here to view their profile to find out more about them</a>
                                 <br><br>
                                 <button data-request-response="Accepted" data-dev=1 data-project=1 onclick="respondToRequest(this)">Accept</button>
-                                <button data-request-response="Rejected" data-dev=1 data-project=1 onlick="respondToRequest(this)">Reject</button>
+                                <button data-request-response="Rejected" data-dev=1 data-project=1 onclick="respondToRequest(this)">Reject</button>
                             </div>
                         </td> 
                     </tr>

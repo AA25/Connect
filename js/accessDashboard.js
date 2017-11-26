@@ -49,16 +49,14 @@ function projectRequests() {
 }
 
 function respondToRequest(buttonClicked) {
-    var optionPicked = buttonClicked.getAttribute("data-request-response");
-    var devId = buttonClicked.getAttribute("data-dev");
-    var projectId = buttonClicked.getAttribute("data-project");
+    var data = {
+        'busResponse': buttonClicked.getAttribute("data-request-response"),
+        'devId': buttonClicked.getAttribute("data-dev"),
+        'projectId': buttonClicked.getAttribute("data-project")
+    };
     $.ajax({
         url: '../api/endpoints/updateProjectRequest.php',
-        data: {
-            'busResponse': optionPicked,
-            'devId': devId,
-            'projectId': projectId
-        },
+        data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
         beforeSend: function(request) {

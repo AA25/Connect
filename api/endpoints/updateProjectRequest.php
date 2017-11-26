@@ -2,14 +2,14 @@
 require "../../includes/init.inc.php";
 $pdo = get_db();
 
-// header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $headers = apache_request_headers();
 if(isset($headers['Authorization'])){
-    $requestResponse = json_decode(file_get_contents('php://input'),true);        
+    $requestResponse = json_decode(file_get_contents('php://input'),true);      
     $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
     $verifiedJWT = new Jwt ($tokenInAuth);
     $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
@@ -25,18 +25,22 @@ if(isset($headers['Authorization'])){
 
 function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){
     $pdo->beginTransaction();
+
     try{
-        // Updates the project request of a specific developer to a specific projecct to accepted or declined
-        // Not this would update all requests made by a specific dev to a specific project however it's impossible for a  dev to make more 2 or more requests to one project therefore this is not a concern
+        // Updates the project request of a specific developer to a specific project to accepted or declined.
+        // Note that previous rejected requests will be left in the db to later be accessed on the clientside for history purposes, it can be deleted later by user
+        // The inner join with businesses table is to ensure that user cannot delete a project request of a different business
         $stepOne = $pdo->prepare("
             update projectRequests inner join businesses on projectRequests.busId = businesses.busId set projectRequests.status = :busResponse 
-            where businesses.email = :busEmail and projectRequests.devId = :devId;
+            where businesses.email = :busEmail and projectRequests.projectId = :projectId and projectRequests.devId = :devId and projectRequests.status = :status;
         ");
 
         $stepOne->execute([
             'busResponse'   => $requestResponse['busResponse'],
+            'projectId'     => $requestResponse['projectId'],
             'busEmail'      => $userVerifiedData['email'],
-            'devId'         => $requestResponse['devId']
+            'devId'         => $requestResponse['devId'],
+            'status'        => 'Pending'
         ]);
 
         if($requestResponse['busResponse'] == 'Accepted'){
@@ -52,7 +56,7 @@ function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){
 
             //Then update the currentProject column in the developer table to the project they've been accepted for
             $stepThree = $pdo->prepare("
-                update developers set currentProject = :projectId where devId = devId; 
+                update developers set currentProject = :projectId where devId = :devId; 
             ");
             
             $stepThree->execute([
@@ -69,15 +73,15 @@ function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){
                 'devId' => $requestResponse['devId'],
                 'projectId' => $requestResponse['projectId']
             ]);
-
-            //We've got this far without an exception, so commit the changes.
-            echo json_encode(array('Success' => 'Project request updated'));
-
-            $pdo->commit();
         }
+
+        //We've got this far without an exception, so commit the changes.
+        $pdo->commit();
+        echo json_encode(array('Success' => 'Project request updated'));
 
     }catch(Exception $e){
         echo json_encode(array('Error' => 'Updating response to request failed'));
+        //echo $e;
         $pdo->rollBack();
     }
 }
