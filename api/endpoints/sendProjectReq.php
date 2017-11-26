@@ -35,10 +35,11 @@
         ]);
 
         if($check->rowCount() > 0){
-            foreach($result as $row){
+            foreach($check as $row){
                 $currentProject = $row['currentProject'];
             }
         }
+
         if($currentProject == null){
             checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON);
         }else{
