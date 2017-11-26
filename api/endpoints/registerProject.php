@@ -68,20 +68,21 @@
             //Now we insert a new project with the busId 
             $result = $pdo->prepare(
                 "insert into
-                projects (businessId, projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate)
-                values(:businessId, :projectCategory, :projectBio, :projectBudget, :projectDeadline, :projectCountry, :projectLanguage, :projectCurrency, :dateEntered, :startDate);"
+                projects (businessId, projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus)
+                values(:businessId, :projectCategory, :projectBio, :projectBudget, :projectDeadline, :projectCountry, :projectLanguage, :projectCurrency, :dateEntered, :startDate, :projectStatus);"
             );
             $result->execute([
-                'businessId' => $busId,
-                'projectCategory' => $projectJSON['projectCategory'],
-                'projectBio' => $projectJSON['projectBio'],
-                'projectBudget' => $projectJSON['projectBudget'],
-                'projectDeadline' => $projectJSON['projectDeadline'],
-                'projectCountry' => $projectJSON['projectCountry'],
-                'projectLanguage' => $projectJSON['projectLanguage'],
-                'projectCurrency' => $projectJSON['projectCurrency'],
-                'dateEntered' => date("Y-m-d H:i:s"),
-                'startDate' => date("Y-m-d")
+                'businessId'        => $busId,
+                'projectCategory'   => $projectJSON['projectCategory'],
+                'projectBio'        => $projectJSON['projectBio'],
+                'projectBudget'     => $projectJSON['projectBudget'],
+                'projectDeadline'   => $projectJSON['projectDeadline'],
+                'projectCountry'    => $projectJSON['projectCountry'],
+                'projectLanguage'   => $projectJSON['projectLanguage'],
+                'projectCurrency'   => $projectJSON['projectCurrency'],
+                'dateEntered'       => date("Y-m-d H:i:s"),
+                'startDate'         => date("Y-m-d"),
+                'projectStatus'     => 0
             ]);
 
             //We've got this far without an exception, so commit the changes.
