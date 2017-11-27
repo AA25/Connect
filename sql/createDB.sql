@@ -55,3 +55,6 @@ create table businesses (busId int not null auto_increment primary key,
     -- Updates the project request of a specific developer to a specific projecct to accepted or declined
     update projectRequests inner join businesses on projectRequests.busId = businesses.busId set projectRequests.status = 'Accepted' 
     where businesses.email = 'test@test.com' and projectRequests.projectId=1 and projectRequests.devId=1 and projectRequests.status = 'Pending';
+
+    -- Returns the requests made by a developer
+    select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = '';

@@ -54,17 +54,10 @@ function respondToRequest(buttonClicked) {
     });
 }
 
-function renderProjectRequests(type) {
-    $(function() {
-        $("#renderOption").load("../dashboard/options/" + type + "/projectRequests.html");
-        projectRequests();
-    });
-}
-
 function projectRequests() {
     $.ajax({
         url: '../api/endpoints/retrieveProjectRequests.php',
-        data: { 'userType': userType },
+        data: { 'userType': userType }, // review this line, is it needed?
         type: 'get',
         method: 'GET',
         beforeSend: function(request) {
@@ -115,4 +108,40 @@ function addProjectRequestsHTML(pendingRequests) {
         $("#requestTableBody").append(basicRowDetail);
         $("#requestTableBody").append(indepthRowDetail);
     }
+}
+
+function developerRequests() {
+    $.ajax({
+        url: '../api/endpoints/retrieveDeveloperRequests.php',
+        data: {},
+        type: 'get',
+        method: 'GET',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response['In']);
+            }
+        }
+    });
+}
+
+function renderProjectRequests(userType, file) {
+    $(function() {
+        $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
+        switch (file) {
+            case "projectRequests":
+                projectRequests();
+                break;
+            case "developerRequests":
+                developerRequests();
+                break;
+        }
+    });
 }
