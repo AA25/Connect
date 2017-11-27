@@ -78,7 +78,41 @@ function projectRequests() {
                 console.log(response);
             } else {
                 console.log(response['Success']);
+                addProjectRequestsHTML(response['Success']);
             }
         }
     });
+}
+
+function addProjectRequestsHTML(pendingRequests) {
+    //Remove whats currently there and create 
+    $("#requestTableBody").empty();
+    for (var i = 0; i < pendingRequests.length; i++) {
+        var basicRowDetail =
+            '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
+            '<td>click</td>' +
+            '<td>' + pendingRequests[i]['projectId'] + '</td>' +
+            '<td>' + pendingRequests[i]['projectCategory'] + '</td>' +
+            '<td>' + pendingRequests[i]['devName'] + '</td>' +
+            '<td>' + pendingRequests[i]['status'] + '</td>' +
+            '</tr>';
+
+        var indepthRowDetail =
+            '<tr>' +
+            '<td colspan="12">' +
+            '<div id="requestDetail' + (i + 1) + '" class="collapse">' +
+            '<h3>' + pendingRequests[i]['devName'] + ' sent a request to join this project</h3>' +
+            '<h5>Their message contained the following...</h5>' +
+            '<p>"' + pendingRequests[i]['devMsg'] + '"</p>' +
+            '<a href="">Click here to learn more about them by viewing their profile </a>' +
+            '<br><br>' +
+            '<button data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-dev="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
+            '<button data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-dev="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
+            '</div>' +
+            '</td>' +
+            '</tr>';
+
+        $("#requestTableBody").append(basicRowDetail);
+        $("#requestTableBody").append(indepthRowDetail);
+    }
 }
