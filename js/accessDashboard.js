@@ -126,10 +126,14 @@ function developerRequests() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['In']);
+                console.log(response['Success']);
             }
         }
     });
+}
+
+function cancelRequest() {
+
 }
 
 function renderProjectRequests(userType, file) {

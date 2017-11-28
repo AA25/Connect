@@ -24,7 +24,7 @@
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnDevReqs = ['Success' => []];
 
-        $result = $pdo->prepare("select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :devEmail");
+        $result = $pdo->prepare("select projectReqId, projectId, devMsg, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :devEmail");
         $result->execute([
             'devEmail' => $userVerifiedData['email']
         ]);
@@ -39,7 +39,9 @@
     function pushRequestDetails(&$returnDevReqs, $requests){
         array_push($returnDevReqs, 
             Array(
+                'projectReqId'  => $requests['projectReqId'],
                 'projectId'     => $requests['projectId'],
+                'devMsg'        => $requests['devMsg'],
                 'status'        => $requests['status']
             )
         );
