@@ -136,7 +136,7 @@ function cancelRequest() {
 
 }
 
-function renderProjectRequests(userType, file) {
+function renderSidebarOption(userType, file) {
     $(function() {
         $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
         switch (file) {
