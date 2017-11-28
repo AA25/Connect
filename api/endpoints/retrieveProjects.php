@@ -29,7 +29,7 @@ require "../../includes/init.inc.php";
     }
 
     $result = $pdo->prepare("
-        select projectId, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where projectStatus = :projectStatus order by dateEntered desc limit :returnFrom, :returnAmount
+        select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where projectStatus = :projectStatus order by dateEntered desc limit :returnFrom, :returnAmount
     ");
 
     $result->execute([
@@ -53,6 +53,7 @@ require "../../includes/init.inc.php";
         array_push($returnProjects, 
             Array(
                 'projectId'         => $info['projectId'],
+                'projectName'       => $info['projectName'],
                 'projectCategory'   => $info['projectCategory'],
                 'projectBio'        => $info['projectBio'],
                 'projectBudget'     => $info['projectBudget'],

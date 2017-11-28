@@ -27,7 +27,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnProjectReqs = ['Success' => []];
         $result = $pdo->prepare(
-            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, projects.projectBio, developers.devId, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
+            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projects.projectCategory, projects.projectBio, developers.devId, developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
             from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
             inner join developers on projectRequests.devId = developers.devId) 
             inner join businesses on projectRequests.busId = businesses.busId) 
@@ -50,6 +50,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
             Array(
                 'projectReqId'      => $requests['projectReqId'],
                 'projectId'         => $requests['projectId'],
+                'projectName'       => $requests['projectName'],
                 'projectCategory'   => $requests['projectCategory'],
                 'projectBio'        => $requests['projectBio'],
                 'devName'           => $requests['firstName'].' '.$requests['lastName'],

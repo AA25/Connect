@@ -17,6 +17,7 @@
                 <thead>
                 <tr>
                     <th>Location</th>
+                    <th>Project Name</th>
                     <th>Category</th>
                     <th>Description</th>
                     <th>Budget</th>

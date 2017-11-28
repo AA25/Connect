@@ -13,6 +13,10 @@
 
     <form method="post" action="" id="registerProjectForm">
         <div class="">
+            <label for="projectName">Project Name:</label>
+            <input type="text" class="form-control" placeholder="Enter a project name" name="projectName">
+        </div>
+        <div class="">
             <label for="projectCategory">Project Category:</label>
             <select name="projectCategory">
                 <option disabled selected value> Select the category that best fits your project</option>

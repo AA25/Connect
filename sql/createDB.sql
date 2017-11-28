@@ -35,7 +35,8 @@ create table businesses (busId int not null auto_increment primary key,
     -> projectCurrency varchar(56) not null,
     -> dateEntered date not null,
     -> startDate date not null,
-    -> projectStatus int);
+    -> projectStatus int,
+    -> projectName varchar(56) not null);
 
     create table projectState (projectState int not null auto_increment primary key,
     -> projectId int not null,
@@ -57,7 +58,11 @@ create table businesses (busId int not null auto_increment primary key,
     where businesses.email = 'test@test.com' and projectRequests.projectId=1 and projectRequests.devId=1 and projectRequests.status = 'Pending';
 
     -- Returns the requests made by a developer
-    select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = '';
+    --select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com';
+select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projectRequests.devMsg, projectRequests.status 
+from ((projectRequests inner join developers on projectRequests.devId = developers.devId)
+inner join projects on projectRequests.projectId = projects.projectId)
+where developers.email = 'testingCurrentProj@test.com';
 
     -- Deletes a project request made by a specific developer (when dev clicks delete)
     delete projectRequests from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com' and projectReqId = 7;

@@ -24,7 +24,11 @@
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnDevReqs = ['Success' => []];
 
-        $result = $pdo->prepare("select projectReqId, projectId, devMsg, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :devEmail");
+        $result = $pdo->prepare("select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projectRequests.devMsg, projectRequests.status 
+            from ((projectRequests inner join developers on projectRequests.devId = developers.devId)
+            inner join projects on projectRequests.projectId = projects.projectId)
+            where developers.email = :devEmail
+        ");
         $result->execute([
             'devEmail' => $userVerifiedData['email']
         ]);
@@ -41,6 +45,7 @@
             Array(
                 'projectReqId'  => $requests['projectReqId'],
                 'projectId'     => $requests['projectId'],
+                'projectName'   => $requests['projectName'],
                 'devMsg'        => $requests['devMsg'],
                 'status'        => $requests['status']
             )

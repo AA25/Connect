@@ -81,7 +81,7 @@ function addProjectRequestsHTML(pendingRequests) {
         var basicRowDetail =
             '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
             '<td>click</td>' +
-            '<td>' + pendingRequests[i]['projectId'] + '</td>' +
+            '<td>' + pendingRequests[i]['projectName'] + '</td>' +
             '<td>' + pendingRequests[i]['projectCategory'] + '</td>' +
             '<td>' + pendingRequests[i]['devName'] + '</td>' +
             '<td>' + pendingRequests[i]['status'] + '</td>' +
@@ -113,7 +113,7 @@ function addDevProjectRequestsHTML(devProjectRequests) {
         var basicRowDetail =
             '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
             '<td>click</td>' +
-            '<td>' + devProjectRequests[i]['projectId'] + '</td>' +
+            '<td>' + devProjectRequests[i]['projectName'] + '</td>' +
             '<td>' + devProjectRequests[i]['status'] + '</td>' +
             '<td><button data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">X</button></td>' +
             '</tr>';

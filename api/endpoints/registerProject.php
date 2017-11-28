@@ -68,8 +68,8 @@
             //Now we insert a new project with the busId 
             $result = $pdo->prepare(
                 "insert into
-                projects (businessId, projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus)
-                values(:businessId, :projectCategory, :projectBio, :projectBudget, :projectDeadline, :projectCountry, :projectLanguage, :projectCurrency, :dateEntered, :startDate, :projectStatus);"
+                projects (businessId, projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus, projectName)
+                values(:businessId, :projectCategory, :projectBio, :projectBudget, :projectDeadline, :projectCountry, :projectLanguage, :projectCurrency, :dateEntered, :startDate, :projectStatus, :projectName);"
             );
             $result->execute([
                 'businessId'        => $busId,
@@ -82,7 +82,8 @@
                 'projectCurrency'   => $projectJSON['projectCurrency'],
                 'dateEntered'       => date("Y-m-d H:i:s"),
                 'startDate'         => date("Y-m-d"),
-                'projectStatus'     => 0
+                'projectStatus'     => 0,
+                'projectName'       => $projectJSON['projectName']
             ]);
 
             //We've got this far without an exception, so commit the changes.
