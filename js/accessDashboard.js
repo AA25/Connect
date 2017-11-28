@@ -76,7 +76,6 @@ function projectRequests() {
 }
 
 function addProjectRequestsHTML(pendingRequests) {
-    //Remove whats currently there and create 
     $("#requestTableBody").empty();
     for (var i = 0; i < pendingRequests.length; i++) {
         var basicRowDetail =
@@ -108,6 +107,32 @@ function addProjectRequestsHTML(pendingRequests) {
     }
 }
 
+function addDevProjectRequestsHTML(devProjectRequests) {
+    $("#devRequestTableBody").empty();
+    for (var i = 0; i < devProjectRequests.length; i++) {
+        var basicRowDetail =
+            '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
+            '<td>click</td>' +
+            '<td>' + devProjectRequests[i]['projectId'] + '</td>' +
+            '<td>' + devProjectRequests[i]['status'] + '</td>' +
+            '<td><button data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">X</button></td>' +
+            '</tr>';
+
+        var indepthRowDetail =
+            '<tr>' +
+            '<td colspan="12">' +
+            '<div id="requestDetail' + (i + 1) + '" class="collapse">' +
+            '<h5>The message you sent...</h5>' +
+            '<p>"' + devProjectRequests[i]['devMsg'] + '"</p>' +
+            '</div>' +
+            '</td>' +
+            '</tr>';
+
+        $("#devRequestTableBody").append(basicRowDetail);
+        $("#devRequestTableBody").append(indepthRowDetail);
+    }
+}
+
 function developerRequests() {
     $.ajax({
         url: '../api/endpoints/retrieveDeveloperRequests.php',
@@ -125,6 +150,7 @@ function developerRequests() {
                 console.log(response);
             } else {
                 console.log(response['Success']);
+                addDevProjectRequestsHTML(response['Success']);
             }
         }
     });
