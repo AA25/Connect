@@ -24,8 +24,6 @@ function accessDashboardPermission() {
     });
 };
 
-//window.onload = accessDashboardPermission();
-
 function respondToRequest(buttonClicked) {
     var data = {
         'busResponse': buttonClicked.getAttribute("data-request-response"),
@@ -132,8 +130,27 @@ function developerRequests() {
     });
 }
 
-function cancelRequest() {
-
+function deleteProjectRequest(deleteButtonClicked) {
+    var projectReqId = deleteButtonClicked.getAttribute("data-project-request");
+    $.ajax({
+        url: '../api/endpoints/deleteProjectRequest.php?projectReqId=' + projectReqId,
+        type: 'delete',
+        method: 'DELETE',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response);
+                //then remove it from the table html
+            }
+        }
+    });
 }
 
 function renderSidebarOption(userType, file) {

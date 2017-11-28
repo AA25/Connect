@@ -58,3 +58,6 @@ create table businesses (busId int not null auto_increment primary key,
 
     -- Returns the requests made by a developer
     select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = '';
+
+    -- Deletes a project request made by a specific developer (when dev clicks delete)
+    delete projectRequests from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com' and projectReqId = 7;
