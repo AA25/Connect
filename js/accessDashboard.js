@@ -173,7 +173,8 @@ function deleteProjectRequest(deleteButtonClicked) {
                 console.log(response);
             } else {
                 console.log(response);
-                //then remove it from the table html
+                //Maybe consider a function that deletes the html instead of calling the ajax again
+                developerRequests();
             }
         }
     });
