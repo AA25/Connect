@@ -48,6 +48,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     function pushProjectDetails(&$returnProjectReqs, $requests){
         array_push($returnProjectReqs, 
             Array(
+                'projectReqId'      => $requests['projectReqId'],
                 'projectId'         => $requests['projectId'],
                 'projectCategory'   => $requests['projectCategory'],
                 'projectBio'        => $requests['projectBio'],

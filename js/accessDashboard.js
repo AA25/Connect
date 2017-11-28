@@ -46,7 +46,7 @@ function respondToRequest(buttonClicked) {
                 console.log(response);
             } else {
                 console.log(response);
-                //then remove it from the table html
+                projectRequests();
             }
         }
     });
