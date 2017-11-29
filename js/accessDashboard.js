@@ -79,8 +79,8 @@ function addProjectRequestsHTML(pendingRequests) {
     $("#requestTableBody").empty();
     for (var i = 0; i < pendingRequests.length; i++) {
         var basicRowDetail =
-            '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
-            '<td>click</td>' +
+            '<tr>' +
+            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">click</td>' +
             '<td>' + pendingRequests[i]['projectName'] + '</td>' +
             '<td>' + pendingRequests[i]['projectCategory'] + '</td>' +
             '<td>' + pendingRequests[i]['devName'] + '</td>' +
@@ -112,9 +112,9 @@ function addDevProjectRequestsHTML(devProjectRequests) {
     $("#devRequestTableBody").empty();
     for (var i = 0; i < devProjectRequests.length; i++) {
         var basicRowDetail =
-            '<tr data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">' +
-            '<td>click</td>' +
-            '<td>' + devProjectRequests[i]['projectName'] + '</td>' +
+            '<tr>' +
+            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">click</td>' +
+            '<td><a href="../views/projectDesc.php?projectId=' + devProjectRequests[i]['projectId'] + '">' + devProjectRequests[i]['projectName'] + '</a></td>' +
             '<td>' + devProjectRequests[i]['status'] + '</td>' +
             '<td><button data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">X</button></td>' +
             '</tr>';
