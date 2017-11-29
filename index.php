@@ -72,7 +72,7 @@
             <textarea rows="4" cols="50" placeholder="Enter a description of your company" name="busBio"></textarea>
         </div>
         <div class="">
-            <label for="username">username:</label>
+            <label for="username">Username:</label>
             <input type="text" class="form-control" placeholder="Enter your username" name="username" >
         </div>
         <div class="">

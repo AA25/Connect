@@ -16,20 +16,20 @@ if(!empty($registerJSON['busName']) && !empty($registerJSON['busIndustry'])){
     try{
         $r = $pdo->prepare(
             "insert into
-            businesses (busName, busIndustry, busBio, username, firstName, lastName, password, email, phone, type)
-            values(:busName, :busIndustry, :busBio, :firstName, :lastName, :password, :email, :phone, :type);"
-          );
+            businesses (busName, busIndustry, busBio, firstName, lastName, password, email, phone, type, username)
+            values(:busName, :busIndustry, :busBio, :firstName, :lastName, :password, :email, :phone, :type, :username);"
+        );
         $r->execute([
             'busName' => $registerJSON['busName'],
             'busIndustry' => $registerJSON['busIndustry'],
             'busBio' => $registerJSON['busBio'],
-            'username' => $registerJSON['username'],
             'firstName' => $registerJSON['firstName'],
             'lastName' => $registerJSON['lastName'],
             'password' => $registerJSON['password'],
             'email' => $registerJSON['email'],
             'phone' => $registerJSON['phone'],
-            'type' => 'business'
+            'type' => 'business',
+            'username' => $registerJSON['username']
         ]);
     
         //We've got this far without an exception, so commit the changes.
@@ -39,7 +39,7 @@ if(!empty($registerJSON['busName']) && !empty($registerJSON['busIndustry'])){
     }
     catch(Exception $e){
         //An exception has occured, which means that the registration failed from the about try
-        //echo $e->getMessage();
+        echo $e->getMessage();
         //Rollback the transaction.
         echo json_encode(array('Error' => 'Registration failed'));
         $pdo->rollBack();
