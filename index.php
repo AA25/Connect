@@ -20,6 +20,10 @@
     ?>
     <!-- <form method="post" action="" id="registerDevForm" class="">
         <div class="">
+            <label for="username">username:</label>
+            <input type="text" class="form-control" placeholder="Enter your username" name="username" >
+        </div>
+        <div class="">
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" placeholder="Enter first name" name="firstName" >
         </div>
@@ -66,6 +70,10 @@
         <div class="">
             <label for="busBio">Companies Bio:</label><br>
             <textarea rows="4" cols="50" placeholder="Enter a description of your company" name="busBio"></textarea>
+        </div>
+        <div class="">
+            <label for="username">username:</label>
+            <input type="text" class="form-control" placeholder="Enter your username" name="username" >
         </div>
         <div class="">
             <label for="firstName">First Name:</label>

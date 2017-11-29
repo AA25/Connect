@@ -55,25 +55,25 @@
 
     function prepDevSQL(&$pdo){
         return $pdo->prepare(
-            "select firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
+            "select username, firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
         );  
     }
 
     function prepBusSQL(&$pdo){
         return $pdo->prepare(
-            "select busName, busIndustry, busBio, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
+            "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
         );  
     }
 
     function pushDevDetails(&$userInfo, $info){
-        $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; $userInfo['dob'] = $info['dob'];
-        $userInfo['languages'] = $info['languages']; $userInfo['email'] = $info['email']; $userInfo['devBio'] = $info['devBio'];
+        $userInfo['username'] = $info['username']; $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; 
+        $userInfo['dob'] = $info['dob']; $userInfo['languages'] = $info['languages']; $userInfo['email'] = $info['email']; $userInfo['devBio'] = $info['devBio'];
         $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
     function pushBusDetails(&$userInfo, $info){
         $userInfo['busName'] = $info['busName']; $userInfo['busIndustry'] = $info['busIndustry']; $userInfo['busBio'] = $info['busBio'];
-        $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; $userInfo['email'] = $info['email'];
-        $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
+        $userInfo['username'] = $info['username']; $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; 
+        $userInfo['email'] = $info['email']; $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
 
     //TODO Remember to return back users details so it can be saved in the local storage or if you want we can use REDIS and store the data there!

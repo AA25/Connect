@@ -1,16 +1,17 @@
 //When the register form is clicked, an ajax request is made to register the user
-$('#registerDevForm').submit(function (e){
+$('#registerDevForm').submit(function(e) {
     e.preventDefault();
     //Pull the data from the form
     var data = {
-        'firstName' : $('#registerDevForm input[name=firstName]').val(),
-        'lastName'  : $('#registerDevForm input[name=lastName]').val(),
-        'dob'       : $('#registerDevForm input[name=dob]').val(),
-        'languages' : $('#registerDevForm input[name=languages]').val(),
-        'email'     : $('#registerDevForm input[name=email]').val(),
-        'password'  : $('#registerDevForm input[name=password]').val(),
-        'devBio'    : $('#registerDevForm textarea[name=devBio]').val(),
-        'phone'     : $('#registerDevForm input[name=phone]').val()
+        'username': $('#registerBusForm input[name=username]').val(),
+        'firstName': $('#registerDevForm input[name=firstName]').val(),
+        'lastName': $('#registerDevForm input[name=lastName]').val(),
+        'dob': $('#registerDevForm input[name=dob]').val(),
+        'languages': $('#registerDevForm input[name=languages]').val(),
+        'email': $('#registerDevForm input[name=email]').val(),
+        'password': $('#registerDevForm input[name=password]').val(),
+        'devBio': $('#registerDevForm textarea[name=devBio]').val(),
+        'phone': $('#registerDevForm input[name=phone]').val()
     };
     $.ajax({
         url: "./api/endpoints/registerDeveloper.php",
@@ -29,26 +30,19 @@ $('#registerDevForm').submit(function (e){
     });
 });
 
-$('#registerBusForm').submit(function (e){
+$('#registerBusForm').submit(function(e) {
     e.preventDefault();
     //Pull the data from the form
     var data = {
-        'busName' : $('#registerBusForm input[name=busName]').val(),
-        'busIndustry'  : $('#registerBusForm input[name=busIndustry]').val(),
-        'busBio'       : $('#registerBusForm textarea[name=busBio]').val(),
-        'firstName' : $('#registerBusForm input[name=firstName]').val(),
-        'lastName'     : $('#registerBusForm input[name=lastName]').val(),
-        'password'  : $('#registerBusForm input[name=password]').val(),
-        'email'    : $('#registerBusForm input[name=email]').val(),
-        'phone'     : $('#registerBusForm input[name=phone]').val()
-        // 'busName'       : 'busName',
-        // 'busIndustry'   : 'busIndustry',
-        // 'busBio'        : 'busBio',
-        // 'firstName'     : 'firstName',
-        // 'lastName'      : 'lastName',
-        // 'password'      : 'p',
-        // 'email'         : 'email@email.com',
-        // 'phone'         : '1'
+        'busName': $('#registerBusForm input[name=busName]').val(),
+        'busIndustry': $('#registerBusForm input[name=busIndustry]').val(),
+        'busBio': $('#registerBusForm textarea[name=busBio]').val(),
+        'username': $('#registerBusForm input[name=username]').val(),
+        'firstName': $('#registerBusForm input[name=firstName]').val(),
+        'lastName': $('#registerBusForm input[name=lastName]').val(),
+        'password': $('#registerBusForm input[name=password]').val(),
+        'email': $('#registerBusForm input[name=email]').val(),
+        'phone': $('#registerBusForm input[name=phone]').val()
     };
     $.ajax({
         url: "./api/endpoints/registerBusiness.php",
@@ -68,9 +62,9 @@ $('#registerBusForm').submit(function (e){
 });
 
 //When the login button is clicked, an ajax request is made to check if the details is correct
-$('#loginDevForm').submit(function (e){
+$('#loginDevForm').submit(function(e) {
     e.preventDefault();
-    var data = formData('loginDevForm','developers');
+    var data = formData('loginDevForm', 'developers');
     $.ajax({
         url: "./logic/loginUser.php",
         data: JSON.stringify(data),
@@ -92,9 +86,9 @@ $('#loginDevForm').submit(function (e){
     });
 });
 
-$('#loginBusForm').submit(function (e){
+$('#loginBusForm').submit(function(e) {
     e.preventDefault();
-    var data = formData('loginBusForm','businesses');
+    var data = formData('loginBusForm', 'businesses');
     $.ajax({
         url: "./logic/loginUser.php",
         data: JSON.stringify(data),
@@ -113,24 +107,24 @@ $('#loginBusForm').submit(function (e){
     });
 });
 
-function formData(formLocation,searchLocation){
+function formData(formLocation, searchLocation) {
     var formData = {
-        'location' : searchLocation,
-        'email'  : $('#'+formLocation+' input[name=email]').val(),
-        'password'  : $('#'+formLocation+' input[name=password]').val()
+        'location': searchLocation,
+        'email': $('#' + formLocation + ' input[name=email]').val(),
+        'password': $('#' + formLocation + ' input[name=password]').val()
     };
     return formData;
 }
 
-function successDisplay(response){
+function successDisplay(response) {
     console.dir(response);
 }
 
-function errorDisplay(response){
+function errorDisplay(response) {
     console.dir(response);
 }
 
-function logOut(){
+function logOut() {
     $.ajax({
         url: "./logic/logoutUser.php",
         data: {},
@@ -153,7 +147,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -214,5 +208,3 @@ function getCookie(cname) {
 //         document.cookie = info + "=" + itemB[info] + ";";
 //     } 
 // }
-
-

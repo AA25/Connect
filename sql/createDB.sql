@@ -11,7 +11,8 @@ create table developers ( devId int not null auto_increment primary key,
     -> password varchar(500) not null,
     -> speciality varchar(56) not null,
     -> devBio varchar(500) not null),
-    -> currentProj int;
+    -> currentProj int,
+    -> username varchar(100) not null unique;
 
 create table businesses (busId int not null auto_increment primary key,
     -> busName varchar(56) not null,
@@ -21,7 +22,8 @@ create table businesses (busId int not null auto_increment primary key,
     -> lastName varchar(56) not null,
     -> password varchar(500) not null,
     -> email varchar(56) not null unique,
-    -> phone varchar(56) not null);
+    -> phone varchar(56) not null),
+    -> username varchar(100) not null unique;
 
     create table projects (projectId int not null auto_increment primary key,
     -> businessId int not null,
