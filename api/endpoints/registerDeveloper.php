@@ -16,11 +16,10 @@ if(!empty($registerJSON['firstName']) && !empty($registerJSON['lastName'])){
     try{
         $r = $pdo->prepare(
             "insert into
-            developers (username, firstName, lastName, dob, languages, email, password, devBio, phone, type)
-            values(:username, :firstName, :lastName, :dob, :languages, :email, :password, :devBio, :phone, :type);"
+            developers (firstName, lastName, dob, languages, email, password, devBio, phone, type, username)
+            values(:firstName, :lastName, :dob, :languages, :email, :password, :devBio, :phone, :type, :username);"
           );
         $r->execute([
-            'username' => $registerJSON['username'],
             'firstName' => $registerJSON['firstName'],
             'lastName' => $registerJSON['lastName'],
             'dob' => $registerJSON['dob'],
@@ -29,7 +28,8 @@ if(!empty($registerJSON['firstName']) && !empty($registerJSON['lastName'])){
             'password' => $registerJSON['password'],
             'devBio' => $registerJSON['devBio'],
             'phone' => $registerJSON['phone'],
-            'type' => 'developer'
+            'type' => 'developer',
+            'username' => $registerJSON['username']            
         ]);
     
         //We've got this far without an exception, so commit the changes.

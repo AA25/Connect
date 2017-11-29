@@ -3,7 +3,7 @@ $('#registerDevForm').submit(function(e) {
     e.preventDefault();
     //Pull the data from the form
     var data = {
-        'username': $('#registerBusForm input[name=username]').val(),
+        'username': $('#registerDevForm input[name=username]').val(),
         'firstName': $('#registerDevForm input[name=firstName]').val(),
         'lastName': $('#registerDevForm input[name=lastName]').val(),
         'dob': $('#registerDevForm input[name=dob]').val(),
