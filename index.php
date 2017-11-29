@@ -120,10 +120,7 @@
             <input type="password" class="" placeholder="Enter password" name="password">
         </div>
         <input id="loginBtn" type="submit" name="Submit" value="Log In">
-    </form>
-
-    <a href="/views/myaccount.php">My Account</a>
-    
+    </form>    
 </body>
     <script src="js/jQuery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

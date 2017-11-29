@@ -97,8 +97,8 @@ function addProjectRequestsHTML(pendingRequests) {
             '<a href="../views/developer.php?username=' + pendingRequests[i]['username'] + '">Click here to learn more about them by viewing their profile </a>' +
             '<br><br>' +
             //rework this and make it work with dev username instead of dev id
-            '<button data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-dev="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
-            '<button data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-dev="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
+            '<button data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
+            '<button data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
             '</div>' +
             '</td>' +
             '</tr>';

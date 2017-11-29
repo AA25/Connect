@@ -38,7 +38,7 @@
             <select name="projectCountry">
                 <option disabled selected value> Select the country your project will take place</option>
                 <option value="Ireland">Ireland</option>
-                <option value="United Kingdom">United</option>
+                <option value="United Kingdom">United Kingdom</option>
             </select>        
         </div>
         <div class="">
