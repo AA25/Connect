@@ -73,6 +73,17 @@ function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){
                 'devId' => $requestResponse['devId'],
                 'projectId' => $requestResponse['projectId']
             ]);
+
+            //Then we want to increment the projects status/stage from 0 to 1
+            // 0 is the recruiting stage while 1 is Pending start stage
+            // A project only needs 1 developers to be started which is why we move to stage 1 after accepting a developer
+            $stepFive = $pdo->prepare("
+                update projects set projectStatus = :status where projectId = :projectId
+            ");
+            $stepFive->execute([
+                'status' => 1,
+                'projectId' => $requestResponse['projectId']
+            ]);
         }
 
         //We've got this far without an exception, so commit the changes.
