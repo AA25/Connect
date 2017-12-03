@@ -181,6 +181,50 @@ function deleteProjectRequest(deleteButtonClicked) {
     });
 }
 
+function startYourProject() {
+    $.ajax({
+        url: '../api/endpoints/retrieveDevelopersPerProject.php',
+        data: {},
+        type: 'get',
+        method: 'get',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response);
+            }
+        }
+    })
+}
+
+function startYourProjectStatus() {
+    $.ajax({
+        url: '../api/endpoints/startProject.php',
+        data: {},
+        type: 'get',
+        method: 'get',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response['Success']);
+            }
+        }
+    })
+}
+
 function renderSidebarOption(userType, file) {
     $(function() {
         $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
@@ -190,6 +234,9 @@ function renderSidebarOption(userType, file) {
                 break;
             case "developerRequests":
                 developerRequests();
+                break;
+            case "startYourProject":
+                startYourProject();
                 break;
         }
     });

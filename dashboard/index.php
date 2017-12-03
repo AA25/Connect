@@ -30,7 +30,7 @@
         </div>
         <div id="renderOption" class="col-md-8" style="background-color:none">
             Welcome to the dashboard
-            
+            <!--Content shown here will be determined by the link clicked in the sidebar-->
         </div>
     </div>
     

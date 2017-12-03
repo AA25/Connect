@@ -68,3 +68,17 @@ where developers.email = 'testingCurrentProj@test.com';
 
     -- Deletes a project request made by a specific developer (when dev clicks delete)
     delete projectRequests from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com' and projectReqId = 7;
+
+-- Return all the developers working on each of your business projects
+select projects.projectName, developers.firstName, developers.lastName 
+from ((projects inner join projectDevelopers on projects.projectId = projectDevelopers.projectId) 
+inner join developers on developers.devId = projectDevelopers.devId) 
+where projects.businessId = 4;
+
+-- Returns the id of the projects a business owns based on their business email
+select projects.projectId from projects inner join businesses on projects.businessId = businesses.busId where businesses.email = 'test4@test.com'
+
+-- Return all the developers currently accepted for a project
+select developers.firstName, developers.lastName, developers.username 
+from ((developers inner join projectDevelopers on developers.devId = projectDevelopers.devId) inner join projects on projectDevelopers.projectId = projects.projectId) 
+where projects.projectId = 4;
