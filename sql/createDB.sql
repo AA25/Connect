@@ -82,3 +82,6 @@ select projects.projectId from projects inner join businesses on projects.busine
 select developers.firstName, developers.lastName, developers.username 
 from ((developers inner join projectDevelopers on developers.devId = projectDevelopers.devId) inner join projects on projectDevelopers.projectId = projects.projectId) 
 where projects.projectId = 4;
+
+-- Update project status of a project owned by a specific project
+update projects inner join businesses on projects.businessId = businesses.busId set projects.projectStatus = 2 where businesses.email = 'test4@test.com' and projects.projectId = 5;

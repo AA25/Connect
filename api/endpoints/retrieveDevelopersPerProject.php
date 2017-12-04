@@ -80,7 +80,7 @@ function retrieveDevsPerProject($pdo, $userVerifiedData, $projectIds){
                 array_push($developerPerProjectId[key($projectIds[$i])], 
                     //Developer Array
                     Array(
-                        'name'      => $developer['firstName'].$developer['lastName'],
+                        'name'      => $developer['firstName'].' '.$developer['lastName'],
                         'username'  => $developer['username']
                     )
                 );

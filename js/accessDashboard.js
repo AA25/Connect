@@ -181,7 +181,7 @@ function deleteProjectRequest(deleteButtonClicked) {
     });
 }
 
-function startYourProject() {
+function SYPData() {
     $.ajax({
         url: '../api/endpoints/retrieveDevelopersPerProject.php',
         data: {},
@@ -203,12 +203,16 @@ function startYourProject() {
     })
 }
 
-function startYourProjectStatus() {
+function startTheProject(buttonClicked) {
+    var data = {
+        projectId: buttonClicked.getAttribute("data-project")
+    };
+
     $.ajax({
         url: '../api/endpoints/startProject.php',
-        data: {},
-        type: 'get',
-        method: 'get',
+        data: JSON.stringify(data),
+        type: 'POST',
+        method: 'post',
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -236,7 +240,7 @@ function renderSidebarOption(userType, file) {
                 developerRequests();
                 break;
             case "startYourProject":
-                startYourProject();
+                SYPData();
                 break;
         }
     });
