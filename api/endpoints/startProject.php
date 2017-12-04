@@ -79,19 +79,21 @@
 
     function updateProjectStage($pdo, $userVerifiedData, $postData, $updateTo){
         // Update project status of a project owned by a specific project
-        $pdo->beginTransaction();
-        try{
-            $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
-            set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :project');
-    
-            $update->execute([
-                'updateTo'  => $updateTo,
-                'email'     => $userVerifiedData['email'],
-                'project'   => $postData['projectId']
-            ]);
+
+        $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
+        set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :projectId');
+
+        $update->execute([
+            'updateTo'  => $updateTo,
+            'email'     => $userVerifiedData['email'],
+            'projectId' => $postData['projectId']
+        ]);
+        
+        if($update->rowCount() > 0){
             echo json_encode(Array('Success' => 'Project has been successfully started!'));
-        }catch(Exception $e){
+            
+        }else{
             echo json_encode(Array('Error' => 'Action was not able to be completed'));
-        };
+        }
     }
 ?>
