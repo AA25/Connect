@@ -260,9 +260,6 @@ function renderSidebarOption(userType, file) {
             case "projectRequests":
                 projectRequests();
                 break;
-            case "developerRequests":
-                developerRequests();
-                break;
             case "beginProjectJourney":
                 retrieveDevPerProject(true, 1);
                 break;
@@ -273,6 +270,11 @@ function renderSidebarOption(userType, file) {
                 retrieveBusinessesProjects();
                 break;
             case "registerProject":
+                break;
+            case "developerRequests":
+                developerRequests();
+                break;
+            case "currentProject":
                 //retrieveBusinessesProjects();
                 break;
         }
