@@ -277,6 +277,9 @@ function renderSidebarOption(userType, file) {
             case "currentProject":
                 //retrieveBusinessesProjects();
                 break;
+            case "myAccount":
+                //retrieveBusinessesProjects();
+                break;
         }
     });
 }
