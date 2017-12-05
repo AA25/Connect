@@ -38,8 +38,11 @@ require "../../includes/init.inc.php";
 
         if($result->rowCount() > 0){
             foreach($result as $info){
-                $tempArr = [$info['projectId'], $info['projectName'], $info['projectCategory'], $info['projectBio'], 
-                $info['projectCurrency'], $info['projectBudget'], $info['projectCountry'], $info['projectStatus']];
+                $projectStatus = new ProjectStatusConverter($info['projectStatus']);
+                $tempArr =  [
+                    $info['projectId'], $info['projectName'], $info['projectCategory'], $info['projectBio'], 
+                    $info['projectCurrency'], $info['projectBudget'], $info['projectCountry'], $projectStatus->getStatus()
+                ];
                 array_push($returnProjects, $tempArr);
             }
             echo json_encode(Array('Success' => $returnProjects));
