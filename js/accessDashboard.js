@@ -253,6 +253,28 @@ function retrieveBusinessesProjects() {
     })
 }
 
+function retrieveCurrentProject() {
+    $.ajax({
+        url: '../api/endpoints/retrieveCurrentProject.php',
+        data: {},
+        type: 'GET',
+        method: 'get',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response);
+            }
+        }
+    })
+}
+
 function renderSidebarOption(userType, file) {
     $(function() {
         $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
@@ -275,7 +297,7 @@ function renderSidebarOption(userType, file) {
                 developerRequests();
                 break;
             case "currentProject":
-                //retrieveBusinessesProjects();
+                retrieveCurrentProject();
                 break;
             case "myAccount":
                 //retrieveBusinessesProjects();

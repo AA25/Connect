@@ -4,7 +4,7 @@
         <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'developerRequests')">
             Outgoing Requests
         </li>
-        <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'currentProjects')">
+        <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'currentProject')">
             Current Project
         </li>
         <li>

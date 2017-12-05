@@ -79,13 +79,20 @@ select projects.projectId from projects inner join businesses on projects.busine
 
 -- Return all the developers currently accepted for a project
 select developers.firstName, developers.lastName, developers.username 
-from ((developers inner join projectDevelopers on developers.devId = projectDevelopers.devId) inner join projects on projectDevelopers.projectId = projects.projectId) 
+from ((developers inner join projectDevelopers on developers.devId = projectDevelopers.devId) 
+inner join projects on projectDevelopers.projectId = projects.projectId) 
 where projects.projectId = 4;
 
 -- Update project status of a project owned by a specific project
 update projects inner join businesses on projects.businessId = businesses.busId set projects.projectStatus = 2 where businesses.email = 'test4@test.com' and projects.projectId = 5;
 
 -- Returns all the projects owned by a specific business
-select projects.projectId, projects.projectName, projects.projectCategory, projects.projectBio, projects.projectBudget, projects.projectCountry, projects.projectCurrency, projects.projectStatus from projects
-inner join businesses on projects.businessId = businesses.busId 
+select projects.projectId, projects.projectName, projects.projectCategory, projects.projectBio, projects.projectBudget, projects.projectCountry, projects.projectCurrency, projects.projectStatus 
+from projects inner join businesses on projects.businessId = businesses.busId 
 where businesses.email = 'test4@test.com' order by dateEntered desc
+
+-- Return current project a specific developer is on
+select projects.projectId, projects.projectName, projects.projectCategory, projects.projectBio, projects.projectBudget, projects.projectCountry, projects.projectCurrency, projects.projectStatus
+from ((projects inner join projectDevelopers on projects.projectId = projectDevelopers.projectId)
+inner join developers on projectDevelopers.devId = developers.devId)
+where developers.email = 'test2@test.com';
