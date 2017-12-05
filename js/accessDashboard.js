@@ -231,6 +231,28 @@ function startTheProject(buttonClicked) {
     })
 }
 
+function retrieveBusinessesProjects() {
+    $.ajax({
+        url: '../api/endpoints/retrieveBusinessProjects.php',
+        data: {},
+        type: 'GET',
+        method: 'get',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response['Success']);
+            }
+        }
+    })
+}
+
 function renderSidebarOption(userType, file) {
     $(function() {
         $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
@@ -246,6 +268,9 @@ function renderSidebarOption(userType, file) {
                 break;
             case "projectDevelopers":
                 retrieveDevPerProject(false);
+                break;
+            case "manageProjects":
+                retrieveBusinessesProjects();
                 break;
         }
     });

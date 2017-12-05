@@ -48,26 +48,25 @@ create table businesses (busId int not null auto_increment primary key,
 
     create table projectDevelopers (projectDevId int not null auto_increment primary key, devId int, projectId int);
 
-    -- A splendid query that joins 3 tables together and extract certain information based on a few conditions
-    select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, projects.projectBio developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
-    from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
-    inner join developers on  projectRequests.devId = developers.devId) 
-    inner join businesses on projectRequests.busId = businesses.busId) 
-    where businesses.email = 'test@test.com' and projectRequests.status = 'pending';
+-- A splendid query that joins 3 tables together and extract certain information based on a few conditions
+select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, projects.projectBio developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
+from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
+inner join developers on  projectRequests.devId = developers.devId) 
+inner join businesses on projectRequests.busId = businesses.busId) 
+where businesses.email = 'test@test.com' and projectRequests.status = 'pending';
 
-    -- Updates the project request of a specific developer to a specific projecct to accepted or declined
-    update projectRequests inner join businesses on projectRequests.busId = businesses.busId set projectRequests.status = 'Accepted' 
-    where businesses.email = 'test@test.com' and projectRequests.projectId=1 and projectRequests.devId=1 and projectRequests.status = 'Pending';
+-- Updates the project request of a specific developer to a specific projecct to accepted or declined
+update projectRequests inner join businesses on projectRequests.busId = businesses.busId set projectRequests.status = 'Accepted' 
+where businesses.email = 'test@test.com' and projectRequests.projectId=1 and projectRequests.devId=1 and projectRequests.status = 'Pending';
 
-    -- Returns the requests made by a developer
-    --select projectId, status from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com';
+-- Returns the requests made by a developer
 select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projectRequests.devMsg, projectRequests.status 
 from ((projectRequests inner join developers on projectRequests.devId = developers.devId)
 inner join projects on projectRequests.projectId = projects.projectId)
 where developers.email = 'testingCurrentProj@test.com';
 
-    -- Deletes a project request made by a specific developer (when dev clicks delete)
-    delete projectRequests from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com' and projectReqId = 7;
+-- Deletes a project request made by a specific developer (when dev clicks delete)
+delete projectRequests from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = 'testingCurrentProj@test.com' and projectReqId = 7;
 
 -- Return all the developers working on each of your business projects
 select projects.projectName, developers.firstName, developers.lastName 
@@ -85,3 +84,8 @@ where projects.projectId = 4;
 
 -- Update project status of a project owned by a specific project
 update projects inner join businesses on projects.businessId = businesses.busId set projects.projectStatus = 2 where businesses.email = 'test4@test.com' and projects.projectId = 5;
+
+-- Returns all the projects owned by a specific business
+select projects.projectId, projects.projectName, projects.projectCategory, projects.projectBio, projects.projectBudget, projects.projectCountry, projects.projectCurrency, projects.projectStatus from projects
+inner join businesses on projects.businessId = businesses.busId 
+where businesses.email = 'test4@test.com' order by dateEntered desc
