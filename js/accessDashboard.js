@@ -181,9 +181,11 @@ function deleteProjectRequest(deleteButtonClicked) {
     });
 }
 
-function SYPData() {
+function retrieveDevPerProject(statusCondition, projectStatus) {
+    (statusCondition) ? conditionParams = '?statusCondition=' + statusCondition + '&projectStatus=' + projectStatus: conditionParams = '';
+
     $.ajax({
-        url: '../api/endpoints/retrieveDevelopersPerProject.php',
+        url: '../api/endpoints/retrieveDevelopersPerProject.php' + conditionParams,
         data: {},
         type: 'get',
         method: 'get',
@@ -239,8 +241,11 @@ function renderSidebarOption(userType, file) {
             case "developerRequests":
                 developerRequests();
                 break;
-            case "startYourProject":
-                SYPData();
+            case "beginProjectJourney":
+                retrieveDevPerProject(true, 1);
+                break;
+            case "projectDevelopers":
+                retrieveDevPerProject(false);
                 break;
         }
     });

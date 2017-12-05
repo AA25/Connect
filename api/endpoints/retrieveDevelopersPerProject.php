@@ -15,7 +15,8 @@ if(isset($headers['Authorization'])){
     $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
     //This API endpoint should only be accessible if JWT token  is verified and user is a developer
     if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
-        retrieveProjectIds($pdo, $userVerifiedData);
+        $requestData = json_decode(file_get_contents('php://input'),true);        
+        retrieveProjectIds($pdo, $userVerifiedData, $requestData);
     }else{
         echo json_encode(Array('Error' => 'Permission denied'));
     }
@@ -23,16 +24,32 @@ if(isset($headers['Authorization'])){
     echo json_encode(Array('Error' => 'No Authorization Header'));
 }
 
-function retrieveProjectIds($pdo, $userVerifiedData){
+function retrieveProjectIds($pdo, $userVerifiedData, $requestData){
     $projectIds = [];
-    // Returns the id of the projects a business owns based on their business email
-    $selectProjectIds = $pdo->prepare("
-        select projects.projectId, projects.ProjectName from projects inner join businesses on projects.businessId = businesses.busId where businesses.email = :businessEmail
-    ");
+    if(isset($_GET['statusCondition']) && isset($_GET['statusCondition']) == true){
+        // Only the project ids of projects in a particular status
+        $selectProjectIds = $pdo->prepare("
+            select projects.projectId, projects.ProjectName from projects 
+            inner join businesses on projects.businessId = businesses.busId 
+            where businesses.email = :businessEmail and projects.projectStatus = :projectStatus
+        ");
 
-    $selectProjectIds->execute([
-        'businessEmail' => $userVerifiedData['email']
-    ]);
+        $selectProjectIds->execute([
+            'businessEmail' => $userVerifiedData['email'],
+            'projectStatus' => $_GET['projectStatus']
+        ]);
+    }else{
+        // Returns the id of projects  a business owns based on their business email
+        $selectProjectIds = $pdo->prepare("
+            select projects.projectId, projects.ProjectName from projects 
+            inner join businesses on projects.businessId = businesses.busId 
+            where businesses.email = :businessEmail
+        ");
+
+        $selectProjectIds->execute([
+            'businessEmail' => $userVerifiedData['email']
+        ]);
+    }
 
     if($selectProjectIds->rowCount() <= 0){
         //Business has no projects 
