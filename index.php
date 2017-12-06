@@ -57,7 +57,7 @@
     <form method="post" action="" id="registerBusForm" class="">
         <div class="">
             <label for="busName">Company Name:</label>
-            <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" >
+            <input type="text" class="form-control" placeholder="Enter your companies name" name="busName">
         </div>
         <div class="">
             <label for="busIndustry">Industry:</label>

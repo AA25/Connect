@@ -291,8 +291,6 @@ function renderSidebarOption(userType, file) {
             case "manageProjects":
                 retrieveBusinessesProjects();
                 break;
-            case "registerProject":
-                break;
             case "developerRequests":
                 developerRequests();
                 break;

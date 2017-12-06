@@ -76,7 +76,7 @@
                 'projectCategory'   => $projectJSON['projectCategory'],
                 'projectBio'        => $projectJSON['projectBio'],
                 'projectBudget'     => $projectJSON['projectBudget'],
-                'projectDeadline'   => $projectJSON['projectDeadline'],
+                'projectDeadline'   => NULL,
                 'projectCountry'    => $projectJSON['projectCountry'],
                 'projectLanguage'   => $projectJSON['projectLanguage'],
                 'projectCurrency'   => $projectJSON['projectCurrency'],
