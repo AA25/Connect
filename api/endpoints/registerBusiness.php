@@ -53,4 +53,3 @@ if($validationCheck->registerBusinessSanitisation(
 }else{
     echo json_encode(array('Error' => 'Validation failed'));
 }
-?>

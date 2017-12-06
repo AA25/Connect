@@ -2,12 +2,14 @@
     //Object that contains validation methods for each form on the site as well as sanitisation methods to sanitise data before inserting into the database
     //Testers within my tribe helped with validation and security
     //Got some basic ideas of php form validation from https://www.w3schools.com/php/php_form_validation.asp
+    // And how to remove script tags from https://stackoverflow.com/questions/28255873/removing-script-tags-using-preg-replace
     class ServerValidation{
 
         public function sanitisation($formData){
+            $formData = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $formData);
             //$formData = trim($formData);
             //$formData = stripslashes($formData);
-            $formData = htmlspecialchars($formData);
+            $formData = htmlspecialchars($formData);            
             return $formData;
         }
 
