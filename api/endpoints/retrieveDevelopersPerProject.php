@@ -39,7 +39,7 @@ function retrieveProjectIds($pdo, $userVerifiedData, $requestData){
             'projectStatus' => $_GET['projectStatus']
         ]);
     }else{
-        // Returns the id of projects  a business owns based on their business email
+        // Returns the id of projects a business owns based on their business email
         $selectProjectIds = $pdo->prepare("
             select projects.projectId, projects.ProjectName from projects 
             inner join businesses on projects.businessId = businesses.busId 
