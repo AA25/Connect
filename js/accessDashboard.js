@@ -68,7 +68,7 @@ function projectRequests() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['Success']);
+                console.log(response);
                 addProjectRequestsHTML(response['Success']);
             }
         }
@@ -150,7 +150,7 @@ function developerRequests() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['Success']);
+                console.log(response);
                 addDevProjectRequestsHTML(response['Success']);
             }
         }
@@ -225,7 +225,7 @@ function startTheProject(buttonClicked) {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['Success']);
+                console.log(response);
             }
         }
     })
@@ -247,7 +247,7 @@ function retrieveBusinessesProjects() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['Success']);
+                console.log(response);
             }
         }
     })

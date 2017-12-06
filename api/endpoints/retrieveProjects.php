@@ -29,13 +29,12 @@ require "../../includes/init.inc.php";
     }
 
     $result = $pdo->prepare("
-        select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where projectStatus = :projectStatus order by dateEntered desc limit :returnFrom, :returnAmount
+        select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit :returnFrom, :returnAmount
     ");
 
     $result->execute([
         'returnFrom' => (int)$_GET['returnFrom'],
         'returnAmount' => (int)$_GET['returnAmount'],
-        'projectStatus' => 0
     ]);
 
     if($result->rowCount() > 0){

@@ -49,18 +49,44 @@
 
     function checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON){
         //A query that selects all pending requests made by this particular developer to a specific project
-        $result = $pdo->prepare("select * from projectRequests inner join developers on projectRequests.devId = developers.devId where developers.email = :email and projectRequests.projectId = :projectId and projectRequests.status = :status");
+        $result = $pdo->prepare("select * from projectRequests 
+            inner join developers on projectRequests.devId = developers.devId 
+            where developers.email = :email and projectRequests.projectId = :projectId and projectRequests.status = :status
+        ");
+
         $result->execute([
             'email'     => $userVerifiedData['email'],
             'projectId' => $projectReqJSON['projectId'],
             'status'    => 'Pending'
         ]);
+
         //If num of rows returned is greater than 0 we know we have a result meaning theres already a pending request for this specific project made by the user
         if($result->rowCount() > 0){
             echo json_encode(Array('Error' => 'Request for this project has already been made'));
         }else{
-            //echo json_encode(Array('Error' => $projectReqJSON['projectId']));
-            insertProjectRequest($pdo, $userVerifiedData, $projectReqJSON);
+            //Before inserting the request into the DB a check needs to be done to make sure the project is in stage 0 || 1 
+            //As these are the only stages when devs can send a request to a project
+            checkProjectStatus($pdo, $userVerifiedData, $projectReqJSON);
+        }
+    }
+    
+    function checkProjectStatus($pdo, $userVerifiedData, $projectReqJSON){
+        // Retrieve the status of a project a dev is trying to send a request to
+        $allowInsert = false;
+        $status = $pdo->prepare("select projectStatus from projects where projectId = :projectId");
+
+        $status->execute([
+            'projectId' => $projectReqJSON['projectId']
+        ]);
+
+        if($status->rowCount() > 0){
+            foreach($status as $targetProject){
+                if($targetProject['projectStatus'] < 2){
+                    insertProjectRequest($pdo, $userVerifiedData, $projectReqJSON);
+                }else{
+                    echo json_encode(Array('Error' => 'This project is no longer accepting requests'));
+                }
+            }
         }
     }
 

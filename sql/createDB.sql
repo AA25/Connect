@@ -56,8 +56,11 @@ inner join businesses on projectRequests.busId = businesses.busId)
 where businesses.email = 'test@test.com' and projectRequests.status = 'pending';
 
 -- Updates the project request of a specific developer to a specific projecct to accepted or declined
-update projectRequests inner join businesses on projectRequests.busId = businesses.busId set projectRequests.status = 'Accepted' 
-where businesses.email = 'test@test.com' and projectRequests.projectId=1 and projectRequests.devId=1 and projectRequests.status = 'Pending';
+update projectRequests inner join businesses on projectRequests.busId = businesses.busId
+inner join projects on projectRequests.projectId = projects.projectId 
+set projectRequests.status = 'Rejected'
+where businesses.email = 'test1@test.com' and projectRequests.projectId=1 
+and projectRequests.devId=1 and projectRequests.status = 'Pending' and (projects.projectStatus = 0 or projects.projectStatus = 1);
 
 -- Returns the requests made by a developer
 select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projectRequests.devMsg, projectRequests.status 
