@@ -18,6 +18,7 @@
             $lastName       = $this->sanitisation($lastName);
             $dob            = $this->sanitisation($dob);
             $languages      = $this->sanitisation($languages);
+            $email          = $this->sanitisation($email);
             $password       = $this->sanitisation($password);
             $devBio         = $this->sanitisation($devBio);
             $phone          = $this->sanitisation($phone);
@@ -49,13 +50,13 @@
         }
 
         public function loginValidation($email,$password,$searchLocation){
-            if( (strlen($email) > 56) || empty($email)){
+            if( !filter_var($email, FILTER_VALIDATE_EMAIL) || (strlen($email) > 56) || empty($email)){
                 return false;
             }
             if( (strlen($password) > 500) || empty($password)){
                 return false;
             }
-            if( (strlen($location) > 20) || empty($location)){
+            if( (strlen($searchLocation) > 20) || empty($searchLocation)){
                 return false;
             }
 
@@ -82,7 +83,7 @@
             if( (strlen($password) > 500) || empty($password) ){
                 return false;
             }
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) ) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || (strlen($email) > 56) ) {
                 return false;
             }
             if( (strlen($phone) > 45) || empty($phone) ){
@@ -109,7 +110,7 @@
             if( (strlen($languages) > 500) || empty($languages) ){
                 return false;
             }
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) ) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || (strlen($email) > 56) ) {
                 return false;
             }
             if( (strlen($password) > 500) || empty($password) ){
