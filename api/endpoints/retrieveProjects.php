@@ -29,12 +29,13 @@ require "../../includes/init.inc.php";
     }
 
     $result = $pdo->prepare("
-        select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit :returnFrom, :returnAmount
+        select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency, projectStatus 
+        from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit :returnFrom, :returnAmount
     ");
 
     $result->execute([
         'returnFrom' => (int)$_GET['returnFrom'],
-        'returnAmount' => (int)$_GET['returnAmount'],
+        'returnAmount' => (int)$_GET['returnAmount']
     ]);
 
     if($result->rowCount() > 0){
@@ -49,6 +50,7 @@ require "../../includes/init.inc.php";
     }
 
     function pushProjectDetails(&$returnProjects, $info){
+        $projectStatus = new ProjectStatusConverter($info['projectStatus']);
         array_push($returnProjects, 
             Array(
                 'projectId'         => $info['projectId'],
@@ -57,7 +59,8 @@ require "../../includes/init.inc.php";
                 'projectBio'        => $info['projectBio'],
                 'projectBudget'     => $info['projectBudget'],
                 'projectCountry'    => $info['projectCountry'],
-                'projectCurrency'   => $info['projectCurrency']
+                'projectCurrency'   => $info['projectCurrency'],
+                'projectStatus'     => $projectStatus->getStatus()
             )
         );
     }
