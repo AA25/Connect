@@ -12,18 +12,12 @@ $registerJSON = json_decode(file_get_contents('php://input'),true);
 
 $validationCheck = new ServerValidation();
 
-$validationCheck->registerDeveloperSanitisation($registerJSON['firstName'],$registerJSON['lastName'],$registerJSON['dob'],
-$registerJSON['languages'],$registerJSON['email'],$registerJSON['password'],$registerJSON['devBio'],
-$registerJSON['phone'],$registerJSON['username']);
-
-
-
 //If the serside validation passes then proceed with the inseration of the project
 if($validationCheck->registerDeveloperSanitisation(
     $registerJSON['firstName'],$registerJSON['lastName'],$registerJSON['dob'],
     $registerJSON['languages'],$registerJSON['email'],$registerJSON['password'],$registerJSON['devBio'],
     $registerJSON['phone'],$registerJSON['username'])){
-//if(!empty($registerJSON['firstName']) && !empty($registerJSON['lastName'])){
+
     // Learned how to use transactions from http://thisinterestsme.com/php-pdo-transaction-example/
     //We start our transaction.
     $pdo->beginTransaction();

@@ -5,8 +5,8 @@
     class ServerValidation{
 
         public function sanitisation($formData){
-            $formData = trim($formData);
-            $formData = stripslashes($formData);
+            //$formData = trim($formData);
+            //$formData = stripslashes($formData);
             $formData = htmlspecialchars($formData);
             return $formData;
         }
@@ -23,6 +23,53 @@
 
             return $this->registerDeveloperValidation($firstName,$lastName,$dob,$languages,$email,$password,$devBio,$phone,$username);
         }
+
+        public function registerBusinessSanitisation(&$busName,&$busIndustry,&$busBio,&$firstName,&$lastName,&$password,&$email,&$phone,&$username){
+            $busName        = $this->sanitisation($busName);
+            $busIndustry    = $this->sanitisation($busIndustry);
+            $busBio         = $this->sanitisation($busBio);
+            $firstName      = $this->sanitisation($firstName);
+            $lastName       = $this->sanitisation($lastName);
+            $password       = $this->sanitisation($password);
+            $email          = $this->sanitisation($email);
+            $phone          = $this->sanitisation($phone);
+            $username       = $this->sanitisation($username);
+
+            return $this->registerBusinessValidation($busName,$busIndustry,$busBio,$firstName,$lastName,$password,$email,$phone,$username);
+        }
+
+        public function registerBusinessValidation($busName,$busIndustry,$busBio,$firstName,$lastName,$password,$email,$phone,$username){
+
+            if( (strlen($busName) > 56) || empty($busName)){
+                return false;
+            }
+            if( (strlen($busIndustry) > 56) || empty($busIndustry) ){
+                return false;
+            }
+            if( (strlen($busBio) > 500) || empty($busBio)){
+                return false;
+            }
+            if( !(ctype_alpha($firstName)) || (strlen($firstName) > 56) || empty($firstName) ){
+                return false;
+            }
+            if( !(ctype_alpha($lastName)) || (strlen($firstName) > 56) || empty($firstName)){
+                return false;
+            }
+            if( (strlen($password) > 500) || empty($password) ){
+                return false;
+            }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) ) {
+                return false;
+            }
+            if( (strlen($phone) > 45) || empty($phone) ){
+                return false;
+            }
+            if( (strlen($username) > 100) || empty($username) ){
+                return false;
+            }
+
+            return true;
+        } 
 
         public function registerDeveloperValidation($firstName,$lastName,$dob,$languages,$email,$password,$devBio,$phone,$username){
 

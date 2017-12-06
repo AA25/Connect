@@ -9,7 +9,13 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $registerJSON = json_decode(file_get_contents('php://input'),true);
 
-if(!empty($registerJSON['busName']) && !empty($registerJSON['busIndustry'])){
+$validationCheck = new ServerValidation();
+
+if($validationCheck->registerBusinessSanitisation(
+    $registerJSON['busName'],$registerJSON['busIndustry'],$registerJSON['busBio'],$registerJSON['firstName'],
+    $registerJSON['lastName'],$registerJSON['password'],$registerJSON['email'],
+    $registerJSON['phone'],$registerJSON['username'])){
+
     //http://thisinterestsme.com/php-pdo-transaction-example/
     //We start our transaction.
     $pdo->beginTransaction();
@@ -39,12 +45,12 @@ if(!empty($registerJSON['busName']) && !empty($registerJSON['busIndustry'])){
     }
     catch(Exception $e){
         //An exception has occured, which means that the registration failed from the about try
-        echo $e->getMessage();
+        //echo $e->getMessage();
         //Rollback the transaction.
         echo json_encode(array('Error' => 'Registration failed'));
         $pdo->rollBack();
     }
 }else{
-    echo json_encode(array('Error' => 'Empty Fields'));
+    echo json_encode(array('Error' => 'Validation failed'));
 }
 ?>

@@ -14,7 +14,7 @@
     <!-- <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
 </head>
 <body>
-    <form method="post" action="" id="registerDevForm" class="">
+    <!-- <form method="post" action="" id="registerDevForm" class="">
         <div class="">
             <label for="username">username:</label>
             <input type="text" class="form-control" placeholder="Enter your username" name="username" >
@@ -52,9 +52,9 @@
             <textarea rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
         </div>
         <button type="submit" class="" style="">Register</button>
-    </form>
+    </form> -->
     
-    <!-- <form method="post" action="" id="registerBusForm" class="">
+    <form method="post" action="" id="registerBusForm" class="">
         <div class="">
             <label for="busName">Company Name:</label>
             <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" >
@@ -92,7 +92,7 @@
             <input type="text" class="form-control" placeholder="Enter phone number" name="phone" >
         </div>
         <button type="submit" class="" style="">Register</button>
-    </form> -->
+    </form>
     
     <button onclick="logOut()">
         Logout
@@ -120,7 +120,7 @@
             <input type="password" class="" placeholder="Enter password" name="password">
         </div>
         <input id="loginBtn" type="submit" name="Submit" value="Log In">
-    </form>    
+    </form>
 </body>
     <script src="js/jQuery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
