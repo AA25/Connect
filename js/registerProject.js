@@ -8,7 +8,7 @@ $('#registerProjectForm').submit(function(e) {
         'projectCategory': $('#registerProjectForm select[name=projectCategory]').val(),
         'projectBio': $('#registerProjectForm textarea[name=projectBio]').val(),
         'projectBudget': $('#registerProjectForm select[name=projectBudget]').val(),
-        'projectDeadline': $('#registerProjectForm input[name=projectDeadline]').val(),
+        'projectDeadline': '',
         'projectCountry': $('#registerProjectForm select[name=projectCountry]').val(),
         'projectLanguage': $('#registerProjectForm select[name=projectLanguage]').val(),
         'projectCurrency': $('#registerProjectForm select[name=projectCurrency]').val(),

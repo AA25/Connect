@@ -5,6 +5,7 @@
     // And how to remove script tags from https://stackoverflow.com/questions/28255873/removing-script-tags-using-preg-replace
     class ServerValidation{
 
+        //Remove scripts and convert html tags to prevent certain attacks
         public function sanitisation($formData){
             $formData = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $formData);
             //$formData = trim($formData);
@@ -49,7 +50,63 @@
             return $this->loginValidation($email,$password,$searchLocation);
         }
 
+        public function registerProjectSanitisation(&$projectCategory,&$projectBio,&$projectBudget,&$projectDeadline,&$projectCountry,&$projectLanguage
+        ,&$projectCurrency,&$projectName){
+
+            $projectCategory    = $this->sanitisation($projectCategory);
+            $projectBio         = $this->sanitisation($projectBio);
+            $projectBudget      = $this->sanitisation($projectBudget);
+            $projectDeadline    = $projectDeadline;
+            $projectCountry     = $this->sanitisation($projectCountry);
+            $projectLanguage    = $this->sanitisation($projectLanguage);
+            $projectCurrency    = $this->sanitisation($projectCurrency);
+            $projectName        = $this->sanitisation($projectName);
+
+            return $this->registerProjectValidation($projectCategory,$projectBio,$projectBudget,$projectDeadline,$projectCountry,$projectLanguage
+            ,$projectCurrency,$projectName);
+        }
+
+        public function registerProjectValidation($projectCategory,$projectBio,$projectBudget,$projectDeadline,$projectCountry,$projectLanguage
+        ,$projectCurrency,$projectName){
+
+            if( (strlen($projectCategory) > 56) || empty($projectCategory)){
+                return false;
+            }
+            if( (strlen($projectBio) > 500) || empty($projectBio) ){
+                return false;
+            }
+            if( (strlen($projectBudget) > 56) || empty($projectBudget)){
+                return false;
+            }
+            // if(empty($projectDeadline)){
+            //     return false;
+            // }
+            if( (strlen($projectCountry) > 56) || empty($projectCountry)){
+                return false;
+            }
+            if( (strlen($projectLanguage) > 100) || empty($projectLanguage)){
+                return false;
+            }
+            if( (strlen($projectCurrency) > 56) || empty($projectCurrency)){
+                return false;
+            }
+            // if(empty($dateEntered)){
+            //     return false;
+            // }
+            // if(empty($startDate)){
+            //     return false;
+            // }
+            // if(empty($projectStatus)){
+            //     return false;
+            // }
+            if( (strlen($projectName) > 56) || empty($projectName)){
+                return false;
+            }
+            return true;
+        }
+
         public function loginValidation($email,$password,$searchLocation){
+
             if( !filter_var($email, FILTER_VALIDATE_EMAIL) || (strlen($email) > 56) || empty($email)){
                 return false;
             }

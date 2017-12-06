@@ -1,3 +1,12 @@
+<?php 
+    require "../includes/init.inc.php";
+    $cookieJWT = new Jwt ($_COOKIE['JWT']);
+    $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);  
+    if(!$cookieJWT->verifyJWT($cookieJWT->token) || !($userVerifiedData['type'] == 'business')){
+        header('Location: http://localhost:8081/index.php');    
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,14 +79,19 @@
             </select>  
         </div>
 
+        <!-- <div class="">
+            <label for="projectDeadline">Project Deadline:</label>
+            <input type="text" class="form-control" placeholder="Enter a deadline date for the project" name="projectDeadline">
+        </div> -->
+
         <button type="submit" class="" style="">Register Project</button>
     </form>
 
 </body>
-    <script src="./js/jQuery/jquery.min.js"></script>
+    <script src="../js/jQuery/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="./js/smoothScroll/smoothScroll.js"></script>
-    <script src="./js/accessDashboard.js"></script>
-    <script src="./js/navBar.js"></script>
-    <script src="./js/registerProject.js"></script>
+    <script src="../js/smoothScroll/smoothScroll.js"></script>
+    <!-- <script src="../js/accessDashboard.js"></script> -->
+    <script src="../js/navBar.js"></script>
+    <script src="../js/registerProject.js"></script>
 </html>

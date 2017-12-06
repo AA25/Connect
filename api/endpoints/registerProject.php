@@ -24,21 +24,6 @@
     }else{
         echo json_encode(Array('Error' => 'No Authorization Header'));
     }
-    
-    
-    //This page should only be accessible if JWT is verified and you're a business
-    //$verifiedJWT = 'eyJhbGciOiAiSFMyNTYiLCJ0eXAiOiAiSldUIn0=.eyJTdWNjZXNzIjoiU3VjY2Vzc2Z1bCBsb2dpbiIsImZpcnN0TmFtZSI6InRlc3QiLCJsYXN0TmFtZSI6InRlc3QiLCJkb2IiOiIxOTk0LTA2LTI1IiwibGFuZ3VhZ2VzIjoiZW5nbGlzaCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImRldkJpbyI6ImJpbyIsInBob25lIjoiMSIsInR5cGUiOiJkZXZlbG9wZXIifQ==.jUOCuAkQzTvVCX9Fx1PJ8MTnH9XhZAYB/HjCQGj1Rg4=';
-    // $verifiedJWT = new Jwt ($_COOKIE['JWT']);
-    // //echo json_encode(Array('Cookie' => $verifiedJWT));
-    // $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
-    // //echo json_encode(Array('Server' => verifyJWT($verifiedJWT)));
-    // //This page should only be accessible if JWT is verified and you're a business
-    // if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
-    //     prepareInsertProject($pdo, $userVerifiedData);
-    //     //echo json_encode(Array('Error' => 'Permission access'));
-    // }else{
-    //     echo json_encode(Array('Error' => 'Permission denied'));
-    // }
 
     function prepareInsertProject($pdo, $userVerifiedData){
         $projectJSON = json_decode(file_get_contents('php://input'),true);
@@ -54,7 +39,18 @@
             foreach($result as $id){
                 $busId = $id['busId'];
             }
-            insertProject($projectJSON, $pdo, $busId,$userVerifiedData);
+            //Validate data before inserting into the database
+            $validation = new ServerValidation();
+
+            if($validation->registerProjectSanitisation($projectJSON['projectCategory'],$projectJSON['projectBio'],$projectJSON['projectBudget'],
+            $projectJSON['projectDeadline'],$projectJSON['projectCountry'],$projectJSON['projectLanguage'],$projectJSON['projectCurrency'],
+            $projectJSON['projectName'])){
+
+                insertProject($projectJSON, $pdo, $busId,$userVerifiedData);
+
+            }else{
+                echo json_encode(Array("Error" => "Validation Error"));
+            }
         }else{
             //Error with retriving the business id for particular account
             echo json_encode(Array("Error" => "Error with account"));

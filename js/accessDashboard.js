@@ -1,28 +1,29 @@
 var userType = '';
 
-function accessDashboardPermission() {
-    $.ajax({
-        url: '../../logic/accessDashboard.php',
-        data: {},
-        type: 'get',
-        method: 'GET',
-        beforeSend: function(request) {
-            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-        },
-        success: function(response) {
-            if (response['Error']) {
-                window.location.href = "/";
-            } else {
-                console.log(response);
-                userType = response['Success'];
-                //render sidebar content depending on userType
-            }
-        }
-    });
-};
+//ts not used?
+// function accessDashboardPermission() {
+//     $.ajax({
+//         url: '../../logic/accessDashboard.php',
+//         data: {},
+//         type: 'get',
+//         method: 'GET',
+//         beforeSend: function(request) {
+//             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+//         },
+//         error: function(XMLHttpRequest, textStatus, errorThrown) {
+//             //Error in setting status
+//         },
+//         success: function(response) {
+//             if (response['Error']) {
+//                 window.location.href = "/";
+//             } else {
+//                 console.log(response);
+//                 userType = response['Success'];
+//                 //render sidebar content depending on userType
+//             }
+//         }
+//     });
+// };
 
 function respondToRequest(buttonClicked) {
     var data = {
