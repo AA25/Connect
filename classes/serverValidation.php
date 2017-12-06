@@ -40,6 +40,28 @@
             return $this->registerBusinessValidation($busName,$busIndustry,$busBio,$firstName,$lastName,$password,$email,$phone,$username);
         }
 
+        public function loginSanitisation(&$email,&$password,&$searchLocation){
+            $email              = $this->sanitisation($email);
+            $password           = $this->sanitisation($password);
+            $searchLocation     = $this->sanitisation($searchLocation);
+
+            return $this->loginValidation($email,$password,$searchLocation);
+        }
+
+        public function loginValidation($email,$password,$searchLocation){
+            if( (strlen($email) > 56) || empty($email)){
+                return false;
+            }
+            if( (strlen($password) > 500) || empty($password)){
+                return false;
+            }
+            if( (strlen($location) > 20) || empty($location)){
+                return false;
+            }
+
+            return true;
+        }
+
         public function registerBusinessValidation($busName,$busIndustry,$busBio,$firstName,$lastName,$password,$email,$phone,$username){
 
             if( (strlen($busName) > 56) || empty($busName)){

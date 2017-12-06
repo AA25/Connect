@@ -4,14 +4,18 @@
     $pdo = get_db();
 
     //important to tell your browser what we will be sending
-    // header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Allow-Methods: POST");
-    // header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     $loginJSON = json_decode(file_get_contents('php://input'),true);
+
+    $validationCheck = new ServerValidation();    
     
-    if (!empty($loginJSON['email']) && !empty($loginJSON['password']) && !empty($loginJSON['location'])){
+    if ($validationCheck->loginSanitisation(
+        $loginJSON['email'],$loginJSON['password'],$loginJSON['location']
+    )){
         //Attempt to retrieve user details from provided login details and then prepares sql query
         if($loginJSON['location'] == 'developers'){
             $r = prepDevSQL($pdo);
@@ -50,7 +54,7 @@
             echo json_encode(array('Error' => 'Incorrect login details'));
         }
     }else{
-        echo json_encode(array('Error' => 'Empty Fields'));
+        echo json_encode(array('Error' => 'Validation Failure'));
     }
 
     function prepDevSQL(&$pdo){
