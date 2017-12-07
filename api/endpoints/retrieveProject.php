@@ -10,6 +10,7 @@
 
 
     $returnProject = ['userType' => 'guest','Success' => []];
+
     //This API doesnt require an authorization header containing the JWT token
     //However if it does additional  info of what type of account is trying to access the data will be return
     //This can be useful for the webpage to display the data a certain way depending on the account viewing it
@@ -29,9 +30,11 @@
     }
 
     $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate from projects where projectId = :projectId");
+
     $result->execute([
         'projectId' => $_GET['projectId']
     ]);
+
     if($result->rowCount() > 0){
         foreach($result as $row){
             pushProjectDetails($returnProject['Success'], $row);

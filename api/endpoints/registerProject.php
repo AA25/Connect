@@ -11,9 +11,8 @@
     if(isset($headers['Authorization'])){
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
         $verifiedJWT = new Jwt ($tokenInAuth);
-        //echo json_encode(Array('Cookie' => $verifiedJWT));
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
-        //echo json_encode(Array('Server' => verifyJWT($verifiedJWT)));
+
         //This page should only be accessible if JWT is verified and you're a business
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
             prepareInsertProject($pdo, $userVerifiedData);

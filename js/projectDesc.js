@@ -25,7 +25,7 @@ function retrieveProjectDetails() {
                 console.log(response['Error']);
             } else {
                 console.log(response);
-                sideDisplay(response['userType']);
+                //sideDisplay(response['userType']);
             }
         }
     });

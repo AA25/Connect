@@ -16,6 +16,13 @@ if($validationCheck->registerBusinessSanitisation(
     $registerJSON['lastName'],$registerJSON['password'],$registerJSON['email'],
     $registerJSON['phone'],$registerJSON['username'])){
 
+    insertBusiness($pdo);
+
+}else{
+    echo json_encode(array('Error' => 'Validation failed'));
+}
+
+function insertBusiness($pdo){
     //http://thisinterestsme.com/php-pdo-transaction-example/
     //We start our transaction.
     $pdo->beginTransaction();
@@ -50,6 +57,4 @@ if($validationCheck->registerBusinessSanitisation(
         echo json_encode(array('Error' => 'Registration failed'));
         $pdo->rollBack();
     }
-}else{
-    echo json_encode(array('Error' => 'Validation failed'));
 }
