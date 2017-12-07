@@ -15,7 +15,14 @@
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
         //This API endpoint should only be accessible if JWT token  is verified and user is a developer
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'developer'){
-            checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON);
+
+            //Creating server validation object to sanitise and valid the data sent in the request
+            $validation = new ServerValidation();
+            if($validation->sendRequestSanitisation($projectReqJSON['projectId'],$projectReqJSON['devMsg'])){
+                checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON);
+            }else{
+                echo json_encode(Array('Error' => 'Validation Failed'));
+            }
         }else{
             echo json_encode(Array('Error' => 'Permission denied'));
         }
@@ -23,8 +30,8 @@
         echo json_encode(Array('Error' => 'No Authorization Header'));
     }
 
+    //Need to check that the developer is not already part of a project
     function checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON){
-        //Need to check that the developer is not already part of a project
         $currentProject = '';
         $check = $pdo->prepare("
             select currentProject from developers where email = :devEmail
@@ -47,6 +54,7 @@
         }
     }
 
+    //Checking if the user already has a request sent to this project already
     function checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON){
         //A query that selects all pending requests made by this particular developer to a specific project
         $result = $pdo->prepare("select * from projectRequests 

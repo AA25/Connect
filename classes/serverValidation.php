@@ -66,6 +66,24 @@
             ,$projectCurrency,$projectName);
         }
 
+        public function sendRequestSanitisation(&$projectId,&$devMsg){
+            $projectId  = $this->sanitisation($projectId);
+            $devMsg     = $this->sanitisation($devMsg);
+
+            return $this->sendRequestValidation($projectId,$devMsg);
+        }
+
+        public function sendRequestValidation($projectId,$devMsg){
+            if( (gettype($projectId) == integer) || empty($projectId) ){
+                return false;
+            }
+            if( (strlen($devMsg) > 500) || empty($devMsg) ){
+                return false;
+            }
+
+            return true;
+        }
+
         public function registerProjectValidation($projectCategory,$projectBio,$projectBudget,$projectDeadline,$projectCountry,$projectLanguage
         ,$projectCurrency,$projectName){
 
