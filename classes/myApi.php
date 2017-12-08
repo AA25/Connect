@@ -8,7 +8,7 @@
 
          protected function project($args) {
             if ($this->method == 'GET') {
-                return include('restEndpoints/getProject.php');
+                return include('restfulEndPoints/getProject.php');
             } else {
                 return Array("Error" => "Only accepts GET requests");
             }
