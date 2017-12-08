@@ -8,7 +8,10 @@ $('#devMsg').keyup(function() {
 });
 
 function retrieveProjectDetails() {
+    //var projectId = (document.URL).split("/");
+    //projectId = parseInt(projectId[4]);
     var url = '../api/endpoints/retrieveProject.php' + location.search;
+    //var url = '../api/endpoints/retrieveProject.php?projectId=' + projectId;
     $.ajax({
         url: url,
         data: {},
