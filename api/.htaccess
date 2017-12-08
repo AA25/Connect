@@ -6,5 +6,5 @@ RewriteBase /api/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-#Redirect all requests to the index.php file
+#Redirect all requests within /api/ to the index.php file
 RewriteRule ^/api/(.*)$ index.php?path=$1 [QSA,NC,L]

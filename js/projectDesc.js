@@ -8,10 +8,8 @@ $('#devMsg').keyup(function() {
 });
 
 function retrieveProjectDetails() {
-    //var projectId = (document.URL).split("/");
-    //projectId = parseInt(projectId[4]);
-    var url = '../api/endpoints/retrieveProject.php' + location.search;
-    //var url = '../api/endpoints/retrieveProject.php?projectId=' + projectId;
+    //var url = '../api/endpoints/retrieveProject.php' + location.search;
+    var url = '../api' + window.location.pathname;
     $.ajax({
         url: url,
         data: {},
@@ -28,7 +26,7 @@ function retrieveProjectDetails() {
                 console.log(response['Error']);
             } else {
                 console.log(response);
-                //sideDisplay(response['userType']);
+                sideDisplay(response['Success']['userType']);
             }
         }
     });
@@ -36,6 +34,8 @@ function retrieveProjectDetails() {
 
 function sideDisplay(userType) {
     if (userType === 'developer') {
+        $('#projectReq').show();
+    } else if (userType === 'business') {
         $('#projectReq').show();
     } else {
         //Show the guest view or business view

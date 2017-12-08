@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connect Homepage</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/connectStyle.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/connectStyle.css"/>
     <!-- <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
 </head>
 
@@ -124,14 +124,10 @@
         <input id="loginBtn" type="submit" name="Submit" value="Log In">
     </form>
 </body>
-<script src="js/jQuery/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/smoothScroll/smoothScroll.js"></script>
-<script src="js/navBar.js"></script>
-<!-- <script src="js/core.js"></script>
-<script src="js/enc-base64.js"></script>
-<script src="js/hmac.js"></script>
-<script src="js/sha256.js"></script>
-<script src="js/tokenAuth.js"></script> -->
+
+<script src="/js/jQuery/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/smoothScroll/smoothScroll.js"></script>
+<script src="/js/navBar.js"></script>
 
 </html>

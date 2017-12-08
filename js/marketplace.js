@@ -2,7 +2,7 @@ var returnFrom = 0;
 var returnAmount = 2;
 
 function retrieveProjects() {
-    var url = '../api/endpoints/retrieveProjects.php?returnAmount=' + returnAmount + '&returnFrom=' + returnFrom;
+    var url = '/api/endpoints/retrieveProjects.php?returnAmount=' + returnAmount + '&returnFrom=' + returnFrom;
     $.ajax({
         url: url,
         data: {},
@@ -42,6 +42,7 @@ function renderProjects(projectsArray) {
             '</tr>';
         $('#marketplaceTableBody').append(insertRow);
     }, this);
+    $('#marketplace').show();
 }
 
 
