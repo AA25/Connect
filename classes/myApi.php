@@ -15,10 +15,17 @@
                 }elseif($this->verb == 'request'){
                     return include('restfulEndpoints/postProjectRequest.php');
                 }else{
-                    return Array("Error" => "Endpoint may exists but the verb does not or Endpoint does not allow arguements");
+                    return Array("Error" => "Endpoint exists but the verb does not or Endpoint does not allow arguements on request type");
+                }
+            }elseif($this->method == 'DELETE'){
+                if($this->verb == 'request'){
+                    return include('restfulEndpoints/deleteProjectRequest.php');
+                    //return Array("Error" => "Delete");                    
+                }else{
+                    return Array("Error" => "Endpoint exists but the verb does not or Endpoint does not allow arguements on request type");
                 }
             }else {
-                return Array("Error" => "Only accepts GET/POST requests");
+                return Array("Error" => "Only accepts GET/POST/DELETE requests");
             }
          }
      }

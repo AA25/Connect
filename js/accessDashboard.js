@@ -161,7 +161,8 @@ function developerRequests() {
 function deleteProjectRequest(deleteButtonClicked) {
     var projectReqId = deleteButtonClicked.getAttribute("data-project-request");
     $.ajax({
-        url: '../api/endpoints/deleteProjectRequest.php?projectReqId=' + projectReqId,
+        //url: '../api/endpoints/deleteProjectRequest.php?projectReqId=' + projectReqId,
+        url: '../api/project/request/' + projectReqId,
         type: 'delete',
         method: 'DELETE',
         beforeSend: function(request) {

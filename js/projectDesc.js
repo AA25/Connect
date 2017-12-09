@@ -48,7 +48,7 @@ $('#projectRequestForm').submit(function(e) {
     //var urlParam = location.search;
     var urlParam = window.location.pathname;
     //Pull out the project id from the url parameter
-    var projectId = parseInt(urlParam.slice(-1));
+    var projectId = parseInt(urlParam.replace("/project/", ""));
     //var projectId = parseInt(urlParam.slice((urlParam.indexOf('=')) + 1));
     //Pull the data from the form
     var data = {
