@@ -34,7 +34,7 @@
         include('./views/home.php');
     }elseif($endpoint == 'home' && $verb == 'marketplace' && empty($args)){
         include('./views/marketplace.php');
-    }elseif($endpoint == 'project'){
+    }elseif($endpoint == 'project' && (!empty($args[0]) || $verb !== '' )){
         include('./views/projectDesc.php');
     }else{
         echo '404 Page';

@@ -45,16 +45,19 @@ function sideDisplay(userType) {
 //When the project request form is clicked, an ajax request is made to send a request towards the project
 $('#projectRequestForm').submit(function(e) {
     e.preventDefault();
-    var urlParam = location.search;
+    //var urlParam = location.search;
+    var urlParam = window.location.pathname;
     //Pull out the project id from the url parameter
-    var projectId = parseInt(urlParam.slice((urlParam.indexOf('=')) + 1));
+    var projectId = parseInt(urlParam.slice(-1));
+    //var projectId = parseInt(urlParam.slice((urlParam.indexOf('=')) + 1));
     //Pull the data from the form
     var data = {
         'projectId': projectId,
         'devMsg': $('#projectRequestForm textarea[name=devMsg]').val()
     };
     $.ajax({
-        url: "../api/endpoints/sendProjectReq.php",
+        //url: "../api/endpoints/sendProjectReq.php",
+        url: "../api/project/request/" + projectId,
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -66,7 +69,6 @@ $('#projectRequestForm').submit(function(e) {
         },
         success: function(result) {
             console.log(result);
-
         }
     });
 });
