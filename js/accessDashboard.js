@@ -32,7 +32,8 @@ function respondToRequest(buttonClicked) {
         'projectId': buttonClicked.getAttribute("data-project")
     };
     $.ajax({
-        url: '../api/endpoints/updateProjectRequest.php',
+        //url: '../api/endpoints/updateProjectRequest.php',
+        url: '../api/project/requests/',
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',

@@ -14,24 +14,27 @@
                     //return Array("Error" => "Project reqs to your business");
                     return include('restfulEndpoints/getAllProjectReqsToBusinesses.php');
                 }
-                return Array("Error" => "Valid verb, Invalid arguement, Argument required or no Arguement required");
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             } elseif($this->method == 'POST'){
                 if($this->verb == '' && empty($this->args)){
                     return include('restfulEndpoints/postProject.php');
                 }elseif($this->verb == 'request'){
                     return include('restfulEndpoints/postProjectRequest.php');
-                }else{
-                    return Array("Error" => "Endpoint exists but the verb does not or Endpoint does not allow arguements on request type");
                 }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             }elseif($this->method == 'DELETE'){
                 if($this->verb == 'request'){
                     return include('restfulEndpoints/deleteProjectRequest.php');
                     //return Array("Error" => "Delete");                    
-                }else{
-                    return Array("Error" => "Endpoint exists but the verb does not or Endpoint does not allow arguements on request type");
                 }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+            }elseif ($this->method == 'PUT') {
+                if($this->verb == 'requests' && empty($this->args)){
+                    return include('restfulEndpoints/updateProjectRequest.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             }else {
-                return Array("Error" => "Only accepts GET/POST/DELETE requests");
+                return Array("Error" => "Only accepts GET/POST/DELETE/PUT requests");
             }
          }
      }
