@@ -185,11 +185,12 @@ function deleteProjectRequest(deleteButtonClicked) {
     });
 }
 
-function retrieveDevPerProject(statusCondition, projectStatus) {
-    (statusCondition) ? conditionParams = '?statusCondition=' + statusCondition + '&projectStatus=' + projectStatus: conditionParams = '';
-
+function retrieveDevPerProject(projectStatus) {
+    //(statusCondition) ? conditionParams = '?statusCondition=' + statusCondition + '&projectStatus=' + projectStatus: conditionParams = '';
+    (projectStatus == null) ? projectStatus = '': projectStatus = projectStatus;
     $.ajax({
-        url: '../api/endpoints/retrieveDevelopersPerProject.php' + conditionParams,
+        //url: '../api/endpoints/retrieveDevelopersPerProject.php' + conditionParams,
+        url: '../api/project/developers/' + projectStatus,
         data: {},
         type: 'get',
         method: 'get',
@@ -288,10 +289,10 @@ function renderSidebarOption(userType, file) {
                 projectRequests();
                 break;
             case "beginProjectJourney":
-                retrieveDevPerProject(true, 1);
+                retrieveDevPerProject(1);
                 break;
             case "projectDevelopers":
-                retrieveDevPerProject(false);
+                retrieveDevPerProject();
                 break;
             case "manageProjects":
                 retrieveBusinessesProjects();

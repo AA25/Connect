@@ -13,6 +13,8 @@
                 }elseif($this->verb == 'requests' && empty($this->args)){
                     //return Array("Error" => "Project reqs to your business");
                     return include('restfulEndpoints/getAllProjectReqsToBusinesses.php');
+                }elseif($this->verb == 'developers'){
+                    return include('restfulEndpoints/getDevelopersPerProject.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             } elseif($this->method == 'POST'){
