@@ -25,12 +25,15 @@
             }elseif($this->method == 'DELETE'){
                 if($this->verb == 'request'){
                     return include('restfulEndpoints/deleteProjectRequest.php');
-                    //return Array("Error" => "Delete");                    
+                    //return Array("Error" => "Delete");
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             }elseif ($this->method == 'PUT') {
                 if($this->verb == 'requests' && empty($this->args)){
                     return include('restfulEndpoints/updateProjectRequest.php');
+                }elseif($this->verb == 'start' && !empty($this->args)){
+                    //return Array("Error" => "You wanna start project ".$this->args[0]);
+                    return include('restfulEndpoints/updateStartProject.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             }else {

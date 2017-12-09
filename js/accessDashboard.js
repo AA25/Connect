@@ -35,8 +35,8 @@ function respondToRequest(buttonClicked) {
         //url: '../api/endpoints/updateProjectRequest.php',
         url: '../api/project/requests/',
         data: JSON.stringify(data),
-        type: 'post',
-        method: 'POST',
+        type: 'put',
+        method: 'PUT',
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -210,15 +210,16 @@ function retrieveDevPerProject(statusCondition, projectStatus) {
 }
 
 function startTheProject(buttonClicked) {
-    var data = {
-        projectId: buttonClicked.getAttribute("data-project")
-    };
-
+    // var data = {
+    //     projectId: buttonClicked.getAttribute("data-project")
+    // };
+    var projectId = buttonClicked.getAttribute("data-project");
     $.ajax({
-        url: '../api/endpoints/startProject.php',
-        data: JSON.stringify(data),
-        type: 'POST',
-        method: 'post',
+        //url: '../api/endpoints/startProject.php',
+        //data: JSON.stringify(data),
+        url: '../api/project/start/' + projectId,
+        type: 'PUT',
+        method: 'PUT',
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
