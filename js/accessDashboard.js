@@ -55,8 +55,9 @@ function respondToRequest(buttonClicked) {
 
 function projectRequests() {
     $.ajax({
-        url: '../api/endpoints/retrieveProjectRequests.php',
-        data: { 'userType': userType }, // review this line, is it needed?
+        //url: '../api/endpoints/retrieveProjectRequests.php',
+        url: '../api/project/requests/',
+        //data: { 'userType': userType }, // review this line, is it needed?
         type: 'get',
         method: 'GET',
         beforeSend: function(request) {
