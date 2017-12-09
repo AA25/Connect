@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+        // Once business accepts or deletes the request, an update of that project request in the database is required
+
+
 require "../../includes/init.inc.php";
 $pdo = get_db();
 
@@ -27,7 +31,7 @@ function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){
     $pdo->beginTransaction();
 
     try{
-        // Updates the project request of a specific developer to a specific project to accepted or declined.
+        // Once business accepts or deletes the request, an update of that project request in the database is required
         // Note that previous rejected requests will be left in the db to later be accessed on the clientside for history purposes, it can be deleted later by user
         // The inner join with businesses table is to ensure that user cannot delete a project request of a different business
         // Also making sure that the project they are accepting the request is in stage 0 or 1 as thats the only stages devs can join a project

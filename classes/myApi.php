@@ -8,7 +8,13 @@
 
          protected function project($args) {
             if ($this->method == 'GET') {
-                return include('restfulEndPoints/getProject.php');
+                if($this->verb == '' && !empty($this->args)){
+                    return include('restfulEndPoints/getProject.php');
+                }elseif($this->verb == 'requests' && empty($this->args)){
+                    //return Array("Error" => "Project reqs to your business");
+                    return include('restfulEndpoints/getAllProjectReqsToBusinesses.php');
+                }
+                return Array("Error" => "Valid verb, Invalid arguement, Argument required or no Arguement required");
             } elseif($this->method == 'POST'){
                 if($this->verb == '' && empty($this->args)){
                     return include('restfulEndpoints/postProject.php');
