@@ -1,4 +1,6 @@
 <? 
+    //Retrieves the project details of a certain project
+
     $pdo = get_db();
     $reqProjectId = (int)$args[0];
     $returnProject = ['Success' => []];

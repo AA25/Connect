@@ -16,13 +16,13 @@ if($validationCheck->registerBusinessSanitisation(
     $registerJSON['lastName'],$registerJSON['password'],$registerJSON['email'],
     $registerJSON['phone'],$registerJSON['username'])){
 
-    insertBusiness($pdo);
+    insertBusiness($pdo,$registerJSON);
 
 }else{
     echo json_encode(array('Error' => 'Validation failed'));
 }
 
-function insertBusiness($pdo){
+function insertBusiness($pdo,$registerJSON){
     //http://thisinterestsme.com/php-pdo-transaction-example/
     //We start our transaction.
     $pdo->beginTransaction();
@@ -46,15 +46,17 @@ function insertBusiness($pdo){
         ]);
     
         //We've got this far without an exception, so commit the changes.
+        $pdo->commit();        
         echo json_encode(array('Success' => 'Successful registration'));
-        $pdo->commit();
         
     }
     catch(Exception $e){
         //An exception has occured, which means that the registration failed from the about try
         //echo $e->getMessage();
         //Rollback the transaction.
-        echo json_encode(array('Error' => 'Registration failed'));
         $pdo->rollBack();
+        echo json_encode(array('Error' => $e));
+
+        //echo json_encode(array('Error' => 'Registration failed'));
     }
 }

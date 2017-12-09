@@ -1,4 +1,6 @@
-<?php 
+<?php
+    //Send a request to a certain project
+
     $pdo = get_db();
 
     $headers = apache_request_headers();
