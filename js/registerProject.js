@@ -14,7 +14,7 @@ $('#registerProjectForm').submit(function(e) {
         'projectCurrency': $('#registerProjectForm select[name=projectCurrency]').val(),
     };
     $.ajax({
-        url: "../api/endpoints/registerProject.php",
+        url: "../api/project",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',

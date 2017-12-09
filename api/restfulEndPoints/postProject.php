@@ -82,5 +82,5 @@
             return Array('Error' => 'Error with registration of project');
         }
     }
-    
+
 ?>
