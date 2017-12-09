@@ -82,6 +82,7 @@
 
         public function processAPI() {
             if (method_exists($this, $this->endpoint)) {
+                //return json_encode($this->{$this->endpoint}($this->args));
                 return $this->_response($this->{$this->endpoint}($this->args));
             }
             return $this->_response(Array("Error" => "No Endpoint: $this->endpoint"), 404);
