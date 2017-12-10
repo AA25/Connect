@@ -1,7 +1,8 @@
 function retrieveBusinessDetails() {
-    var url = '../api/endpoints/retrieveBusiness.php' + location.search;
+    //var url = '../api/endpoints/retrieveBusiness.php' + location.search;
+    var url = window.location.pathname;
     $.ajax({
-        url: url,
+        url: '/api' + url,
         data: {},
         type: 'get',
         method: 'GET',
