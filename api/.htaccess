@@ -1,0 +1,10 @@
+#Turn rewrite engine on
+RewriteEngine on
+
+RewriteBase /api/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Redirect all requests within /api/ to the index.php file
+RewriteRule ^/api/(.*)$ index.php?path=$1 [QSA,NC,L]
