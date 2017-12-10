@@ -1,4 +1,6 @@
 <?php
+    //Retrieves all the projects that are in the recruiting phase from X to Y 
+
     $pdo = get_db();
 
     $returnProjects = ['userType' => 'guest','Projects' => []];

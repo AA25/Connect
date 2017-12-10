@@ -1,4 +1,5 @@
-<?php 
+<?php
+    //Updates the current status/stage of a project from 1 -> 2 meaning 'Discussion Phase'
 
     $pdo = get_db();
 
