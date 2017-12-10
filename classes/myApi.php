@@ -66,6 +66,9 @@
                 }elseif($this->verb == 'project' && empty($this->args)){
                     //return Array("Error" => "Developers current project");
                     return include('restfulEndpoints/getCurrentDeveloperProject.php');
+                }elseif($this->verb == 'requests' && empty($this->args)){
+                    //return Array("Error" => "Developers sent requests");
+                    return include('restfulEndpoints/getAllProjectRequestsSent.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 

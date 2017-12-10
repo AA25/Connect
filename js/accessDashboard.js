@@ -139,7 +139,8 @@ function addDevProjectRequestsHTML(devProjectRequests) {
 
 function developerRequests() {
     $.ajax({
-        url: '../api/endpoints/retrieveDeveloperRequests.php',
+        //url: '../api/endpoints/retrieveDeveloperRequests.php',
+        url: '../api/developer/requests/',
         data: {},
         type: 'get',
         method: 'GET',
