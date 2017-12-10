@@ -56,5 +56,18 @@
                 return Array("Error" => "Endpoint only accepts GET requests");
             }
          }
+
+         protected function business($args){
+            if ($this->method == 'POST') {
+                if($this->verb == 'register' && empty($this->args)){
+                    //return Array("Error" => "Testing business register");
+                    return include('restfulEndPoints/postBusiness.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+            }else {
+                return Array("Error" => "Endpoint only accepts POST requests");
+            }
+         }
      }
+
 ?>

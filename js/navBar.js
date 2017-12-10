@@ -45,7 +45,7 @@ $('#registerBusForm').submit(function(e) {
         'phone': $('#registerBusForm input[name=phone]').val()
     };
     $.ajax({
-        url: "./api/endpoints/registerBusiness.php",
+        url: "./api/business/register/",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
