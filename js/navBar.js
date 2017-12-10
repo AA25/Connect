@@ -14,7 +14,8 @@ $('#registerDevForm').submit(function(e) {
         'phone': $('#registerDevForm input[name=phone]').val()
     };
     $.ajax({
-        url: "./api/endpoints/registerDeveloper.php",
+        //url: "./api/endpoints/registerDeveloper.php",
+        url: "./api/developer/register/",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',

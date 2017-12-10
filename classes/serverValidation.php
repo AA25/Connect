@@ -152,7 +152,7 @@
             if( !(ctype_alpha($firstName)) || (strlen($firstName) > 56) || empty($firstName) ){
                 return false;
             }
-            if( !(ctype_alpha($lastName)) || (strlen($firstName) > 56) || empty($firstName)){
+            if( !(ctype_alpha($lastName)) || (strlen($lastName) > 56) || empty($lastName)){
                 return false;
             }
             if( (strlen($password) > 500) || empty($password) ){
@@ -176,7 +176,7 @@
             if( !(ctype_alpha($firstName)) || (strlen($firstName) >56) || empty($firstName) ){
                 return false;
             }
-            if( !(ctype_alpha($lastName)) || (strlen($firstName) >56) || empty($firstName)){
+            if( !(ctype_alpha($lastName)) || (strlen($lastName) >56) || empty($lastName)){
                 return false;
             }
             if( strtotime($dob) == '' || empty($dob) ){
