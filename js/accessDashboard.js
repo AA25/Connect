@@ -239,7 +239,8 @@ function startTheProject(buttonClicked) {
 
 function retrieveBusinessesProjects() {
     $.ajax({
-        url: '../api/endpoints/retrieveBusinessProjects.php',
+        //url: '../api/endpoints/retrieveBusinessProjects.php',
+        url: '/api/business/projects/',
         data: {},
         type: 'GET',
         method: 'get',
