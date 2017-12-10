@@ -61,8 +61,8 @@
             }elseif($this->method == 'GET'){
 
                 if($this->verb == 'info' && !empty($this->args[0])) {
-                    //return Array("Error" => "Testing business info retrieval");
-                    //return include('restfulEndpoints/getBusiness.php');
+                    //return Array("Error" => "Testing developer info retrieval");
+                    return include('restfulEndpoints/getDeveloper.php');
                 }elseif($this->verb == 'projects' && empty($this->args)){
                     //return Array("Error" => "business projects");
                     //return include('restfulEndpoints/getBusinessProjects.php');

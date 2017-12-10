@@ -1,6 +1,5 @@
 <?php
-
-    //Get information of a business
+    //Get information of a developer
 
     $pdo = get_db();
     $username = $this->args[0];
@@ -18,22 +17,21 @@
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
         //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token)){
-            //Setting the AccessType to be the type of the account accessing this data
+            //Setting the userType to be the type of the account accessing this data
             $returnProject['AccessType'] = $userVerifiedData['type'];
         }
     }
-    return getBusinessInfo($pdo, $username, $returnProject);
+    return getDeveloperInfo($pdo, $username, $returnProject);
 
-    function getBusinessInfo($pdo, $username, $returnProject){
-        $result = $pdo->prepare("select busName, busIndustry, busBio, firstName, lastName, email, phone, type, username from businesses where username = :username");
-
+    function getDeveloperInfo($pdo, $username, $returnProject){
+        $result = $pdo->prepare("select firstName, lastName, dob, languages, email, devBio, phone, type, currentProject from developers where username = :username");
         $result->execute([
             'username' => $username
         ]);
-
+    
         if($result->rowCount() > 0){
             foreach($result as $row){
-                pushBusDetails($returnProject, $row);
+                pushDevDetails($returnProject, $row);
             }
             return Array('Success' => $returnProject);
         }else{
@@ -41,17 +39,18 @@
         }
     }
 
-    function pushBusDetails(&$returnProject, $info){
+    function pushDevDetails(&$returnProject, $info){
         array_push($returnProject, 
             Array(
-                'busName'       => $info['busName'],
-                'busIndustry'   => $info['busIndustry'],
-                'busBio'        => $info['busBio'],
-                'firstName'     => $info['firstName'],
-                'lastName'      => $info['lastName'],
-                'email'         => $info['email'],
-                'phone'         => $info['phone'],
-                'type'          => $info['type'],
+                'firstName'         => $info['firstName'],
+                'lastName'          => $info['lastName'],
+                'dob'               => $info['dob'],
+                'languages'         => $info['languages'],
+                'email'             => $info['email'],
+                'devBio'            => $info['devBio'],
+                'phone'             => $info['phone'],
+                'type'              => $info['type'],
+                'currentProject'    => $info['currentProject']
             )
         );
     }
