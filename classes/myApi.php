@@ -59,13 +59,25 @@
 
          protected function business($args){
             if ($this->method == 'POST') {
+
                 if($this->verb == 'register' && empty($this->args)){
                     //return Array("Error" => "Testing business register");
                     return include('restfulEndPoints/postBusiness.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+
+            }elseif($this->method == 'GET'){
+
+                if($this->verb == 'info' && !empty($this->args[0])) {
+                    //return Array("Error" => "Testing business info retrieval");
+                    return include('restfulEndpoints/getBusiness.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+
             }else {
-                return Array("Error" => "Endpoint only accepts POST requests");
+
+                return Array("Error" => "Endpoint only accepts POST/GET requests");
+
             }
          }
      }
