@@ -39,7 +39,21 @@
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
             }else {
-                return Array("Error" => "Only accepts GET/POST/DELETE/PUT requests");
+                return Array("Error" => "Endpoint only accepts GET/POST/DELETE/PUT requests");
+            }
+         }
+
+         protected function projects($args){
+            if ($this->method == 'GET') {
+                if($this->verb == 'from' && is_numeric($this->args[0]) && is_numeric($this->args[1])){
+                    //return Array("Error" => "Testing url");
+                    return include('restfulEndPoints/getAllProjects.php');
+                }elseif($this->verb == '' && empty($this->args)){
+                    return Array("TODO" => "Return all projects");
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+            }else {
+                return Array("Error" => "Endpoint only accepts GET requests");
             }
          }
      }

@@ -99,3 +99,7 @@ select projects.projectId, projects.projectName, projects.projectCategory, proje
 from ((projects inner join projectDevelopers on projects.projectId = projectDevelopers.projectId)
 inner join developers on projectDevelopers.devId = developers.devId)
 where developers.email = 'test2@test.com';
+
+--Returns all projects within the recruiting stage between two numbers
+select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency, projectStatus 
+from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit 0, 2

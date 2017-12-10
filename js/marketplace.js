@@ -2,7 +2,8 @@ var returnFrom = 0;
 var returnAmount = 2;
 
 function retrieveProjects() {
-    var url = '/api/endpoints/retrieveProjects.php?returnAmount=' + returnAmount + '&returnFrom=' + returnFrom;
+    //var url = '/api/endpoints/retrieveProjects.php?returnAmount=' + returnAmount + '&returnFrom=' + returnFrom;
+    var url = '/api/projects/from/' + returnFrom + '/' + returnAmount;
     $.ajax({
         url: url,
         data: {},
@@ -21,7 +22,7 @@ function retrieveProjects() {
                 console.log(response['Error']);
             } else {
                 console.log(response);
-                renderProjects(response['Projects']);
+                renderProjects(response['Success']['Projects']);
             }
         }
     });
