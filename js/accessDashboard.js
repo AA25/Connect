@@ -262,7 +262,8 @@ function retrieveBusinessesProjects() {
 
 function retrieveCurrentProject() {
     $.ajax({
-        url: '../api/endpoints/retrieveCurrentProject.php',
+        //url: '../api/endpoints/retrieveCurrentProject.php',
+        url: '../api/developer/project/',
         data: {},
         type: 'GET',
         method: 'get',

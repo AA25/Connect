@@ -17,7 +17,7 @@
             return Array('Error' => 'Permission denied');
         }
     }else{
-        return Array('Error' => 'No Authorization Header');
+        return Array('Error' => 'Please log in to view this page');
     }
 
     function updateProjectRequest($pdo, $userVerifiedData, $requestResponse){

@@ -22,7 +22,7 @@
             return Array('Error' => 'Permission denied');
         }
     }else{
-        return Array('Error' => 'No Authorization Header');
+        return Array('Error' => 'Please log in to view this page');
     }
 
     //Need to check that the developer is not already part of a project

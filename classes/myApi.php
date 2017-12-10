@@ -63,9 +63,9 @@
                 if($this->verb == 'info' && !empty($this->args[0])) {
                     //return Array("Error" => "Testing developer info retrieval");
                     return include('restfulEndpoints/getDeveloper.php');
-                }elseif($this->verb == 'projects' && empty($this->args)){
-                    //return Array("Error" => "business projects");
-                    //return include('restfulEndpoints/getBusinessProjects.php');
+                }elseif($this->verb == 'project' && empty($this->args)){
+                    //return Array("Error" => "Developers current project");
+                    return include('restfulEndpoints/getCurrentDeveloperProject.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 
