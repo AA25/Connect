@@ -52,6 +52,14 @@
             noPage();
         }
 
+    }elseif($endpoint == 'developer'){
+
+        if($verb == 'info' && !empty($args)){
+            include('./views/developer.php');
+        }else{
+            noPage();
+        }
+
     }else{
         noPage();
     }
