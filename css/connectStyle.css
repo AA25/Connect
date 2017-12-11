@@ -92,6 +92,11 @@ body {
     width: 50%;
 }
 
+.slider-center {
+    display: block;
+    margin: 0 auto
+}
+
 .txt-underline {
     text-decoration: underline;
 }
@@ -114,6 +119,10 @@ body {
 
 .cl-black {
     color: black;
+}
+
+.bg-cl-black {
+    background-color: black;
 }
 
 .cl-success {
@@ -312,6 +321,10 @@ body {
     font-size: 20px;
 }
 
+.disp-none {
+    display: none;
+}
+
 .disp-in {
     display: inline;
 }
@@ -362,4 +375,20 @@ body {
 
 .section-alt {
     background-color: #f7f7f7;
+}
+
+.bt-ini {
+    bottom: initial;
+}
+
+.min-w-200 {
+    min-width: 200px;
+}
+
+.min-w-280 {
+    min-width: 280px;
+}
+
+.min-w-130 {
+    min-width: 130px;
 }

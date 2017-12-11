@@ -21,7 +21,7 @@
 
     <div id="homepageContent" class="padt-56">
 
-        <div class="" style="background-color:black">
+        <div class="bg-cl-black">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -29,16 +29,16 @@
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="/images/try.jpg" alt="First slide" style="display:block;margin:0 auto">
-                        <div class="carousel-caption" style="bottom:initial;">
+                        <img class="d-block img-fluid slider-center" src="/images/try.jpg" alt="First slide">
+                        <div class="carousel-caption bt-ini">
                             <h2>
                                 <span class="cl-blue-connect">Connecting</span> Businesses and Developers
                             </h2>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block img-fluid" src="/images/try2.jpg" width="" alt="Second slide" style="display:block;margin:0 auto">
-                        <div class="carousel-caption" style="bottom:initial;">
+                        <img class="d-block img-fluid slider-center" src="/images/try2.jpg" width="" alt="Second slide">
+                        <div class="carousel-caption bt-ini">
                             <h2>
                                 <span class="cl-blue-connect">Connecting</span> Businesses and Developers
                             </h2>
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-6">
-                            <img src="/images/preview.png" alt="" width="370" height="" style="display:block;margin:0 auto">
+                            <img src="/images/preview.png" alt="" width="370" height="" class="slider-center">
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-6 pull-lg-6">
-                            <img src="/images/preview.png" alt="" width="370" height="" style="display:block;margin:0 auto">
+                            <img src="/images/preview.png" alt="" width="370" height="" class="slider-center">
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="section">
-            <div  id="slimMarketplace" class="container">
+            <div  id="slimMarketplace" class="container disp-none">
                 <div id="" class="padt-20 padb-20">
                     <div class="txt-ctr padb-20">
                         <h4 class="cl-blue-connect">
@@ -110,40 +110,16 @@
                         <a href="/home/marketplace"> View all Projects </a>
                     </div>
                     <div id="projectMarketplace" class="">
-                        <table class="table" style="">
+                        <table class="table">
                             <thead>
                             <tr>
-                                <th style="min-width:200px;">Location</th>
-                                <th style="min-width:230px;">Category</th>
-                                <th style="min-width:280px;">Description</th>
-                                <th style="min-width:130px;">Budget</th>
+                                <th class="min-w-200">Location</th>
+                                <th class="min-w-230">Category</th>
+                                <th class="min-w-280">Description</th>
+                                <th class="min-w-130">Budget</th>
                             </tr>
                             </thead>
-                            <tbody id="marketplaceTableBody">
-                                <tr onclick="window.location='/project/10'">
-                                    <td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td>
-                                    <td>Backend Development</td>
-                                    <td>Many desktop publishing packages and web page editors now use...</td>
-                                    <td>$2,500 - 5,000</td>
-                                </tr>
-                                <tr onclick="window.location='/project/9'">
-                                    <td><i class="fa fa-globe" aria-hidden="true"></i> Ireland</td>
-                                    <td>Website Creation</td>
-                                    <td>rest</td>
-                                    <td>€100 - 1,000</td>
-                                </tr>
-                                <tr onclick="window.location='/project/8'">
-                                    <td><i class="fa fa-globe" aria-hidden="true"></i> Ireland</td>
-                                    <td>Website Creation</td>
-                                    <td>rest</td>
-                                    <td>€100 - 1,000</td>
-                                </tr>
-                                <tr onclick="window.location='/project/5'">
-                                    <td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td>
-                                    <td>Backend Development</td>
-                                    <td>I dont know</td>
-                                    <td>£1,000 - 2,500</td>
-                                </tr>
+                            <tbody id="slimMarketplaceTableBody">
                             </tbody>
                         </table>
                     </div>
@@ -160,5 +136,5 @@
 <script src="/js/bootstrap/bootstrap.min.js"></script>
 <script src="/js/smoothScroll/smoothScroll.js"></script>
 <script src="/js/navBar.js"></script>
-
+<script src="/js/homepageController.js"></script>
 </html>
