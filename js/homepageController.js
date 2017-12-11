@@ -21,7 +21,6 @@
                 console.log(response['Error']);
             } else {
                 //Result from REST API
-                console.log(response);
                 renderProjects(response['Success']['Projects']);
             }
         }
