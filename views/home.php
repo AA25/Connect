@@ -31,9 +31,9 @@
                     <div class="carousel-item active">
                         <img class="d-block img-fluid slider-center" src="/images/try.jpg" alt="First slide">
                         <div class="carousel-caption bt-ini">
-                            <h2>
+                            <h3>
                                 <span class="cl-blue-connect">Connecting</span> Businesses and Developers
-                            </h2>
+                            </h3>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -57,15 +57,15 @@
         </div>
 
 
-        <div class="section">
+        <div class="section padt-40 padb-40">
             <div class="container">
-                <div id="connectIntro" class="padt-20 padb-20">
+                <div id="connectIntro">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-6">
-                            <h4 class="cl-blue-connect">
+                            <h5 class="cl-blue-connect">
                                 What is Connect?
-                            </h4>
-                            <p>
+                            </h5>
+                            <p class="marb-0">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             </p>
                         </div>
@@ -77,15 +77,15 @@
             </div>
         </div>
 
-        <div class="section-alt">
+        <div class="section-alt padt-40 padb-40">
             <div class="container">
-                <div id="dashboardIntro" class="padt-20 padb-20">
+                <div id="dashboardIntro" class="">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-6 push-lg-6">
-                            <h4 class="cl-blue-connect">
+                            <h5 class="cl-blue-connect">
                                 The Dashboard
-                            </h4>
-                            <p>
+                            </h5>
+                            <p class="marb-0">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                             </p>
                         </div>
@@ -97,16 +97,16 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section padt-40 padb-40">
             <div  id="slimMarketplace" class="container disp-none">
-                <div id="" class="padt-20 padb-20">
-                    <div class="txt-ctr padb-20">
-                        <h4 class="cl-blue-connect">
+                <div id="" class="">
+                    <div class="txt-ctr padb-40">
+                        <h5 class="cl-blue-connect">
                             Project Marketplace
-                        </h4>
-                        <h5>
-                            A short preview of some of the latest projects posted by businesses
                         </h5>
+                        <h6>
+                            A short preview of some of the latest projects posted by businesses
+                        </h6>
                         <a href="/home/marketplace"> View all Projects </a>
                     </div>
                     <div id="projectMarketplace" class="">

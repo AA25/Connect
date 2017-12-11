@@ -32,8 +32,9 @@ function renderProjects(projectsArray) {
     projectsArray.forEach(function(element) {
         element['projectBio'] = limitProjectDescription(element['projectBio']);
 
+        //Create the table rows containing the data retrieved
         insertRow = '<tr onclick="window.location=\'/project/' + element['projectId'] + '\'">' +
-            '<td><i class="fa fa-globe" aria-hidden="true"></i>' + element['projectCountry'] + '</td>' +
+            '<td><i class="fa fa-globe" aria-hidden="true"></i> ' + element['projectCountry'] + '</td>' +
             '<td>' + element['projectCategory'] + '</td>' +
             '<td>' + element['projectBio'] + '</td>' +
             '<td>' + element['projectCurrency'] + element['projectBudget'] + '</td>' +

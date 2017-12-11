@@ -4,18 +4,18 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img src="/images/navBar/dummy.svg" width="30" height="30" alt="">
+            <img src="/images/navBar/connect.png" width="180" height="35" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link padb-0 padt-14" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Marketplace</a>
+                    <a class="nav-link padb-0 padt-14" href="/home/marketplace">Marketplace</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Dashboard</a>
+                    <a class="nav-link padb-0 padt-14 disabled" href="/dashboard">Dashboard</a>
                 </li>
             </ul>
             <form class="form-inline">
