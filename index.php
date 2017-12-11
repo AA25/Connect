@@ -30,7 +30,13 @@
 
         if($verb == '' && empty($args)){
             include('./views/home.php');
-        }elseif($verb == 'marketplace' && empty($args)){
+        }else{
+            noPage();
+        }
+
+    }elseif($endpoint == 'marketplace'){
+
+        if(empty($args) || $verb !== ''){
             include('./views/marketplace.php');
         }else{
             noPage();

@@ -12,7 +12,7 @@
                     <a class="nav-link padb-0 padt-14" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link padb-0 padt-14" href="/home/marketplace">Marketplace</a>
+                    <a class="nav-link padb-0 padt-14" href="/marketplace">Marketplace</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link padb-0 padt-14 disabled" href="/dashboard">Dashboard</a>
