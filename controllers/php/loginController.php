@@ -1,6 +1,6 @@
 <?php 
     //TODO Login and logout should not be an api but be placed in the logic folder
-    require "../includes/init.inc.php";
+    require "../../includes/init.inc.php";
     $pdo = get_db();
 
     //important to tell your browser what we will be sending

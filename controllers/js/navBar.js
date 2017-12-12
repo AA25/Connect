@@ -15,7 +15,7 @@ $('#registerDevForm').submit(function(e) {
     };
     $.ajax({
         //url: "./api/endpoints/registerDeveloper.php",
-        url: "./api/developer/register/",
+        url: "/api/developer/register/",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -46,7 +46,7 @@ $('#registerBusForm').submit(function(e) {
         'phone': $('#registerBusForm input[name=phone]').val()
     };
     $.ajax({
-        url: "./api/business/register/",
+        url: "/api/business/register/",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -63,59 +63,27 @@ $('#registerBusForm').submit(function(e) {
 });
 
 //When the login button is clicked, an ajax request is made to check if the details is correct
-$('#loginDevForm').submit(function(e) {
+$('#loginForm').submit(function(e) {
     e.preventDefault();
-    var data = formData('loginDevForm', 'developers');
+    var data = {
+        'email': $('#loginForm input[name=email]').val(),
+        'password': $('#loginForm input[name=password]').val(),
+        'location': $('#loginForm select[name=location] option:selected').val()
+    }
     $.ajax({
-        url: "./logic/loginUser.php",
+        url: "/controllers/php/loginController.php",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
             console.log("error ajax post to checklogin");
-            //console.log(textStatus);
         },
         success: function formSuccess(response) {
-            //response = JSON.parse(response);
-            console.log(response);
-            //response['Success'] ? decodeJWT(response['Success']) : console.log(response);
-
-            //response = JSON.parse(atob(response));
-            //response['Success'] ? successProcedure(response) : errorProcedure(response);
+            location.reload();
         }
     });
 });
-
-$('#loginBusForm').submit(function(e) {
-    e.preventDefault();
-    var data = formData('loginBusForm', 'businesses');
-    $.ajax({
-        url: "./logic/loginUser.php",
-        data: JSON.stringify(data),
-        type: 'post',
-        method: 'POST',
-        error: function formError(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-            console.log("error ajax post to checklogin");
-            console.log(textStatus);
-        },
-        success: function formSuccess(response) {
-            console.log(response);
-            //response = JSON.parse(atob(response));
-            //response['Success'] ? successProcedure(response) : errorProcedure(response);
-        }
-    });
-});
-
-function formData(formLocation, searchLocation) {
-    var formData = {
-        'location': searchLocation,
-        'email': $('#' + formLocation + ' input[name=email]').val(),
-        'password': $('#' + formLocation + ' input[name=password]').val()
-    };
-    return formData;
-}
 
 function successDisplay(response) {
     console.dir(response);
@@ -126,18 +94,19 @@ function errorDisplay(response) {
 }
 
 function logOut() {
+    location.reload();
     $.ajax({
-        url: "./logic/logoutUser.php",
+        url: "/controllers/php/logoutController.php",
         data: {},
         type: 'get',
         method: 'GET',
         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
             console.log("error ajax post to checklogin");
-            console.log(textStatus);
         },
         success: function formSuccess(response) {
-            console.log(response);
+            //Cookie containing token has been deleted, now refresh page
+            location.reload();
         }
     });
 }
@@ -159,6 +128,61 @@ function getCookie(cname) {
     }
     return "";
 }
+
+// function formData(formLocation, searchLocation) {
+//     var formData = {
+//         'location': searchLocation,
+//         'email': $('#' + formLocation + ' input[name=email]').val(),
+//         'password': $('#' + formLocation + ' input[name=password]').val()
+//     };
+//     return formData;
+// }
+
+//When the login button is clicked, an ajax request is made to check if the details is correct
+// $('#loginDevForm').submit(function(e) {
+//     e.preventDefault();
+//     var data = formData('loginDevForm', 'developers');
+//     $.ajax({
+//         url: "./logic/loginUser.php",
+//         data: JSON.stringify(data),
+//         type: 'post',
+//         method: 'POST',
+//         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
+//             //Error in setting status
+//             console.log("error ajax post to checklogin");
+//             //console.log(textStatus);
+//         },
+//         success: function formSuccess(response) {
+//             //response = JSON.parse(response);
+//             console.log(response);
+//             //response['Success'] ? decodeJWT(response['Success']) : console.log(response);
+
+//             //response = JSON.parse(atob(response));
+//             //response['Success'] ? successProcedure(response) : errorProcedure(response);
+//         }
+//     });
+// });
+
+// $('#loginBusForm').submit(function(e) {
+//     e.preventDefault();
+//     var data = formData('loginBusForm', 'businesses');
+//     $.ajax({
+//         url: "./logic/loginUser.php",
+//         data: JSON.stringify(data),
+//         type: 'post',
+//         method: 'POST',
+//         error: function formError(XMLHttpRequest, textStatus, errorThrown) {
+//             //Error in setting status
+//             console.log("error ajax post to checklogin");
+//             console.log(textStatus);
+//         },
+//         success: function formSuccess(response) {
+//             console.log(response);
+//             //response = JSON.parse(atob(response));
+//             //response['Success'] ? successProcedure(response) : errorProcedure(response);
+//         }
+//     });
+// });
 
 //This isnt needed anymore?
 // function testRequest(){

@@ -221,6 +221,10 @@ body {
     margin-right: 25%;
 }
 
+.marr-5 {
+    margin-right: 5px;
+}
+
 .marr-10 {
     margin-right: 10px;
 }
@@ -243,6 +247,10 @@ body {
 
 .padt-10 {
     padding-top: 10px;
+}
+
+.padt-13 {
+    padding-top: 13px;
 }
 
 .padt-14 {

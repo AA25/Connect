@@ -1,5 +1,5 @@
 <?php 
-    require "../includes/init.inc.php";
+    require "../../includes/init.inc.php";
 
     //important to tell your browser what we will be sending
     // header("Access-Control-Allow-Origin: *");
