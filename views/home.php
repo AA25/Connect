@@ -25,25 +25,25 @@
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li> -->
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid slider-center" src="/images/try.jpg" alt="First slide">
+                        <img class="d-block img-fluid slider-center" src="/images/try2.jpg" alt="First slide">
                         <div class="carousel-caption bt-ini">
                             <h3>
                                 <span class="cl-blue-connect">Connecting</span> Businesses and Developers
                             </h3>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img class="d-block img-fluid slider-center" src="/images/try2.jpg" width="" alt="Second slide">
+                    <!-- <div class="carousel-item">
+                        <img class="d-block img-fluid slider-center" src="/images/try1.jpg" width="" alt="Second slide">
                         <div class="carousel-caption bt-ini">
                             <h2>
                                 <span class="cl-blue-connect">Connecting</span> Businesses and Developers
                             </h2>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -17,11 +17,15 @@
                 <li class="nav-item">
                     <a class="nav-link padb-0 padt-14 disabled" href="/dashboard">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link padb-0 padt-14" href="#">Register</a>
+                </li>
             </ul>
-            <form class="form-inline">
+            <form class="form-inline padt-5">
                 <i class="fa fa-user-circle cl-white marr-10" aria-hidden="true"></i>
-                <button class="btn btn-sm btn-secondary marr-10" type="button">Login</button>
-                <button class="btn btn-sm btn-secondary marr-10" type="button">Register</button>
+                <input class="form-control marr-10" type="email" placeholder="Email" style="max-width:180px; max-height:25px">
+                <input class="form-control marr-10" type="password" placeholder="Password" style="max-width:180px; max-height:25px">
+                <button class="btn cl-white bg-cl-blue-connect" type="button" style="width:50px; height:23px; padding:0px; font-size:14px">Log In</button>
             </form>
         </div>
     </nav>
