@@ -66,6 +66,16 @@
             noPage();
         }
 
+    }elseif($endpoint == 'register'){
+        
+        if($verb == 'business' && empty($args)){
+            include('./views/registerBusiness.php');
+        }elseif($verb == 'developer' && empty($args)){
+            include('./views/registerDeveloper.php');
+        }else{
+            noPage();
+        }
+        
     }else{
         noPage();
     }

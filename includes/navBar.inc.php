@@ -50,7 +50,7 @@
                 </ul>
 
                 <p class="navbar-text marb-0 padb-0 padt-13">
-                    <i class="fa fa-user-circle cl-white marr-5" aria-hidden="true"></i> 
+                    <i class="fa fa-user-circle cl-blue-connect marr-5" aria-hidden="true"></i> 
                     <span class="marr-10">
                         <?php echo 'Hi, '.$loginStatus['firstName'] ?>
                     </span>

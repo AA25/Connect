@@ -1,4 +1,4 @@
-<form method="post" action="" id="registerDevForm" class="">
+<!-- <form method="post" action="" id="registerDevForm" class="">
     <div class="">
         <label for="username">username:</label>
         <input type="text" class="form-control" placeholder="Enter your username" name="username" >
@@ -36,9 +36,9 @@
         <textarea rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
     </div>
     <button type="submit" class="" style="">Register</button>
-</form>
+</form> -->
 
-<form method="post" action="" id="registerBusForm" class="">
+<!-- <form method="post" action="" id="registerBusForm" class="">
         <div class="">
             <label for="busName">Company Name:</label>
             <input type="text" class="form-control" placeholder="Enter your companies name" name="busName">
@@ -76,11 +76,11 @@
             <input type="text" class="form-control" placeholder="Enter phone number" name="phone">
         </div>
         <button type="submit" class="" style="">Register</button>
-    </form>
+    </form> -->
 
-    <button onclick="logOut()">Logout</button>
+    <!-- <button onclick="logOut()">Logout</button> -->
 
-    <form method="post" action="" id="loginDevForm">
+    <!-- <form method="post" action="" id="loginDevForm">
         <div>
             <label for="email">Email: </label>
             <input type="text" class="" placeholder="Enter email address" name="email">
@@ -102,4 +102,4 @@
             <input type="password" class="" placeholder="Enter password" name="password">
         </div>
         <input id="loginBtn" type="submit" name="Submit" value="Log In">
-    </form>
+    </form> -->

@@ -125,6 +125,10 @@ body {
     background-color: black;
 }
 
+.bg-cl-white {
+    background-color: white;
+}
+
 .cl-success {
     color: #5cb85c;
 }
@@ -241,6 +245,10 @@ body {
     padding: 10px;
 }
 
+.pad-40 {
+    padding: 40px;
+}
+
 .padt-5 {
     padding-top: 5px;
 }
@@ -299,6 +307,10 @@ body {
 
 .padb-40 {
     padding-bottom: 40px;
+}
+
+.padb-60 {
+    padding-bottom: 60px;
 }
 
 .padl-10 {

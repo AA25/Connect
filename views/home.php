@@ -135,5 +135,5 @@
 <script src="controllers/js/bootstrap/bootstrap.min.js"></script>
 <script src="controllers/js/smoothScroll/smoothScroll.js"></script>
 <script src="controllers/js/navBar.js"></script>
-<script src="controllers/js/homepageController.js"></script>
+<script src="controllers/js/registerController.js"></script>
 </html>
