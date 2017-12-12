@@ -21,9 +21,9 @@
 
     <div id="registerContent" class="padt-56">
 
-        <div class="section-alt padt-40 padb-40">
+        <div class="section-alt padb-40">
             <div class="container">
-                <div class="pad-40 padb-60 bord-rd bg-cl-white" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                <div class="padt-40 padb-60" style="">
                     <div class="padb-20">
                         <h5 class="cl-blue-connect">
                             Register as a Developer
@@ -34,50 +34,54 @@
                     </div>
                     
                     <form method="post" action="" id="registerDevForm" class="">
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label for="username" class="">username:</label>
-                                <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                        <div class="pad-30 marb-30 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="username" class="">username:</label>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="firstName">First Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="firstName" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="lastName">Last Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="dob">Date of Birth:</label>
+                                    <input type="date" class="form-control" placeholder="Enter D.O.B" name="dob" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="languages">Languages Spoken:</label>
+                                    <input type="text" class="form-control" placeholder="Enter languages separated by a , " name="languages" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="phone">Phone Number:</label>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" placeholder="Enter password" name="password" required>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="firstName">First Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter first name" name="firstName" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label for="lastName">Last Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter last name" name="lastName" required>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="dob">Date of Birth:</label>
-                                <input type="text" class="form-control" placeholder="Enter D.O.B" name="dob" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label for="languages">Languages</label>
-                                <input type="text" class="form-control" placeholder="Enter languages separated by a , " name="languages" required>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label for="phone">Phone Number:</label>
-                                <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-lg-12">
-                                <label>Developer Bio:</label><br>
-                                <textarea class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." required></textarea>
+                        <div class="pad-30 marb-20 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label>Developer Bio:</label><br>
+                                    <textarea class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." required></textarea>
+                                </div>
                             </div>
                         </div>
                         

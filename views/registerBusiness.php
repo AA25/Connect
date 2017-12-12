@@ -21,9 +21,9 @@
 
     <div id="registerContent" class="padt-56">
 
-        <div class="section-alt padt-40 padb-40">
+        <div class="section-alt padb-40">
             <div class="container">
-                <div class="pad-40 padb-60 bord-rd bg-cl-white" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                <div class="padt-40 padb-60" style="">
                     <div class="padb-20">
                         <h5 class="cl-blue-connect">
                             Register Your Business 
@@ -33,46 +33,60 @@
                         </h6>
                     </div>
                     <form method="post" action="" id="registerBusForm" class="">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                        <div class="pad-30 marb-30 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="username">Username:</label>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="firstName">First Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="lastName">Last Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="password">password:</label>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="email">email:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="phone">Phone number:</label><br>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="form-group">
-                            <label for="firstName">First Name:</label>
-                            <input type="text" class="form-control" placeholder="Enter your name" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">password:</label>
-                            <input type="password" class="form-control" placeholder="Enter password" name="password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">email:</label>
-                            <input type="email" class="form-control" placeholder="Enter email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone number:</label><br>
-                            <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                        
+                        <div class="pad-30 marb-20 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label for="busName">Company Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="busIndustry">Industry:</label>
+                                    <input type="text" class="form-control" placeholder="Your companies industry" name="busIndustry" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label for="busBio">Companies Bio:</label>
+                                    <textarea class="form-control" id="busBio" rows="8" placeholder="Enter a description of your company" name="busBio" required></textarea>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="busName">Company Name:</label>
-                            <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="busIndustry">Industry:</label>
-                            <input type="text" class="form-control" placeholder="Your companies industry" name="busIndustry" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="busBio">Companies Bio:</label>
-                            <textarea class="form-control" id="busBio" rows="3" placeholder="Enter a description of your company" name="busBio" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register</button>
+                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register Your Business</button>
                     </form>
                 </div>
             </div>

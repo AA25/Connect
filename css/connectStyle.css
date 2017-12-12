@@ -213,6 +213,18 @@ body {
     margin-bottom: 15px;
 }
 
+.marb-20 {
+    margin-bottom: 20px;
+}
+
+.marb-25 {
+    margin-bottom: 25px;
+}
+
+.marb-30 {
+    margin-bottom: 30px;
+}
+
 .marb-50 {
     margin-bottom: 50px;
 }
@@ -243,6 +255,10 @@ body {
 
 .pad-10 {
     padding: 10px;
+}
+
+.pad-30 {
+    padding: 30px;
 }
 
 .pad-40 {
