@@ -90,7 +90,10 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label>Developer Bio:</label><br>
-                                    <textarea class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
+                                    <textarea id="devBio" class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
+                                    <div>
+                                        <span class="fs-14" id="msgCount"></spanh6>
+                                    </div>
                                 </div>
                             </div>
                         </div>

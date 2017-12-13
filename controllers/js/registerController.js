@@ -63,3 +63,12 @@ $('#registerDevForm').submit(function(e) {
         }
     });
 });
+
+var maxText = 500;
+$('#msgCount').html(maxText + ' remaining');
+
+$('#devBio').keyup(function() {
+    var currentTextLen = $('#devBio').val().length;
+    var remainingText = maxText - currentTextLen;
+    $('#msgCount').html(remainingText + ' remaining');
+});
