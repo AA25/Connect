@@ -4,7 +4,7 @@ $('#registerBusForm').submit(function(e) {
     //Pull the data from the form
     var data = {
         'busName': $('#registerBusForm input[name=busName]').val(),
-        'busIndustry': $('#registerBusForm input[name=busIndustry]').val(),
+        'busIndustry': $('#registerBusForm option:selected').val(),
         'busBio': $('#registerBusForm textarea[name=busBio]').val(),
         'username': $('#registerBusForm input[name=username]').val(),
         'firstName': $('#registerBusForm input[name=firstName]').val(),
@@ -42,7 +42,6 @@ $('#registerDevForm').submit(function(e) {
         'firstName': $('#registerDevForm input[name=firstName]').val(),
         'lastName': $('#registerDevForm input[name=lastName]').val(),
         'dob': $('#registerDevForm input[name=dob]').val(),
-        //'languages': $('#registerDevForm input[name=languages]').val(),
         'languages': languagesSelected.substring(1, languagesSelected.length),
         'email': $('#registerDevForm input[name=email]').val(),
         'password': $('#registerDevForm input[name=password]').val(),
@@ -64,11 +63,20 @@ $('#registerDevForm').submit(function(e) {
     });
 });
 
-var maxText = 500;
-$('#msgCount').html(maxText + ' remaining');
-
+//Updates the number of characters left on the developer bio textarea
+var devMaxText = 500;
+$('#msgCount').html(devMaxText + ' remaining');
 $('#devBio').keyup(function() {
     var currentTextLen = $('#devBio').val().length;
-    var remainingText = maxText - currentTextLen;
+    var remainingText = devMaxText - currentTextLen;
     $('#msgCount').html(remainingText + ' remaining');
+});
+
+//Updates the number of characters left on the business bio textarea
+var busMaxText = 500;
+$('#busBioCount').html(devMaxText + ' remaining');
+$('#busBio').keyup(function() {
+    var currentTextLen = $('#busBio').val().length;
+    var remainingText = devMaxText - currentTextLen;
+    $('#busBioCount').html(remainingText + ' remaining');
 });

@@ -37,31 +37,31 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="username">Username:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="password">password:</label>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="email">email:</label>
-                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="phone">Phone number:</label><br>
-                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" >
                                 </div>
                             </div>
                             
@@ -71,17 +71,32 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="busName">Company Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="busIndustry">Industry:</label>
-                                    <input type="text" class="form-control" placeholder="Your companies industry" name="busIndustry" required>
+                                    <!-- <input type="text" class="form-control" placeholder="Your companies industry" name="busIndustry" > -->
+                                    <select class="form-control" name="busIndustry">
+                                        <option selected disabled>Your companies industry</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Advertising">Advertising</option>
+                                        <option value="Insurance">Insurance</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Consultant">Consultant</option>
+                                        <option value="Communication">Communication</option>
+                                        <option value="Food Produce">Food Produce</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for="busBio">Companies Bio:</label>
-                                    <textarea class="form-control" id="busBio" rows="8" placeholder="Enter a description of your company" name="busBio" required></textarea>
+                                    <textarea id="busBio" class="form-control" rows="8" placeholder="Enter a description of your company" name="busBio" ></textarea>
+                                    <div>
+                                        <span class="fs-14" id="busBioCount"></spanh6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
