@@ -38,41 +38,51 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="username" class="">username:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" >
                                 </div>
                                 <div class="form-group col-lg-6">
+                                    <label for="phone">Phone Number:</label>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter first name" name="firstName" required>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="firstName" >
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="dob">Date of Birth:</label>
+                                    <input type="date" class="form-control" placeholder="Enter D.O.B" name="dob" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" required>
+                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" >
                                 </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="dob">Date of Birth:</label>
-                                    <input type="date" class="form-control" placeholder="Enter D.O.B" name="dob" required>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="languages">Languages Spoken:</label>
-                                    <input type="text" class="form-control" placeholder="Enter languages separated by a , " name="languages" required>
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="phone">Phone Number:</label>
-                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                    <select multiple class="form-control languages" name="languages" >
+                                        <option value="English">English</option>
+                                        <option value="Irish">Irish</option>
+                                        <option value="Chinese">Chinese</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="French">French</option>
+                                        <option value="German">German</option>
+                                        <option value="Italian">Italian</option>
+                                        <option value="Japanese">Japanese</option>
+                                    </select>
+                                    <span class="fs-11">Hold CTRL (on Windows) or CMD (on Mac) to select multiple languages</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +90,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label>Developer Bio:</label><br>
-                                    <textarea class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." required></textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." ></textarea>
                                 </div>
                             </div>
                         </div>

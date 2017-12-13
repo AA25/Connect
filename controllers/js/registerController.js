@@ -1,3 +1,4 @@
+//When the register form is clicked, an ajax request is made to register the business
 $('#registerBusForm').submit(function(e) {
     e.preventDefault();
     //Pull the data from the form
@@ -22,30 +23,34 @@ $('#registerBusForm').submit(function(e) {
         },
         success: function(result) {
             console.log(result);
-            // if(result == 'registered'){
-            //     location.reload();
-            // }
         }
     });
 });
 
-//When the register form is clicked, an ajax request is made to register the user
+//When the register form is clicked, an ajax request is made to register the developer
 $('#registerDevForm').submit(function(e) {
     e.preventDefault();
+
+    var languagesSelected = '';
+    $.each($('.languages option:selected'), function() {
+        languagesSelected = languagesSelected + ',' + $(this).val();
+    })
+
     //Pull the data from the form
     var data = {
         'username': $('#registerDevForm input[name=username]').val(),
         'firstName': $('#registerDevForm input[name=firstName]').val(),
         'lastName': $('#registerDevForm input[name=lastName]').val(),
         'dob': $('#registerDevForm input[name=dob]').val(),
-        'languages': $('#registerDevForm input[name=languages]').val(),
+        //'languages': $('#registerDevForm input[name=languages]').val(),
+        'languages': languagesSelected.substring(1, languagesSelected.length),
         'email': $('#registerDevForm input[name=email]').val(),
         'password': $('#registerDevForm input[name=password]').val(),
         'devBio': $('#registerDevForm textarea[name=devBio]').val(),
         'phone': $('#registerDevForm input[name=phone]').val()
     };
+
     $.ajax({
-        //url: "./api/endpoints/registerDeveloper.php",
         url: "/api/developer/register/",
         data: JSON.stringify(data),
         type: 'post',
@@ -55,9 +60,6 @@ $('#registerDevForm').submit(function(e) {
         },
         success: function(result) {
             console.log(result);
-            // if(result == 'registered'){
-            //     location.reload();
-            // }
         }
     });
 });
