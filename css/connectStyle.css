@@ -46,6 +46,19 @@ body {
     #slimMarketplace {
         width: 100% !important;
     }
+    #marketplace table {
+        display: block;
+        margin: auto;
+        width: 100%;
+        overflow-x: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    #marketplace {
+        width: 100% !important;
+    }
+    #marketpalce form {
+        float: center;
+    }
 }
 
 
@@ -245,6 +258,10 @@ body {
     margin-right: 10px;
 }
 
+.marl-10 {
+    margin-left: 10px;
+}
+
 .pad-0 {
     padding: 0px;
 }
@@ -299,6 +316,10 @@ body {
 
 .padt-56 {
     padding-top: 56px;
+}
+
+.padt-80 {
+    padding-top: 80px;
 }
 
 .padt-10p {
@@ -446,6 +467,10 @@ body {
 }
 
 .min-w-200 {
+    min-width: 200px;
+}
+
+.min-w-230 {
     min-width: 200px;
 }
 

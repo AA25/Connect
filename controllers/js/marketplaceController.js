@@ -1,8 +1,8 @@
+// The amount of projects to retrieve from rest api
 var returnFrom = 0;
-var returnAmount = 2;
+var returnAmount = 8;
 
 function retrieveProjects() {
-    //var url = '/api/endpoints/retrieveProjects.php?returnAmount=' + returnAmount + '&returnFrom=' + returnFrom;
     var url = '/api/projects/from/' + returnFrom + '/' + returnAmount;
     $.ajax({
         url: url,
@@ -16,6 +16,8 @@ function retrieveProjects() {
             //Error in setting status
         },
         success: function(response) {
+            //We want to set the returnFrom value to be the number of projects  returned
+            //So next time it can pick up from where it ended and return the next batch forward
             returnFrom = returnFrom + returnAmount;
             if (response['Error']) {
                 //No more to load
@@ -28,24 +30,37 @@ function retrieveProjects() {
     });
 };
 
+//The load more buttom
 function loadMore() {
     retrieveProjects();
 }
 
 function renderProjects(projectsArray) {
     projectsArray.forEach(function(element) {
-        //insertRow = '<tr onclick="window.location=\'../views/projectDesc.php?projectId=' + element['projectId'] + '\'">' +
+        //Limit the project description
+        element['projectBio'] = limitProjectDescription(element['projectBio']);
+
+        //Create the table rows containing the data retrieved
         insertRow = '<tr onclick="window.location=\'/project/' + element['projectId'] + '\'">' +
-            '<td>' + element['projectCountry'] + '</td>' +
-            '<td>' + element['projectName'] + '</td>' +
+            '<td><i class="fa fa-globe" aria-hidden="true"></i> ' + element['projectCountry'] + '</td>' +
             '<td>' + element['projectCategory'] + '</td>' +
             '<td>' + element['projectBio'] + '</td>' +
             '<td>' + element['projectCurrency'] + element['projectBudget'] + '</td>' +
             '</tr>';
+
         $('#marketplaceTableBody').append(insertRow);
+
     }, this);
     $('#marketplace').show();
 }
 
+
+//Function to limit the amount text that is shown from the project description
+function limitProjectDescription(projectDesc) {
+    if (projectDesc.length > 65) {
+        projectDesc = projectDesc.slice(0, 65) + '...';
+    }
+    return projectDesc;
+}
 
 window.onload = retrieveProjects();
