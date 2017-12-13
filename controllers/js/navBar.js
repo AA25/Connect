@@ -69,6 +69,11 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
+
+// var getUrl = window.location;
+// var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+// console.log(baseUrl);
+
 // function formData(formLocation, searchLocation) {
 //     var formData = {
 //         'location': searchLocation,

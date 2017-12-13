@@ -106,7 +106,7 @@
                         <h6>
                             A short preview of some of the latest projects posted by businesses
                         </h6>
-                        <a href="/home/marketplace"> View all Projects </a>
+                        <a href="/marketplace"> View all Projects </a>
                     </div>
                     <div id="projectMarketplace" class="">
                         <table class="table">
