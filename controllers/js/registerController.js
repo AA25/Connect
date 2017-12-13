@@ -13,18 +13,19 @@ $('#registerBusForm').submit(function(e) {
         'email': $('#registerBusForm input[name=email]').val(),
         'phone': $('#registerBusForm input[name=phone]').val()
     };
-    $.ajax({
-        url: "/api/business/register/",
-        data: JSON.stringify(data),
-        type: 'post',
-        method: 'POST',
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-        },
-        success: function(result) {
-            console.log(result);
-        }
-    });
+    //TODO WHAT HAPPENS ON SUCCESSFUL/FAILED LOGIN
+    // $.ajax({
+    //     url: "/api/business/register/",
+    //     data: JSON.stringify(data),
+    //     type: 'post',
+    //     method: 'POST',
+    //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+    //         //Error in setting status
+    //     },
+    //     success: function(result) {
+    //         console.log(result);
+    //     }
+    // });
 });
 
 //When the register form is clicked, an ajax request is made to register the developer
@@ -49,18 +50,18 @@ $('#registerDevForm').submit(function(e) {
         'phone': $('#registerDevForm input[name=phone]').val()
     };
 
-    $.ajax({
-        url: "/api/developer/register/",
-        data: JSON.stringify(data),
-        type: 'post',
-        method: 'POST',
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-        },
-        success: function(result) {
-            console.log(result);
-        }
-    });
+    // $.ajax({
+    //     url: "/api/developer/register/",
+    //     data: JSON.stringify(data),
+    //     type: 'post',
+    //     method: 'POST',
+    //     error: function(XMLHttpRequest, textStatus, errorThrown) {
+    //         //Error in setting status
+    //     },
+    //     success: function(result) {
+    //         console.log(result);
+    //     }
+    // });
 });
 
 //Updates the number of characters left on the developer bio textarea

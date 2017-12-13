@@ -3,7 +3,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/home">
             <img src="/images/navBar/connect.png" width="180" height="35" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -19,11 +19,24 @@
                         <a class="nav-link padb-0 padt-14" href="/marketplace">Marketplace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link padb-0 padt-14 disabled" href="/dashboard">Dashboard</a>
+                        <a class="nav-link padb-0 padt-14 disabled" href="/">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link padb-0 padt-14" href="#">Register</a>
+                        <a href="#" class="nav-link padb-0 padt-14" data-toggle='popover' data-placement="bottom" data-trigger="focus" data-html="true" 
+                        data-content="
+                                <div>
+                                    <a href='register/business'>
+                                        Register as a Business
+                                    </a>
+                                    <br>
+                                    <a href='register/developer'>
+                                        Register as a Developer
+                                    </a>
+                                </div>">
+                            Register 
+                        </a>
                     </li>
+                    
                 </ul>
 
                 <form method="post" action="" id="loginForm" class="form-inline padt-5">

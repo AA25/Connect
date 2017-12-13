@@ -114,6 +114,7 @@
 </body>
 
 <script src="../controllers/js/jQuery/jquery.min.js"></script>
+<script src="../controllers/js/tether/tether.min.js"></script>
 <script src="../controllers/js/bootstrap/bootstrap.min.js"></script>
 <script src="../controllers/js/smoothScroll/smoothScroll.js"></script>
 <script src="../controllers/js/navBar.js"></script>

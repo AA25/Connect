@@ -65,6 +65,10 @@ function getCookie(cname) {
     return "";
 }
 
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+});
+
 // function formData(formLocation, searchLocation) {
 //     var formData = {
 //         'location': searchLocation,
