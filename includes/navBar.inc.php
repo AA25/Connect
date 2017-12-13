@@ -23,16 +23,18 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link padb-0 padt-14" data-toggle='popover' data-placement="bottom" data-trigger="focus" data-html="true" 
-                        data-content="
+                        data-content='
                                 <div>
-                                    <a href='register/business'>
+                                    <i class="fa fa-user fa-1x cl-blue-connect" aria-hidden="true"></i>
+                                    <a href="register/business" class="fs-16">
                                         Register as a Business
                                     </a>
-                                    <br>
-                                    <a href='register/developer'>
+                                    <hr>
+                                    <i class="fa fa-building cl-blue-connect" aria-hidden="true"></i>
+                                    <a href="register/developer" class="fs-16">
                                         Register as a Developer
                                     </a>
-                                </div>">
+                                </div>'>
                             Register 
                         </a>
                     </li>
