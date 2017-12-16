@@ -3,7 +3,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/home">
+        <a class="navbar-brand" href="http://localhost:8081/home">
             <img src="/images/navBar/connect.png" width="180" height="35" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -13,10 +13,10 @@
             ?>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link padb-0 padt-14" href="/home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link padb-0 padt-14" href="http://localhost:8081/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link padb-0 padt-14" href="/marketplace">Marketplace</a>
+                        <a class="nav-link padb-0 padt-14" href="http://localhost:8081/marketplace">Marketplace</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link padb-0 padt-14 disabled" href="/">Dashboard</a>
@@ -26,12 +26,12 @@
                         data-content='
                                 <div>
                                     <i class="fa fa-user fa-1x cl-blue-connect" aria-hidden="true"></i>
-                                    <a href="register/business" class="fs-16">
+                                    <a href="http://localhost:8081/register/business" class="fs-16">
                                         Register as a Business
                                     </a>
                                     <hr>
                                     <i class="fa fa-building cl-blue-connect" aria-hidden="true"></i>
-                                    <a href="register/developer" class="fs-16">
+                                    <a href="http://localhost:8081/register/developer" class="fs-16">
                                         Register as a Developer
                                     </a>
                                 </div>'>
@@ -54,13 +54,13 @@
             <?php }else { ?>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link padb-0 padt-14" href="/home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link padb-0 padt-14" href="http://localhost:8081/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link padb-0 padt-14" href="/marketplace">Marketplace</a>
+                        <a class="nav-link padb-0 padt-14" href="http://localhost:8081/marketplace">Marketplace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link padb-0 padt-14" href="/dashboard">Dashboard</a>
+                        <a class="nav-link padb-0 padt-14" href="http://localhost:8081/dashboard">Dashboard</a>
                     </li>
                 </ul>
 
