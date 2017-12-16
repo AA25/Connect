@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="padt-20">
-                    <h5 id="projectStatus" class="cl-success marb-0">
+                    <h5 id="projectStatus" class="marb-0">
                     </h5>
                 </div>
                 <div class="padt-20">

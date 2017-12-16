@@ -69,8 +69,10 @@ function renderMainDisplay(projectData) {
     $("#projectLanguage").text(projectData['projectLanguage']);
     if (projectData['projectStatusCode'] < 2) {
         $("#projectStatus").text('This project is currently recruiting developers');
+        $("#projectStatus").addClass("cl-success");
     } else {
         $("#projectStatus").text('This project has already started and is not looking for developers');
+        $("#projectStatus").addClass("cl-danger");
     }
 }
 

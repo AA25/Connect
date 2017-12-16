@@ -146,6 +146,10 @@ body {
     color: #5cb85c;
 }
 
+.cl-danger {
+    color: #d9534f;
+}
+
 .cl-warning {
     color: #e13443;
 }
