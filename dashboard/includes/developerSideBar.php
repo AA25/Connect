@@ -8,7 +8,7 @@
             Current Project
         </li>
         <li>
-            <a href="../views/developer.php?<?php echo 'username='.$userVerifiedData['username']?>" target="_blank">Your Profile</a>
+            <a href="http://localhost:8081/developer/info/<?php echo str_replace(".","-",$userVerifiedData['username']); ?>" target="_blank">Your Profile</a>
         </li>
         <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'myAccount')">
             My Account

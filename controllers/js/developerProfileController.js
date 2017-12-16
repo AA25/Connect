@@ -1,6 +1,7 @@
 function retrieveProjectDetails() {
-    //var url = '../api/endpoints/retrieveDeveloper.php' + location.search;
+    ///developer/info/restletdev
     var url = window.location.pathname;
+    //url = url.replace(new RegExp(/-/g), ".");
     $.ajax({
         url: '/api' + url,
         data: {},

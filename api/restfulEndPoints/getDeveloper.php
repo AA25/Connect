@@ -3,6 +3,7 @@
 
     $pdo = get_db();
     $username = $this->args[0];
+    $username = str_replace("-",".",$username);
     $returnProject = ['AccessType' => 'guest'];
     //This API doesnt require an authorization header containing the JWT token
     //However if it does additional  info of what type of account is trying to access the data will be return
