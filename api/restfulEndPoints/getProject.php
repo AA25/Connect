@@ -24,7 +24,7 @@
         }
     }
 
-    $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate from projects where projectId = :projectId");
+    $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus, projectName from projects where projectId = :projectId");
 
     $result->execute([
         'projectId' => $reqProjectId
@@ -40,6 +40,7 @@
     }
 
     function pushProjectDetails(&$returnProject, $info){
+        $projectStatus = new ProjectStatusConverter($info['projectStatus']);
         array_push($returnProject, 
             Array(
                 'projectCategory'   => $info['projectCategory'],
@@ -50,7 +51,10 @@
                 'projectDeadline'   => $info['projectDeadline'],
                 'projectLanguage'   => $info['projectLanguage'],
                 'dateEntered'       => $info['dateEntered'],
-                'startDate'         => $info['startDate']
+                'startDate'         => $info['startDate'],
+                'projectStatusCode' => $info['projectStatus'],
+                'projectStatus'     => $projectStatus->getStatus(),
+                'projectName'       => $info['projectName'],
             )
         );
     }

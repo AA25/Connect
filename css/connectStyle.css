@@ -274,6 +274,10 @@ body {
     padding: 10px;
 }
 
+.pad-20 {
+    padding: 20px;
+}
+
 .pad-30 {
     padding: 30px;
 }
@@ -480,4 +484,8 @@ body {
 
 .min-w-130 {
     min-width: 130px;
+}
+
+.min-h-770 {
+    min-height: 770px;
 }
