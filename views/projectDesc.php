@@ -86,7 +86,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header navbar-bg">
-                    <h5 class="modal-title cl-white" id="">Modal title</h5>
+                    <h5 class="modal-title cl-blue-connect" id="">Connect</h5>
                     <button type="button" class="close cl-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -116,44 +116,6 @@
     </div>
 
     <?php include('./includes/footer.inc.php')?>
-
-    <!-- <div>
-        <div id="projectReq" style="display:none;">
-            Pitch now to send a request to join this project
-            <button data-toggle="modal" data-target="#myModal">
-                Pitch Now
-            </button>
-
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="" id="projectRequestForm">
-                                <div>
-                                    <div class="">
-                                        <label for="devMsg">Why you should be chosen for this project:</label><br>
-                                        <textarea rows="10" cols="78" placeholder="Enter a personalised message to the business owner as to why they should accept your request to join this project " id="devMsg" name="devMsg" maxlength="500"></textarea>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <h6 id="msgCount"></h6>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="" style="">Pitch </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </body>
     <script src="/controllers/js/jQuery/jquery.min.js"></script>
