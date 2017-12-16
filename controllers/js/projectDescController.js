@@ -60,9 +60,11 @@ $('#projectRequestForm').submit(function(e) {
 });
 
 function renderMainDisplay(projectData) {
+    dateEntered = projectData['dateEntered'].split(" ");
+
     $("#projectName").text(projectData['projectName']);
     $("#projectCategory").text(projectData['projectCategory']);
-    $("#projectDate").text(projectData['dateEntered']);
+    $("#projectDate").text(dateEntered[0]);
     $("#projectBudget").text(projectData['projectCurrency'] + projectData['projectBudget']);
     $("#projectBio").text(projectData['projectBio']);
     $("#projectLocation").text(projectData['projectCountry']);

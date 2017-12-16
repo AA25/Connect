@@ -67,7 +67,9 @@
                 <p class="navbar-text marb-0 padb-0 padt-13">
                     <i class="fa fa-user-circle cl-blue-connect marr-5" aria-hidden="true"></i> 
                     <span class="marr-10">
-                        <?php echo 'Hi, '.$loginStatus['firstName'] ?>
+                        <a href="http://localhost:8081/dashboard" class="cl-white">
+                            <?php echo 'Hi, '.$loginStatus['firstName'] ?>
+                        </a>
                     </span>
                     <button type="button" class="btn cl-white bg-cl-blue-connect marr-10" onclick="logOut()" style="width:60px; height:23px; padding:0px; padding-left: 5px; padding-right:5px; font-size:14px">Logout</button>
                 </p>
