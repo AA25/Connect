@@ -79,21 +79,17 @@
 
     }elseif($endpoint == 'dashboard'){
 
-        include(__DIR__.'/views/dashboard/dashboard.php');
+        if($verb == '' && empty($args)){
+            include(__DIR__.'/views/dashboard/dashboard.php');
+        }elseif($verb == 'register' && $args[0] == 'project'){
+            include(__DIR__.'/views/dashboard/registerProject.php');
+        }else{
+            noPage();
+        }
 
     }else{
         noPage();
     }
-
-    // if($endpoint == 'home' && $verb == '' && empty($args)){
-    //     include('./views/home.php');
-    // }elseif($endpoint == 'home' && $verb == 'marketplace' && empty($args)){
-    //     include('./views/marketplace.php');
-    // }elseif($endpoint == 'project' && (!empty($args[0]) || $verb !== '' )){
-    //     include('./views/projectDesc.php');
-    // }else{
-    //     echo '404 Page';
-    // }
 
     function noPage(){
         echo '404 Page';

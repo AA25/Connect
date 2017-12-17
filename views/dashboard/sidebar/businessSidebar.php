@@ -2,7 +2,7 @@
     <h3>Business View SideBar</h3>
     <ul>
         <li>
-            <a href="./dashboard/registerProject.php" target="_blank"> Register A New Project</a>
+            <a href="http://localhost:8081/dashboard/register/project" target="_blank"> Register A New Project</a>
         </li>
         <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>','beginProjectJourney')">Begin Project Journey</li>
         <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>','projectRequests')">Current Project Requests</li>

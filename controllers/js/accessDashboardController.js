@@ -1,29 +1,34 @@
 var userType = '';
 
-//ts not used?
-// function accessDashboardPermission() {
-//     $.ajax({
-//         url: '../../logic/accessDashboard.php',
-//         data: {},
-//         type: 'get',
-//         method: 'GET',
-//         beforeSend: function(request) {
-//             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
-//         },
-//         error: function(XMLHttpRequest, textStatus, errorThrown) {
-//             //Error in setting status
-//         },
-//         success: function(response) {
-//             if (response['Error']) {
-//                 window.location.href = "/";
-//             } else {
-//                 console.log(response);
-//                 userType = response['Success'];
-//                 //render sidebar content depending on userType
-//             }
-//         }
-//     });
-// };
+//Depending on the option clickd on the sidebar the correct html file and initial start function will be called
+function renderSidebarOption(userType, file) {
+    $(function() {
+        $("#renderOption").load("/views/dashboard/sidebarOptions/" + userType + "/" + file + ".html");
+        switch (file) {
+            case "projectRequests":
+                projectRequests();
+                break;
+            case "beginProjectJourney":
+                retrieveDevPerProject(1);
+                break;
+            case "projectDevelopers":
+                retrieveDevPerProject();
+                break;
+            case "manageProjects":
+                retrieveBusinessesProjects();
+                break;
+            case "developerRequests":
+                developerRequests();
+                break;
+            case "currentProject":
+                retrieveCurrentProject();
+                break;
+            case "myAccount":
+                //retrieveBusinessesProjects();
+                break;
+        }
+    });
+}
 
 function respondToRequest(buttonClicked) {
     var data = {
@@ -282,33 +287,4 @@ function retrieveCurrentProject() {
             }
         }
     })
-}
-
-function renderSidebarOption(userType, file) {
-    $(function() {
-        $("#renderOption").load("../dashboard/options/" + userType + "/" + file + ".html");
-        switch (file) {
-            case "projectRequests":
-                projectRequests();
-                break;
-            case "beginProjectJourney":
-                retrieveDevPerProject(1);
-                break;
-            case "projectDevelopers":
-                retrieveDevPerProject();
-                break;
-            case "manageProjects":
-                retrieveBusinessesProjects();
-                break;
-            case "developerRequests":
-                developerRequests();
-                break;
-            case "currentProject":
-                retrieveCurrentProject();
-                break;
-            case "myAccount":
-                //retrieveBusinessesProjects();
-                break;
-        }
-    });
 }
