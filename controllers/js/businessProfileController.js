@@ -1,4 +1,4 @@
-function retrieveDeveloperDetails() {
+function retrieveBusinessDetails() {
     var url = window.location.pathname;
     $.ajax({
         url: '/api' + url,
@@ -15,7 +15,6 @@ function retrieveDeveloperDetails() {
             if (response['Error']) {
                 console.log(response['Error']);
             } else {
-                console.log(response['Success'][0]);
                 renderContent(response['Success'][0]);
             }
         }
@@ -23,21 +22,14 @@ function retrieveDeveloperDetails() {
 };
 
 function renderContent(profileData) {
-    profileData['dob'] = userAge(profileData['dob']);
 
     $("#name").text(profileData['firstName'] + ' ' + profileData['lastName']);
-    $("#age").text(profileData['dob']);
-    $("#languages").text(profileData['languages']);
+    $("#busName").text(profileData['busName']);
+    $("#busIndustry").text(profileData['busIndustry']);
     $("#phone").text(profileData['phone']);
     $("#email").text(profileData['email']);
-    $("#profileDescription").text(profileData['devBio']);
-    if (profileData['currentProject'] !== null) {
-        $("#projectStatus").text(profileData['firstName'] + ' is currently part of a project and unavailable');
-        $("#projectStatus").addClass("cl-danger");
-    } else if (profileData['currentProject'] === null) {
-        $("#projectStatus").text(profileData['firstName'] + ' is currently available to join a project');
-        $("#projectStatus").addClass("cl-success");
-    }
+    $("#businessDescription").text(profileData['busBio']);
+
 };
 
 //Function to calculate the age of the user
@@ -51,4 +43,4 @@ function userAge(dob) {
     return userAge;
 }
 
-window.onload = retrieveDeveloperDetails();
+window.onload = retrieveBusinessDetails();

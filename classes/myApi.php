@@ -38,7 +38,7 @@
                     return include('restfulEndpoints/getBusiness.php');
                 }elseif($this->verb == 'projects' && empty($this->args)){
                     //return Array("Error" => "business projects");
-                    return include('restfulEndpoints/getBusinessProjects.php');
+                    return include('restfulEndpoints/getYourBusinessProjects.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 
