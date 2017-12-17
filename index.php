@@ -70,13 +70,17 @@
         
         if($verb == 'business' && empty($args)){
             //include('./views/registerBusiness.php');
-            echo include(__DIR__.'/views/registerBusiness.php');
+            include(__DIR__.'/views/registerBusiness.php');
         }elseif($verb == 'developer' && empty($args)){
             include('./views/registerDeveloper.php');
         }else{
             noPage();
         }
-        
+
+    }elseif($endpoint == 'dashboard'){
+
+        include(__DIR__.'/views/dashboard/dashboard.php');
+
     }else{
         noPage();
     }

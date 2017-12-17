@@ -1,5 +1,5 @@
 <?php
-    require "./includes/init.inc.php";        
+    require "./includes/init.inc.php";
     // Controller that used to check if a user is logged in or not
     //This is done by checking to see if the token cookies exists and if it does to ensure its a valid token if so then the user is still logged in
     function checkLogin(){

@@ -79,7 +79,7 @@
 <script src="/controllers/js/tether/tether.min.js"></script>
 <script src="/controllers/js/bootstrap/bootstrap.min.js"></script>
 <script src="/controllers/js/smoothScroll/smoothScroll.js"></script>
-<script src="/controllers/js/navBar.js"></script>
+<script src="/controllers/js/navbarController.js"></script>
 <script src="/controllers/js/businessProfileController.js"></script>
 </html>
 
