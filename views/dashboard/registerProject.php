@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="projectCategory">Project Category:</label>
+                                    <label for="projectCategory">Project Category:</label><br>
                                     <select name="projectCategory">
                                         <option disabled selected value> Select the category that best fits your project</option>
                                         <option value="Website Creation">Website Creation</option>
@@ -59,12 +59,9 @@
                                     </select> 
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="projectCountry">Project Country:</label>
+                                    <label for="projectCountry">Project Country:</label><br>
                                     <select name="projectCountry">
                                         <option disabled selected value> Select the country your project will take place</option>
                                         <option value="Ireland">Ireland</option>
@@ -79,12 +76,11 @@
                                 </div>
                             </div>
                         </div>
-                        
 
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="projectCurrency">Project Currency:</label>
+                                    <label for="projectCurrency">Project Currency:</label><br>
                                     <select name="projectCurrency">
                                         <option disabled selected value> Select the appropriate currency for this project</option>
                                         <option value="€">Euro</option>
@@ -94,12 +90,9 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="projectBudget">Project Budget:</label>
+                                    <label for="projectBudget">Project Budget:</label><br>
                                     <select name="projectBudget">
                                         <option disabled selected value> Select your budget range </option>
                                         <option value="100 - 1,000">100 - 1,000</option>
@@ -110,6 +103,10 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            
                         </div>
 
                         <div class="row">
