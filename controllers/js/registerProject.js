@@ -14,7 +14,7 @@ $('#registerProjectForm').submit(function(e) {
         'projectCurrency': $('#registerProjectForm select[name=projectCurrency]').val(),
     };
     $.ajax({
-        url: "../api/project",
+        url: "/api/project/",
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
@@ -28,4 +28,14 @@ $('#registerProjectForm').submit(function(e) {
             console.log(response);
         }
     });
+});
+
+
+//Updates the number of characters left on the project info textarea
+var projectMaxText = 500;
+$('#projectBioCount').html(projectMaxText + ' remaining');
+$('#projectBio').keyup(function() {
+    var currentTextLen = $('#projectBio').val().length;
+    var remainingText = projectMaxText - currentTextLen;
+    $('#projectBioCount').html(remainingText + ' remaining');
 });
