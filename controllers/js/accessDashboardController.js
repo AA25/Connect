@@ -288,3 +288,7 @@ function retrieveCurrentProject() {
         }
     })
 }
+
+function testing() {
+    console.log('hey');
+}

@@ -1,3 +1,13 @@
+<?php
+    require './controllers/php/checkLoginController.php';
+    $cookieJWT = new Jwt ($_COOKIE['JWT']);
+    $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);
+    if(!$cookieJWT->verifyJWT($cookieJWT->token)){
+        //If the user is not an authenticated user then they will be redirected to the home page
+        header('Location: http://localhost:8081/home');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,27 +23,25 @@
 <body>
 
     <?php
-        include('./includes/navBar.inc.php');
-        $cookieJWT = new Jwt ($_COOKIE['JWT']);
-        $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);
-        if(!$cookieJWT->verifyJWT($cookieJWT->token)){
-            header('Location: http://localhost:8081/index.php');
-        }
+        include('./includes/dashboardNavbar.inc.php');
     ?>
 
     <div class="padt-56 h-100p">
         <div class="section h-100p">
             <div class="row h-100p" style="">
-                <div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padt-20 padb-20 padl-30 section-alt sidebar-border-connect" style="">
-                    <?php
-                        //Load the correct sidebar html depending on what the user account type is
-                        include_once('sidebar/'.$userVerifiedData['type'].'Sidebar.php');
-                    ?>
+
+                <?php
+                    //Load the correct sidebar html depending on what the user account type is
+                    include_once('sidebar/'.$userVerifiedData['type'].'Sidebar.php');
+                ?>
+
+                <div id="renderOption" class="col-sm-12 col-md-7 col-lg-8 padb-20 padl-30" style="">
+                    <div class="padt-20">
+                        <!--Content shown here will be determined by the link clicked in the sidebar-->
+                        Welcome to the dashboard
+                    </div>
                 </div>
-                <div id="renderOption" class="col-sm-12 col-md-7 col-lg-8 padt-20 padb-20 padl-30" style="">
-                    Welcome to the dashboard
-                    <!--Content shown here will be determined by the link clicked in the sidebar-->
-                </div>
+
             </div>
         </div>
     </div>

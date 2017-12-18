@@ -8,7 +8,6 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <?php
-                include('./controllers/php/checkLoginController.php');
                 if($loginStatus == false){
             ?>
                 <ul class="navbar-nav mr-auto">
