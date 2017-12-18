@@ -16,7 +16,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="projectDescription" class="container padt-56 min-h-770">
+    <div id="projectDescription" class="container padt-56 h-100p">
         <div class="row padt-20 padb-20">
             <div class="col-lg-8 padb-20">
                 <div class="row">

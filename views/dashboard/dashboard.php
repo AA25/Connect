@@ -21,9 +21,9 @@
         }
     ?>
 
-    <div class="padt-56 min-h-770">
-        <div class="section">
-            <div class="row" style="">
+    <div class="padt-56 h-100p">
+        <div class="section h-100p">
+            <div class="row h-100p" style="">
                 <div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padt-20 padb-20 padl-30 section-alt sidebar-border-connect" style="">
                     <?php
                         //Load the correct sidebar html depending on what the user account type is

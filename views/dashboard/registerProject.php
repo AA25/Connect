@@ -20,7 +20,7 @@
         }
     ?>
 
-    <div class="section-alt padt-56 min-h-770">
+    <div class="section-alt padt-56 h-100p">
         <div class="container">
             <div class="padt-40 padb-60" style="">
                 <div class="padb-20">
