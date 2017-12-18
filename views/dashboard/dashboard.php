@@ -35,8 +35,7 @@
                     include_once('sidebar/'.$userVerifiedData['type'].'Sidebar.php');
                 ?>
 
-                <div id="renderOption" class="col-sm-12 col-md-7 col-lg-8 padb-20 padl-30" style="">
-                    <div class="padt-20">
+                <div id="renderOption" class="col-sm-12 col-md-7 col-lg-8 pad-30" style="">
                         <!--Content shown here will be determined by the link clicked in the sidebar-->
                         Welcome to the dashboard
                     </div>

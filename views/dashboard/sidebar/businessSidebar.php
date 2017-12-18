@@ -24,7 +24,7 @@
 
         <div class="row" style="border-bottom: 1px solid black;">
             <div class="col-sm-12 padl-30">
-                <p class="marb-15 mart-15 cl-black-connect">
+                <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>','projectRequests')">
                     Current Project Requests
                 </p>
             </div>
@@ -32,7 +32,7 @@
 
         <div class="row" style="border-bottom: 1px solid black;">
             <div class="col-sm-12 padl-30">
-                <p class="marb-15 mart-15 cl-black-connect">
+                <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>','projectDevelopers')">
                     Your Project Developers
                 </p>
             </div>
@@ -40,7 +40,7 @@
 
         <div class="row" style="border-bottom: 1px solid black;">
             <div class="col-sm-12 padl-30">
-                <p class="marb-15 mart-15 cl-black-connect">
+                <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>','manageProjects')">
                     Manage Your Projects
                 </p>
             </div>

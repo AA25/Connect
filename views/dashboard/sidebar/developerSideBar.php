@@ -1,21 +1,41 @@
-<div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padt-20 padb-20 padl-30 section-alt sidebar-border-connect" style="">
+<div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padb-20 section-alt sidebar-border-connect">
 
-    <div id="dashboardSidebarOptions" class="row" style="background-color:none">
-        <h3>Developer View SideBar</h3>
-        <ul>
-            <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'developerRequests')">
+    <div id="dashboardSidebarOptions" class="row padt-20 navbar-bg" style="border-bottom: 1px solid black;">
+        <div class="col-sm-12 padl-30">
+            <h4 class="cl-blue-connect">Dashboard Sidebar</h4>
+        </div>
+    </div>
+
+    <div class="row" style="border-bottom: 1px solid black;">
+        <div class="col-sm-12 padl-30">
+            <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'developerRequests')">
                 Outgoing Requests
-            </li>
-            <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'currentProject')">
+            </p>
+        </div>
+    </div>
+
+    <div class="row" style="border-bottom: 1px solid black;">
+        <div class="col-sm-12 padl-30">
+            <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'currentProject')">
                 Current Project
-            </li>
-            <li>
-                <a href="http://localhost:8081/developer/info/<?php echo str_replace(".","-",$userVerifiedData['username']); ?>" target="_blank">Your Profile</a>
-            </li>
-            <li onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'myAccount')">
+            </p>
+        </div>
+    </div>
+
+    <div class="row" style="border-bottom: 1px solid black;">
+        <div class="col-sm-12 padl-30">
+            <p class="marb-15 mart-15">
+                <a class="cl-black-connect" href="http://localhost:8081/developer/info/<?php echo str_replace(".","-",$userVerifiedData['username']); ?>" target="_blank"> My Profile</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="row" style="border-bottom: 1px solid black;">
+        <div class="col-sm-12 padl-30">
+            <p class="marb-15 mart-15 cl-black-connect" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'myAccount')">
                 My Account
-            </li>
-        </ul>
+            </p>
+        </div>
     </div>
 
 </div>
