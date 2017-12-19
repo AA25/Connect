@@ -1,4 +1,4 @@
-<div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padb-20 section-alt sidebar-border-connect">
+<div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padb-20 section sidebar-border-connect">
 
     <div id="dashboardSidebarOptions" class="row padt-20 navbar-bg" style="border-bottom: 1px solid black;">
         <div class="col-sm-12 padl-30">

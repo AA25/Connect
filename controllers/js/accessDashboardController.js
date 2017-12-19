@@ -85,10 +85,11 @@ function projectRequests() {
 
 function addProjectRequestsHTML(pendingRequests) {
     $("#requestTableBody").empty();
+
     for (var i = 0; i < pendingRequests.length; i++) {
         var basicRowDetail =
             '<tr>' +
-            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">click</td>' +
+            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye cl-blue-connect" aria-hidden="true"></i></td>' +
             '<td>' + pendingRequests[i]['projectName'] + '</td>' +
             '<td>' + pendingRequests[i]['projectCategory'] + '</td>' +
             '<td>' + pendingRequests[i]['devName'] + '</td>' +
@@ -100,13 +101,15 @@ function addProjectRequestsHTML(pendingRequests) {
             '<td colspan="12">' +
             '<div id="requestDetail' + (i + 1) + '" class="collapse">' +
             '<h3>' + pendingRequests[i]['devName'] + ' sent a request to join this project</h3>' +
-            '<h5>Their message contained the following...</h5>' +
-            '<p>"' + pendingRequests[i]['devMsg'] + '"</p>' +
-            '<a href="../views/developer.php?username=' + pendingRequests[i]['username'] + '">Click here to learn more about them by viewing their profile </a>' +
+            '<h6>Their message contained the following...</h6>' +
+            '<p class="padt-10">"' + pendingRequests[i]['devMsg'] + '"</p>' +
+            '<a href="http://localhost:8081/developer/info/' + pendingRequests[i]['username'].replace(/\./g, "-") + '" class="cl-blue-connect">Click here to learn more about them by viewing their profile </a>' +
             '<br><br>' +
             //rework this and make it work with dev username instead of dev id
-            '<button data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
-            '<button data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
+            '<div class="txt-ctr">' +
+            '<button class="btn bg-cl-blue-connect cl-white mar-10" data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
+            '<button class="btn navbar-bg cl-white mar-10" data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
+            '</div>' +
             '</div>' +
             '</td>' +
             '</tr>';
@@ -287,8 +290,4 @@ function retrieveCurrentProject() {
             }
         }
     })
-}
-
-function testing() {
-    console.log('hey');
 }

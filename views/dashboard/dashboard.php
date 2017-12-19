@@ -35,17 +35,20 @@
                     include_once('sidebar/'.$userVerifiedData['type'].'Sidebar.php');
                 ?>
 
-                <div id="renderOption" class="col-sm-12 col-md-7 col-lg-8 pad-30" style="">
-                        <!--Content shown here will be determined by the link clicked in the sidebar-->
-                        Welcome to the dashboard
-                    </div>
+                <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
+                        <div id="renderOption" class="scrollable">
+                            <!--Content shown here will be determined by the link clicked in the sidebar-->
+                            Welcome to the dashboard
+                        </div>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <?php include('./includes/footer.inc.php')?>
+    <?php 
+    //include('./includes/footer.inc.php')
+    ?>
 
 </body>
     <script src="/controllers/js/jQuery/jquery.min.js"></script>
