@@ -126,10 +126,10 @@ function addDevProjectRequestsHTML(devProjectRequests) {
     for (var i = 0; i < devProjectRequests.length; i++) {
         var basicRowDetail =
             '<tr>' +
-            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '">click</td>' +
-            '<td><a href="../views/projectDesc.php?projectId=' + devProjectRequests[i]['projectId'] + '">' + devProjectRequests[i]['projectName'] + '</a></td>' +
+            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye" aria-hidden="true"></td>' +
+            '<td><a href="http://localhost:8081/project/' + devProjectRequests[i]['projectId'] + '">' + devProjectRequests[i]['projectName'] + '</a></td>' +
             '<td>' + devProjectRequests[i]['status'] + '</td>' +
-            '<td><button data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">X</button></td>' +
+            '<td><button type="btn" class="btn cl-white bg-cl-blue-connect pad-0 h-30 w-60" data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">Delete</button></td>' +
             '</tr>';
 
         var indepthRowDetail =

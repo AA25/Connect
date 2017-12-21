@@ -64,12 +64,20 @@ body {
 
 /********/
 
+.h-30 {
+    height: 30px;
+}
+
 .h-34 {
     height: 34px;
 }
 
 .h-100p {
     height: 100%;
+}
+
+.w-60 {
+    width: 60px;
 }
 
 .w-100 {
