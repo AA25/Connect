@@ -12,7 +12,7 @@ function renderSidebarOption(userType, file) {
                 retrieveDevPerProject(1);
                 break;
             case "projectDevelopers":
-                retrieveDevPerProject();
+                retrieveDevPerProject(null);
                 break;
             case "manageProjects":
                 retrieveBusinessesProjects();
@@ -216,14 +216,19 @@ function retrieveDevPerProject(projectStatus) {
                 console.log(response);
             } else {
                 console.log(response['Success']);
-                renderDevProjectHTML(response['Success']);
+                console.log(projectStatus);
+                if (projectStatus == '') {
+                    renderDevProjectHTML(response['Success']);
+                } else {
+                    renderStartProjectHTML(response['Success']);
+                }
             }
         }
     })
 }
 
 function renderDevProjectHTML(projects) {
-    //$("#projectDevelopersTableBody").empty();
+    $("#projectDevelopersTableBody").empty();
 
     //Traverse through each project
     for (var key in projects) {
@@ -232,7 +237,7 @@ function renderDevProjectHTML(projects) {
         var projectRow =
             '<tr class="row" data-toggle="collapse" data-target="#' + keyId + '">' +
             '<td class="col-xs-1"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
-            '<td class="col-xs-11">' + keyId + '</td>' +
+            '<td class="col-xs-11">' + key + '</td>' +
             '</tr>';
         $("#projectDevelopersTableBody").append(projectRow);
 
@@ -290,6 +295,51 @@ function startTheProject(buttonClicked) {
             }
         }
     })
+}
+
+function renderStartProjectHTML(projects) {
+    console.log('in');
+    $("#beginJourneyTableBody").empty();
+    console.log('in');
+    //Traverse through each project
+    for (var key in projects) {
+        //Create table row for project and add it to the table
+        keyId = key.replace(/ /g, "");
+        var projectRow =
+            '<tr>' +
+            '<td class="" data-toggle="collapse" data-target="#' + keyId + 'Div"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
+            '<td class="">' + key + '</td>' +
+            '<td class="">Pending Start</td>' +
+            '<td class=""><button type="button" data-project=99 onclick="startTheProject(this)" class="btn btn-success cl-white pad-0 h-30 w-60">Start</button></td>'
+        '</tr>';
+        $("#beginJourneyTableBody").append(projectRow);
+
+        //Create table row where developers will be contained in
+        var developerRow =
+            '<tr>' +
+            '<td colspan="12" style="background-color:#d9edf7;">' +
+            '<div id="' + keyId + 'Div" class="collapse padl-20"></div>' +
+            '</td></tr>';
+        $("#beginJourneyTableBody").append(developerRow);
+
+        //If the project has no developers
+        if (projects[key].length <= 0) {
+            var developer =
+                '<p> There no projects ready to be started</p>';
+            $("#" + keyId + "Div").append(developer);
+        } else {
+            //Traverse through each developer and add them as a row
+            for (var i = 0; i < projects[key].length; i++) {
+                var developer =
+                    '<p><i class="fa fa-user" aria-hidden="true"></i>' +
+                    '<a href="http://localhost:8081/developer/info/' + projects[key][i]['username'].replace(/\./g, "-") + '" class="cl-black padl-20">' +
+                    projects[key][i]['name'] +
+                    '</a></p>';
+                $("#" + keyId + "Div").append(developer);
+                //console.log("#" + key + "Div");
+            }
+        }
+    }
 }
 
 function retrieveBusinessesProjects() {

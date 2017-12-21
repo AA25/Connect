@@ -20,7 +20,7 @@
     }
 
     function setProjectStatus($pdo, $userVerifiedData, $postData){
-        //A few checks are needed before a project can move from stage 1 to 2 
+        //A few checks are needed before a project can move from stage 1 to 2
         //Check1 is to make sure the project is in stage 1
         if (checkCurrentStatus($pdo, $userVerifiedData, $postData, 1)){
             //Check2 is to make sure the project has at least developer assigned to it
