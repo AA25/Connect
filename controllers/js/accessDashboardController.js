@@ -75,8 +75,10 @@ function projectRequests() {
         success: function(response) {
             if (response['Error']) {
                 console.log(response);
+            } else if (typeof(response['Success']) === 'string') {
+                console.log('No project requests');
             } else {
-                console.log(response);
+                console.log(response['Success']);
                 addProjectRequestsHTML(response['Success']);
             }
         }
