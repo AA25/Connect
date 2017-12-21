@@ -195,7 +195,7 @@ function deleteProjectRequest(deleteButtonClicked) {
 }
 
 function retrieveDevPerProject(projectStatus) {
-    //(statusCondition) ? conditionParams = '?statusCondition=' + statusCondition + '&projectStatus=' + projectStatus: conditionParams = '';
+    //A condition can be attached to the REST api endpoint to return developers per projects (projects in a particular status)
     (projectStatus == null) ? projectStatus = '': projectStatus = projectStatus;
     $.ajax({
         //url: '../api/endpoints/retrieveDevelopersPerProject.php' + conditionParams,
@@ -213,11 +213,55 @@ function retrieveDevPerProject(projectStatus) {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response);
+                console.log(response['Success']);
+                renderDevProjectHTML(response['Success']);
             }
         }
     })
 }
+
+function renderDevProjectHTML(projects) {
+    //$("#projectDevelopersTableBody").empty();
+
+    //Traverse through each project
+    for (var key in projects) {
+        //Create table row for project and add it to the table
+        keyId = key.replace(/ /g, "");
+        var projectRow =
+            '<tr class="row" data-toggle="collapse" data-target="#' + keyId + '">' +
+            '<td class="col-xs-1"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
+            '<td class="col-xs-11">' + keyId + '</td>' +
+            '</tr>';
+        $("#projectDevelopersTableBody").append(projectRow);
+
+        //Create table row where developers will be contained in
+        var developerRow =
+            '<tr id="' + keyId + '" class="collapse">' +
+            '<td style="background-color:#d9edf7;">' +
+            '<div id="' + keyId + 'Div" class="padl-10"></div>' +
+            '</td></tr>';
+        $("#projectDevelopersTableBody").append(developerRow);
+
+        //If the project has no developers
+        if (projects[key].length <= 0) {
+            var developer =
+                '<p> There no developers working on this project. Once you accept a developer request for this project they will be listed here</p>';
+            $("#" + keyId + "Div").append(developer);
+        } else {
+            //Traverse through each developer and add them as a row
+            for (var i = 0; i < projects[key].length; i++) {
+                var developer =
+                    '<p><i class="fa fa-user" aria-hidden="true"></i>' +
+                    '<a href="http://localhost:8081/developer/info/' + projects[key][i]['username'].replace(/\./g, "-") + '" class="cl-black padl-20">' +
+                    projects[key][i]['name'] +
+                    '</a></p>';
+                $("#" + keyId + "Div").append(developer);
+                //console.log("#" + key + "Div");
+            }
+        }
+    }
+
+};
 
 function startTheProject(buttonClicked) {
     // var data = {
