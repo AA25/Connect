@@ -292,15 +292,15 @@ function startTheProject(buttonClicked) {
                 console.log(response);
             } else {
                 console.log(response);
+                retrieveDevPerProject(1);
             }
         }
     })
 }
 
 function renderStartProjectHTML(projects, projectIds) {
-
-    var projectCounter = 0;
     $("#beginJourneyTableBody").empty();
+    var projectCounter = 0;
     //Traverse through each project
     for (var key in projects) {
         //Create table row for project and add it to the table

@@ -36,10 +36,10 @@
                 ?>
 
                 <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
-                        <div id="renderOption" class="scrollable">
-                            <!--Content shown here will be determined by the link clicked in the sidebar-->
-                            Welcome to the dashboard
-                        </div>
+                    <div id="renderOption" class="scrollable">
+                        <!--Content shown here will be determined by the link clicked in the sidebar-->
+                        <h2 class="cl-blue-connect">Welcome to the dashboard</h2>
+                    </div>
                 </div>
 
             </div>
