@@ -87,34 +87,29 @@
 
             //We've got this far without an exception, so commit the changes.
             $pdo->commit();
-            return true;
         }catch(Exception $e){
             $pdo->rollBack();
-            return false;
         }
     }
 
     function updateProjectStage($pdo, $userVerifiedData, $postData, $updateTo){
 
-        if(createProjectMessage($pdo, $postData)){
-            // Update project status of a project owned by a specific project
-            $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
-            set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :projectId');
+        // Update project status of a project owned by a specific project
+        $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
+        set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :projectId');
 
-            $update->execute([
-                'updateTo'  => $updateTo,
-                'email'     => $userVerifiedData['email'],
-                'projectId' => $postData
-            ]);
+        $update->execute([
+            'updateTo'  => $updateTo,
+            'email'     => $userVerifiedData['email'],
+            'projectId' => $postData
+        ]);
+        
+        if($update->rowCount() > 0){
+            createProjectMessage($pdo, $postData);
+            return Array('Success' => 'Project has been successfully started!');
             
-            if($update->rowCount() > 0){
-                return Array('Success' => 'Project has been successfully started!');
-                
-            }else{
-                return Array('Error' => 'Action was not able to be completed');
-            }
         }else{
-            return Array('Error' => 'Server issue creating project message');
+            return Array('Error' => 'Action was not able to be completed');
         }
     }
 ?>
