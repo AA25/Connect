@@ -46,7 +46,7 @@ create table businesses (busId int not null auto_increment primary key,
 
     create table projectRequests (projectReqId int not null auto_increment primary key, projectId int, devId int, devMsg varchar(500) not null, status varchar(15) not null);
 
-    create table projectDevelopers (projectDevId int not null auto_increment primary key, devId int, projectId int);
+    create table projectDevelopers (projectDevId int not null auto_increment primary key, devId int, projectId int, proceedStatus tinyint not null set default 0);
 
 -- A splendid query that joins 3 tables together and extract certain information based on a few conditions
 select projectRequests.projectReqId, projectRequests.projectId, projects.projectCategory, projects.projectBio developers.firstName, developers.lastName, developers.email, projectRequests.status, projectRequests.devMsg 
