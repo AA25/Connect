@@ -197,6 +197,9 @@ function deleteProjectRequest(deleteButtonClicked) {
 }
 
 function retrieveDevPerProject(projectStatus) {
+    $("#beginJourneyTableBody").empty();
+    $("#projectDevelopersTableBody").empty();
+
     //A condition can be attached to the REST api endpoint to return developers per projects (projects in a particular status)
     (projectStatus == null) ? projectStatus = '': projectStatus = projectStatus;
     $.ajax({

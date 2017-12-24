@@ -72,23 +72,49 @@
         }
     }
 
+    function createProjectMessage($pdo, $postData){
+        $pdo->beginTransaction();
+        try{
+            $insertMsg = $pdo->prepare('insert into projectMessages (projectId, fromWho, messageTime, sentMessage) 
+            values (:projectId, :sender, :dateTime, :message)');
+
+            $insertMsg->execute([
+                'projectId' => $postData,
+                'sender'    => 'Connect Admin',
+                'dateTime'  => date("Y-m-d H:i:s"),
+                'message'   => 'I should include a default message here that explains how this shit works and how to use it. Maybe create an auto response class...'
+            ]);
+
+            //We've got this far without an exception, so commit the changes.
+            $pdo->commit();
+            return true;
+        }catch(Exception $e){
+            $pdo->rollBack();
+            return false;
+        }
+    }
+
     function updateProjectStage($pdo, $userVerifiedData, $postData, $updateTo){
-        // Update project status of a project owned by a specific project
 
-        $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
-        set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :projectId');
+        if(createProjectMessage($pdo, $postData)){
+            // Update project status of a project owned by a specific project
+            $update = $pdo->prepare('update projects inner join businesses on projects.businessId = businesses.busId 
+            set projects.projectStatus = :updateTo where businesses.email = :email and projects.projectId = :projectId');
 
-        $update->execute([
-            'updateTo'  => $updateTo,
-            'email'     => $userVerifiedData['email'],
-            'projectId' => $postData
-        ]);
-        
-        if($update->rowCount() > 0){
-            return Array('Success' => 'Project has been successfully started!');
+            $update->execute([
+                'updateTo'  => $updateTo,
+                'email'     => $userVerifiedData['email'],
+                'projectId' => $postData
+            ]);
             
+            if($update->rowCount() > 0){
+                return Array('Success' => 'Project has been successfully started!');
+                
+            }else{
+                return Array('Error' => 'Action was not able to be completed');
+            }
         }else{
-            return Array('Error' => 'Action was not able to be completed');
+            return Array('Error' => 'Server issue creating project message');
         }
     }
 ?>
