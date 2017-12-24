@@ -35,8 +35,8 @@ function retrieveProjectIds($pdo, $userVerifiedData, $statusCondition){
     }else{
         // Returns the id of projects a business owns based on their business email
         $selectProjectIds = $pdo->prepare("
-            select projects.projectId, projects.ProjectName from projects 
-            inner join businesses on projects.businessId = businesses.busId 
+            select projects.projectId, projects.ProjectName from projects
+            inner join businesses on projects.businessId = businesses.busId
             where businesses.email = :businessEmail
         ");
 
@@ -50,6 +50,7 @@ function retrieveProjectIds($pdo, $userVerifiedData, $statusCondition){
         return Array('Error' => 'You currently have no projects set up or any projects in the status provided in the arguements');
     }else{
         foreach ($selectProjectIds as $projectId){
+            //Creating an associative array where the key is the projectname and the value is its id
             array_push($projectIds, Array($projectId['ProjectName'] => $projectId['projectId']));
         }
         //echo json_encode(Array('Success' => $projectIds[0]['Prime']));
@@ -62,12 +63,12 @@ function retrieveDevsPerProject($pdo, $userVerifiedData, $projectIds){
     //The projectId contains a key value pair, projectname and project id 
 
     $developerPerProjectId = [];
-
+    $projectKeyValue = [];
     for($i = 0; $i < sizeof($projectIds); $i++){
         //Push the current project name into the array
         //Each project name will point to an array containing arrays of developers working under that project name
-        
         $developerPerProjectId[key($projectIds[$i])] = [];
+        array_push($projectKeyValue, Array(key($projectIds[$i]) => $projectIds[$i][key($projectIds[$i])]));
         //Query will return the current developers working on the current project
         $selectDev = $pdo->prepare("
             select developers.firstName, developers.lastName, developers.username 
@@ -98,7 +99,10 @@ function retrieveDevsPerProject($pdo, $userVerifiedData, $projectIds){
         }
 
     }
-    return Array('Success' => $developerPerProjectId);
+    $response = [];
+    //array_push($response, Array('ProjectDevelopers' => $developerPerProjectId));
+    //return Array('Success' => $response);
+    return Array('Success' => Array('ProjectDevelopers' => $developerPerProjectId), 'ProjectIds' => $projectKeyValue);
 }
 
 ?>

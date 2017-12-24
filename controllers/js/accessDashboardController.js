@@ -215,12 +215,12 @@ function retrieveDevPerProject(projectStatus) {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response['Success']);
-                console.log(projectStatus);
+                //console.log(response['Success']);
                 if (projectStatus == '') {
-                    renderDevProjectHTML(response['Success']);
+                    renderDevProjectHTML(response['Success']['ProjectDevelopers']);
                 } else {
-                    renderStartProjectHTML(response['Success']);
+                    //console.log(response);
+                    renderStartProjectHTML(response['Success']['ProjectDevelopers'], response['ProjectIds']);
                 }
             }
         }
@@ -297,10 +297,10 @@ function startTheProject(buttonClicked) {
     })
 }
 
-function renderStartProjectHTML(projects) {
-    console.log('in');
+function renderStartProjectHTML(projects, projectIds) {
+
+    var projectCounter = 0;
     $("#beginJourneyTableBody").empty();
-    console.log('in');
     //Traverse through each project
     for (var key in projects) {
         //Create table row for project and add it to the table
@@ -310,7 +310,7 @@ function renderStartProjectHTML(projects) {
             '<td class="" data-toggle="collapse" data-target="#' + keyId + 'Div"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
             '<td class="">' + key + '</td>' +
             '<td class="">Pending Start</td>' +
-            '<td class=""><button type="button" data-project=99 onclick="startTheProject(this)" class="btn btn-success cl-white pad-0 h-30 w-60">Start</button></td>'
+            '<td class=""><button type="button" data-project=' + projectIds[projectCounter][key] + ' onclick="startTheProject(this)" class="btn btn-success cl-white pad-0 h-30 w-60">Start</button></td>'
         '</tr>';
         $("#beginJourneyTableBody").append(projectRow);
 
@@ -339,6 +339,7 @@ function renderStartProjectHTML(projects) {
                 //console.log("#" + key + "Div");
             }
         }
+        projectCounter++;
     }
 }
 
