@@ -35,24 +35,33 @@
 
                     <div id="dashboardSidebarOptions" class="row padt-20 navbar-bg" style="border-bottom: 1px solid black;">
                         <div class="col-sm-12 padl-30 txt-ctr">
-                            <h5 class="cl-blue-connect">
-                                Proceed to the next stage
-                            </h5>
-                            <button class="btn cl-white bg-cl-blue-connect">Proceed</button>
-                            <p class="cl-white padt-5">
-                                To proceed forward ensure all the developers are ready, indicated by a 
-                                <i class="fa fa-check cl-success" aria-hidden="true"></i>
-                            </p>
+                            <?php if($userVerifiedData['type'] === 'business'){ ?>
+                                <div id="sidebarBusHeader">
+                                    <h5 class="cl-blue-connect">
+                                        Proceed to the next stage
+                                    </h5>
+                                    <button class="btn cl-white bg-cl-blue-connect">Proceed</button>
+                                    <p class="cl-white padt-5">
+                                        To proceed forward ensure all the developers are ready, indicated by a 
+                                        <i class="fa fa-check cl-success" aria-hidden="true"></i>
+                                    </p>
+                                </div>
+                            <?php }else {?>
+                                <div id="sidebarDevHeader">
+                                    <h5 class="cl-blue-connect">
+                                        The project can moved to the next stage by the business owner
+                                    </h5>
+                                    <p class="cl-white padt-5">
+                                        To proceed forward all developers have to be ready, indicated by a 
+                                        <i class="fa fa-check cl-success" aria-hidden="true"></i>
+                                    </p>
+                                    <button class="btn btn-success cl-white marb-10">Ready</button>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
 
-                    <ul class="padl-0">
-                        <li class="padl-20 padr-10 padt-10 padb-10 cl-black-connect" style="border-bottom: 1px solid black; list-style-type: none;">
-                            Ademola Akingbade <i class="fa fa-check cl-success pull-right" aria-hidden="true"></i>
-                        </li>
-                        <li class="padl-20 padr-10 padt-10 padb-10 cl-black-connect" style="border-bottom: 1px solid black; list-style-type: none;">
-                            Hichame Ouamer <i class="fa fa-check pull-right" aria-hidden="true"></i>
-                        </li>
+                    <ul id="developerList" class="padl-0">
                     </ul>
                 </div>
 

@@ -8,8 +8,36 @@ $('#messageInputted').keyup(function() {
 });
 
 function initialise() {
-    retrieveProjectMessages();
     retrieveProjectDevelopers();
+    retrieveProjectMessages();
+}
+
+window.onload = initialise();
+
+//Make a request to the RESTful api to retrieve developers working on the current project
+function retrieveProjectDevelopers() {
+    var endpoint = (window.location.pathname).replace('/dashboard/forum/', '/forum/developers/');
+    var url = '/api' + endpoint;
+
+    $.ajax({
+        url: url,
+        data: {},
+        type: 'get',
+        method: 'GET',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response['Error']);
+            } else if (response['Success']) {
+                renderDeveloperListHTML(response['Success']['Developers']);
+            }
+        }
+    });
 }
 
 //Make a request to the RESTful api to retrieve projectMessages
@@ -38,7 +66,7 @@ function retrieveProjectMessages() {
     });
 };
 
-//When the register form is clicked, an ajax request is made to register the product
+//When the message form button is clicked, an ajax request is made to send the message
 $('#messagePost').submit(function(e) {
     //console.log($document.cookie);
     e.preventDefault();
@@ -89,4 +117,22 @@ function renderMessagesHTML(retrieveMsgs) {
     }
 }
 
-window.onload = initialise();
+function renderDeveloperListHTML(developers) {
+    for (var i = 0; i < developers.length; i++) {
+        if (developers[i]['proceedStatus'] === 1) {
+            var proceedStatus = '<i class="fa fa-check cl-success pull-right" aria-hidden="true"></i>';
+        } else {
+            var proceedStatus = '<i class="fa fa-check pull-right" aria-hidden="true"></i>';
+        }
+        var developer =
+            '<li class="padl-20 padr-10 padt-10 padb-10 cl-black-connect" style="border-bottom: 1px solid black; list-style-type: none;">' +
+            '<a href="http://localhost:8081/developer/info/' + developers[i]['username'] + '" target="_blank" class="cl-black">' + developers[i]['name'] + '</a>' + proceedStatus +
+            '</li>';
+
+        $("#developerList").append(developer);
+    }
+}
+
+function toggleReadyStatus() {
+
+}

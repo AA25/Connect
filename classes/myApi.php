@@ -72,6 +72,13 @@
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 
+            }elseif($this->method == 'PUT'){
+
+                if($this->verb == 'toggleProceedStatus' && empty($this->args)){
+                    return include('restfulEndpoints/updateProceedStatus.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+
             }else {
 
                 return Array("Error" => "Endpoint only accepts POST/GET requests");

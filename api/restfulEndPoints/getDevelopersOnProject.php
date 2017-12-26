@@ -26,7 +26,7 @@
         if(partOfProject($pdo, $userVerifiedData, $projectId)){
             //Query to return developers part of this project
             $developers = $pdo->prepare("
-                select developers.firstName, developers.lastName, projectDevelopers.devId, projectDevelopers.proceedStatus
+                select developers.firstName, developers.lastName, developers.username, projectDevelopers.proceedStatus
                 from projectDevelopers inner join developers on projectDevelopers.devId = developers.devId 
                 where projectDevelopers.projectId = :requestedProject;
             ");
@@ -55,7 +55,7 @@
             Array(
                 'name'              => $developer['firstName'].' '.$developer['lastName'],
                 'proceedStatus'     => $developer['proceedStatus'],
-                'devId'             => $developer['devId']
+                'username'          => $developer['username']
             )
         );
     }
