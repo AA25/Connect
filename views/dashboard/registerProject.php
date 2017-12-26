@@ -1,3 +1,13 @@
+<?php
+    require './controllers/php/checkLoginController.php';
+    $cookieJWT = new Jwt ($_COOKIE['JWT']);
+    $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);
+    if(!$cookieJWT->verifyJWT($cookieJWT->token)){
+        //If the user is not an authenticated user then they will be redirected to the home page
+        header('Location: http://localhost:8081/home');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +22,7 @@
 <body>
 
     <?php
-        include('./includes/navBar.inc.php');
-        $cookieJWT = new Jwt ($_COOKIE['JWT']);
-        $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);
-        if(!$cookieJWT->verifyJWT($cookieJWT->token)){
-            header('Location: http://localhost:8081/index.php');
-        }
+        include('./includes/dashboardNavbar.inc.php');
     ?>
 
     <div class="section-alt padt-56 h-100p">
