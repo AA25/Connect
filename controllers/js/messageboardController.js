@@ -101,8 +101,29 @@ $('#messagePost').submit(function(e) {
     });
 });
 
+function toggleReadyStatus() {
+    $.ajax({
+        url: '/api/developer/toggleProceedStatus',
+        data: {},
+        type: 'put',
+        method: 'PUT',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response['Error']);
+            } else if (response['Success']) {
+                retrieveProjectDevelopers();
+            }
+        }
+    });
+}
+
 function renderMessagesHTML(retrieveMsgs) {
-    console.log('in');
     $("#messages").empty();
 
     for (var i = 0; i < retrieveMsgs.length; i++) {
@@ -118,6 +139,7 @@ function renderMessagesHTML(retrieveMsgs) {
 }
 
 function renderDeveloperListHTML(developers) {
+    $("#developerList").empty();
     for (var i = 0; i < developers.length; i++) {
         if (developers[i]['proceedStatus'] === 1) {
             var proceedStatus = '<i class="fa fa-check cl-success pull-right" aria-hidden="true"></i>';
@@ -131,8 +153,4 @@ function renderDeveloperListHTML(developers) {
 
         $("#developerList").append(developer);
     }
-}
-
-function toggleReadyStatus() {
-
 }

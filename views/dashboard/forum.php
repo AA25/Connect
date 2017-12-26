@@ -55,7 +55,7 @@
                                         To proceed forward all developers have to be ready, indicated by a 
                                         <i class="fa fa-check cl-success" aria-hidden="true"></i>
                                     </p>
-                                    <button class="btn btn-success cl-white marb-10">Ready</button>
+                                    <button class="btn btn-success cl-white marb-10" onclick="toggleReadyStatus()">Toggle Ready</button>
                                 </div>
                             <?php } ?>
                         </div>
