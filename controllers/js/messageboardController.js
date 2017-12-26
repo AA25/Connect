@@ -33,8 +33,49 @@ function retrieveProjectMessages() {
     });
 };
 
+//When the register form is clicked, an ajax request is made to register the product
+$('#messagePost').submit(function(e) {
+    //console.log($document.cookie);
+    e.preventDefault();
+    //Pull the data from the form
+    var data = {
+        'sentMessage': $('#messagePost textarea[name=messageInputted]').val(),
+    };
+
+    var endpoint = (window.location.pathname).replace('/dashboard', '');
+    var url = '/api' + endpoint;
+
+    $.ajax({
+        url: url,
+        data: JSON.stringify(data),
+        type: 'post',
+        method: 'POST',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            console.log(response);
+        }
+    });
+});
+
 function renderMessagesHTML(retrieveMsgs) {
-    console.log(retrieveMsgs);
+    console.log('in');
+    $("#messages").empty();
+
+    for (var i = 0; i < retrieveMsgs.length; i++) {
+        var messageHTML =
+            '<p class="speech-bubble padl-20 padr-20 padt-10 padb-10">' +
+            retrieveMsgs[i]['sentMessage'] + '<br>' +
+            '<span class="txt-right cl-white fs-11">' +
+            retrieveMsgs[i]['fromWho'] + ' ' + retrieveMsgs[i]['messageTime'] +
+            '</span></p>';
+
+        $("#messages").append(messageHTML);
+    }
 }
 
 window.onload = retrieveProjectMessages();

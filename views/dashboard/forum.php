@@ -60,13 +60,13 @@
                 <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
                     <h4 class="cl-blue-connect marb-20 txt-ctr">
                         Welcome to the message board
-                        <i class="fa fa-refresh cl-blue-connect" aria-hidden="true"></i>
+                        <i class="fa fa-refresh cl-blue-connect" onclick="retrieveProjectMessages()" aria-hidden="true"></i>
                     </h4>
                     <div id="renderOption" class="">
                         <!-- Messages -->
-                        <div id="messages" class="scrollable row" style="height:500px">
-                            <div class="col-sm-9 push-sm-1">
-                                <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
+                        <div class="scrollable row" style="height:500px">
+                            <div id="messages" class="col-sm-9 push-sm-1">
+                                <!-- <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                                     <br>
                                     <span class="txt-right cl-white fs-11">
@@ -86,31 +86,31 @@
                                     <span class="txt-right cl-white fs-11">
                                         Ademola Akingbade 25th June 1994 10:50pm
                                     </span>
-                                </p>
+                                </p> -->
                             </div>
                         </div>
                         <!-- Input box -->
-                        <div class="row mart-10">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12 col-lg-9">
-                                        <form method="post" action="" id="messagePost">
+                        <form method="post" action="" id="messagePost">
+                            <div class="row mart-10">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-9">
                                             <div class="form-group">
                                                 <textarea id="messageInputted" class="form-control" rows="6" placeholder="Enter a message" name="messageInputted" ></textarea>
                                                 <div>
                                                     <span class="fs-14" id="messageCount"></spanh6>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-2">
-                                        <div class="txt-ctr">
-                                            <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30" style="">Post Message</button>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-2">
+                                            <div class="txt-ctr">
+                                                <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30" style="">Post Message</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>
