@@ -125,6 +125,22 @@
 
             }
          }
+
+         protected function forum($args){
+            if ($this->method == 'GET') {
+
+                if($this->verb == '' && !empty($this->args)){
+                    //return Array("Error" => "Forum get endpoint");
+                    return include('restfulEndPoints/getProjectMessages.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+
+            }else {
+
+                return Array("Error" => "Endpoint only accepts GET requests");
+
+            }
+         }
      }
 
 ?>
