@@ -48,7 +48,7 @@
             return Array("Error" => "Error with account");
         }
     }
-    
+
 
     function insertProject($projectJSON, $pdo, $busId, $userVerifiedData){
         $pdo->beginTransaction();

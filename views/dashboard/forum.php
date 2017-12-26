@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <!-- Input box -->
-                        <form method="post" action="" id="messagePost">
+                        <form id="messagePost" method="post" action="">
                             <div class="row mart-10">
                                 <div class="col-sm-12">
                                     <div class="row">

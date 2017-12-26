@@ -10,7 +10,7 @@
             $formData = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $formData);
             //$formData = trim($formData);
             //$formData = stripslashes($formData);
-            $formData = htmlspecialchars($formData);            
+            $formData = htmlspecialchars($formData);
             return $formData;
         }
 
@@ -71,6 +71,20 @@
             $devMsg     = $this->sanitisation($devMsg);
 
             return $this->sendRequestValidation($projectId,$devMsg);
+        }
+
+        public function sendProjectMessageSanitisation(&$sentMessage){
+            $sentMessage = $this->sanitisation($sentMessage);
+
+            return $this->sendProjectMessageValidation($sentMessage);
+        }
+
+        public function sendProjectMessageValidation($sentMessage){
+            if( (strlen($sentMessage) > 500) || empty($sentMessage) ){
+                return false;
+            }
+
+            return true;
         }
 
         public function sendRequestValidation($projectId,$devMsg){

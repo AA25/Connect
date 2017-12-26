@@ -57,7 +57,13 @@ $('#messagePost').submit(function(e) {
             //Error in setting status
         },
         success: function(response) {
-            console.log(response);
+            if (response['Error']) {
+                console.log(response['Error']);
+            } else if (response['Success']) {
+                console.log(response['Success']);
+                $("#messagePost").trigger("reset");
+                retrieveProjectMessages();
+            }
         }
     });
 });

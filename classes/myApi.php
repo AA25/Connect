@@ -135,6 +135,12 @@
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 
+            }elseif($this->method == 'POST') {
+
+                if($this->verb == '' && !empty($this->args)){
+                    return include('restfulEndpoints/postProjectMessage.php');
+                }
+
             }else {
 
                 return Array("Error" => "Endpoint only accepts GET requests");
