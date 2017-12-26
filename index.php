@@ -1,6 +1,6 @@
 <?php
 
-    //Routing of all view files url to more restful friendly URL
+    //Routing of all restful friendly urls to the correct view file
 
     //Resource to be accessed
     $endpoint = '';
@@ -83,6 +83,8 @@
             include(__DIR__.'/views/dashboard/dashboard.php');
         }elseif($verb == 'register' && $args[0] == 'project'){
             include(__DIR__.'/views/dashboard/registerProject.php');
+        }elseif($verb == 'forum' && !empty($args)){
+            include(__DIR__.'/views/dashboard/forum.php');
         }else{
             noPage();
         }

@@ -355,7 +355,7 @@ function renderManageProjectsHTML(projects) {
             '<td>' + projects[i][1] + '</td>' +
             '<td>' + projects[i][7] + '</td>' +
             '<td class=""><button class="btn btn-danger pad-0 padl-5 padr-5" data-project="' + projects[i][0] + '" onclick="deleteProject(this)">Delete</button></td>' +
-            '<td class=""><a href="http://localhost:8081/forum/' + projects[i][0] + '" target="_blank" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>' +
+            '<td class=""><a href="http://localhost:8081/dashboard/forum/' + projects[i][0] + '" target="_blank" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>' +
             '</tr>';
 
         $("#manageProjectTableBody").append(basicRowDetail);

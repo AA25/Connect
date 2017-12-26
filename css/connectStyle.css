@@ -354,6 +354,10 @@ body {
     padding-bottom: 0px;
 }
 
+.padb-5 {
+    padding-bottom: 5px;
+}
+
 .padb-10 {
     padding-bottom: 10px;
 }
@@ -372,6 +376,10 @@ body {
 
 .padb-60 {
     padding-bottom: 60px;
+}
+
+.padl-0 {
+    padding-left: 0px;
 }
 
 .padl-5 {
@@ -416,6 +424,10 @@ body {
 
 .padr-5 {
     padding-right: 5px;
+}
+
+.padr-0 {
+    padding-right: 0px;
 }
 
 .padr-20p {
@@ -543,4 +555,24 @@ body {
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;
     transition: all .5s linear;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #00aeef;
+    border-radius: .4em;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 19px solid transparent;
+    border-right-color: #00aeef;
+    border-left: 0;
+    margin-top: -19px;
+    margin-left: -19px;
 }
