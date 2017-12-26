@@ -132,8 +132,11 @@
                 if($this->verb == '' && !empty($this->args)){
                     //return Array("Error" => "Forum get endpoint");
                     return include('restfulEndPoints/getProjectMessages.php');
+                }elseif($this->verb == 'developers' && !empty($this->args)){
+                    return include('restfulEndpoints/getDevelopersOnProject.php');
                 }
-                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
+
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");                
 
             }elseif($this->method == 'POST') {
 
@@ -141,9 +144,11 @@
                     return include('restfulEndpoints/postProjectMessage.php');
                 }
 
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");                
+
             }else {
 
-                return Array("Error" => "Endpoint only accepts GET requests");
+                return Array("Error" => "Endpoint only accepts GET|POST requests");
 
             }
          }

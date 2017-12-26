@@ -7,6 +7,11 @@ $('#messageInputted').keyup(function() {
     $('#messageCount').html(remainingText + ' remaining');
 });
 
+function initialise() {
+    retrieveProjectMessages();
+    retrieveProjectDevelopers();
+}
+
 //Make a request to the RESTful api to retrieve projectMessages
 function retrieveProjectMessages() {
     var endpoint = (window.location.pathname).replace('/dashboard', '');
@@ -84,4 +89,4 @@ function renderMessagesHTML(retrieveMsgs) {
     }
 }
 
-window.onload = retrieveProjectMessages();
+window.onload = initialise();
