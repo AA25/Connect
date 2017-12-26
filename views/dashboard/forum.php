@@ -2,8 +2,9 @@
     require './controllers/php/checkLoginController.php';
     $cookieJWT = new Jwt ($_COOKIE['JWT']);
     $userVerifiedData = $cookieJWT->getDataFromJWT($cookieJWT->token);
-    if(!$cookieJWT->verifyJWT($cookieJWT->token)){
-        //If the user is not an authenticated user then they will be redirected to the home page
+    if(!$cookieJWT->verifyJWT($cookieJWT->token) || ( ($userVerifiedData['type'] != 'business') && ($userVerifiedData['type'] != 'developer') )){
+        //If the cookie fails authentication verification or the user is neither a business or developer then they will be 
+        //redirect to the homepage
         header('Location: http://localhost:8081/home');
     }
 ?>
@@ -63,7 +64,7 @@
                     </h4>
                     <div id="renderOption" class="">
                         <!-- Messages -->
-                        <div id="messages" class="scrollable row" style="height:550px">
+                        <div id="messages" class="scrollable row" style="height:500px">
                             <div class="col-sm-9 push-sm-1">
                                 <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -95,9 +96,9 @@
                                     <div class="col-sm-12 col-lg-9">
                                         <form method="post" action="" id="messagePost">
                                             <div class="form-group">
-                                                <textarea id="messageInputted" class="form-control" rows="5" placeholder="Enter a message" name="messageInputted" ></textarea>
+                                                <textarea id="messageInputted" class="form-control" rows="6" placeholder="Enter a message" name="messageInputted" ></textarea>
                                                 <div>
-                                                    <span class="fs-14" id="projectBioCount"></spanh6>
+                                                    <span class="fs-14" id="messageCount"></spanh6>
                                                 </div>
                                             </div>
                                         </form>
