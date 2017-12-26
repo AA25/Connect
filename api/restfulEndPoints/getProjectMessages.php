@@ -24,7 +24,9 @@
         //User either needs to be the business owner of the project or has to be developer working on the project
         if(partOfProject($pdo, $userVerifiedData, $projectId)){
             $messages = $pdo->prepare("
-                select * from projectMessages where projectId = :requestedProject order by messageTime desc
+                select projectMessages.fromWho, projectMessages.messageTime, projectMessages.sentMessage, projects.projectName, projects.projectStatus 
+                from projectMessages inner join projects on projects.projectId = projectMessages.projectId
+                where projects.projectId = :requestedProject order by messageTime desc
             ");
 
             $messages->execute([
@@ -34,6 +36,11 @@
             if($messages->rowCount() > 0){
                 $returnMessages = Array('Messages' => []);
                 foreach($messages as $message){
+
+                    $returnMessages['projectName'] = $message['projectName'];
+                    $projectStatus = new ProjectStatusConverter($message['projectStatus']);
+                    $returnMessages['projectStatus'] = $projectStatus->getStatus();
+
                     pushMessages($returnMessages['Messages'], $message);
                 }
                 return Array('Success' => $returnMessages);

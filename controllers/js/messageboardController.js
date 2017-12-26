@@ -60,6 +60,8 @@ function retrieveProjectMessages() {
             if (response['Error']) {
                 console.log(response['Error']);
             } else if (response['Success']) {
+                $('#projectName').text(response['Success']['projectName']);
+                $('#projectStatus').text(response['Success']['projectStatus']);
                 renderMessagesHTML(response['Success']['Messages']);
             }
         }
@@ -127,6 +129,7 @@ function renderMessagesHTML(retrieveMsgs) {
     $("#messages").empty();
 
     for (var i = 0; i < retrieveMsgs.length; i++) {
+
         var messageHTML =
             '<p class="speech-bubble padl-20 padr-20 padt-10 padb-10">' +
             retrieveMsgs[i]['sentMessage'] + '<br>' +

@@ -37,6 +37,11 @@
                         <div class="col-sm-12 padl-30 txt-ctr">
                             <?php if($userVerifiedData['type'] === 'business'){ ?>
                                 <div id="sidebarBusHeader">
+                                    <h4 id="projectName" class="cl-white">
+                                    </h4>
+                                    <h4 id="projectStatus" class="cl-white">
+                                    </h4>
+                                    <hr class="bg-cl-blue-connect">
                                     <h5 class="cl-blue-connect">
                                         Proceed to the next stage
                                     </h5>
@@ -48,6 +53,13 @@
                                 </div>
                             <?php }else {?>
                                 <div id="sidebarDevHeader">
+                                    <h4 id="projectName" class="cl-white">
+                                        Prime V2
+                                    </h4>
+                                    <h4 id="projectStatus" class="cl-white">
+                                        Discussion Phase
+                                    </h4>
+                                    <hr class="bg-cl-blue-connect">
                                     <h5 class="cl-blue-connect">
                                         The project can moved to the next stage by the business owner
                                     </h5>
