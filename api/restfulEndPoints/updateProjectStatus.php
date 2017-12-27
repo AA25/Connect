@@ -39,7 +39,7 @@
                     return Array('Error' => 'Error in proceeding project to the next stage');
             }
         }else{
-            return Array('Error' => 'Invalid Request');
+            return Array('Error' => 'Invalid Request due to permission or project not existing');
         };
     }
 
