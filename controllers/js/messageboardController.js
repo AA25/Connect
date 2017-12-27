@@ -161,4 +161,24 @@ function renderDeveloperListHTML(developers) {
 function proceedProject() {
     var projectId = (window.location.pathname).replace('/dashboard/forum/', '');
     var url = '/api/project/proceedStage/' + projectId;
+
+    $.ajax({
+        url: url,
+        data: {},
+        type: 'put',
+        method: 'PUT',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response['Error']);
+            } else if (response['Success']) {
+                initialise();
+            }
+        }
+    });
 }
