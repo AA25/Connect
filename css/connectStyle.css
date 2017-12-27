@@ -178,6 +178,10 @@ body {
     color: #00aeef;
 }
 
+.cl-grey-connect {
+    color: #a9a9a9;
+}
+
 .bg-cl-blue-connect {
     background-color: #00aeef;
 }
@@ -536,6 +540,10 @@ body {
 
 .min-h-770 {
     min-height: 770px;
+}
+
+.uppercase {
+    text-transform: uppercase;
 }
 
 .sidebar-border-connect {

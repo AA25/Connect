@@ -348,7 +348,6 @@ function renderStartProjectHTML(projects, projectIds) {
 
 function renderManageProjectsHTML(projects) {
     $("#manageProjectTableBody").empty();
-    console.log(projects.length);
     for (var i = 0; i < projects.length; i++) {
         var basicRowDetail =
             '<tr>' +
@@ -403,8 +402,23 @@ function retrieveCurrentProject() {
             if (response['Error']) {
                 console.log(response);
             } else {
-                console.log(response);
+                renderCurrentProjectHTML(response['Success']);
             }
         }
     })
+}
+
+function renderCurrentProjectHTML(currentProject) {
+    console.log(currentProject);
+    $("#noProject").hide();
+
+    var currentProjectRow =
+        '<tr>' +
+        '<td><a href="http://localhost:8081/project/' + currentProject[0] + '" target="_blank">' + currentProject[1] + '</a></td>' +
+        '<td>' + currentProject[7] + '</td>' +
+        '<td class=""><a href="http://localhost:8081/dashboard/forum/' + currentProject[0] + '" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>' +
+        '</tr>';
+
+    $("table").show();
+    $("#manageProjectTableBody").append(currentProjectRow);
 }
