@@ -26,17 +26,27 @@
         $currentStatus = checkCurrentStatus($pdo, $userVerifiedData, $postData, 2);
         //If the check doesn't return false
         if (gettype($currentStatus) != boolean){
-            //Depending on the current status of the project we route it to different methods
-            switch ($currentStatus) {
-                case 2:
-                    return proceedProjectStatus($pdo, $userVerifiedData, $postData, $currentStatus);
-                    break;
-                case 3:
-                    //There are more stages that can be seen in projectStatusConverter but with little time left
-                    //after phase 3 the project is complete
-                    break;
-                default:
-                    return Array('Error' => 'Error in proceeding project to the next stage');
+            //Check2 is to ensure that all developers on the project are ready to proceed to the next stage
+            $allReady = checkAllReady($pdo, $userVerifiedData, $postData);
+            if($allReady){
+                //Depending on the current status of the project we route it to different methods
+                switch ($currentStatus) {
+                    case 2:
+                        return proceedProjectStatus($pdo, $userVerifiedData, $postData, $currentStatus);
+                        break;
+                    case 3:
+                        return proceedProjectStatus($pdo, $userVerifiedData, $postData, $currentStatus);
+                        break;
+                    case 4:
+                        //There are more stages that can be seen in projectStatusConverter but with little time left
+                        //after 3 phases the project is complete
+                        //return endProject($pdo, $userVerifiedData, $postData, $currentStatus);
+                        break;
+                    default:
+                        return Array('Error' => 'Error in proceeding project to the next stage');
+                }
+            }else{
+                return Array('Error' => 'All developers on this project must be ready to proceed');
             }
         }else{
             return Array('Error' => 'Invalid Request due to permission or project not existing');
@@ -45,7 +55,7 @@
 
     function checkCurrentStatus($pdo, $userVerifiedData, $postData, $shouldBe){
         $check1 = $pdo->prepare("select projects.projectStatus from projects inner 
-        join businesses on projects.businessId = businesses.busId 
+        join businesses on projects.businessId = businesses.busId
         where projects.projectId = :projectId and businesses.email = :email");
 
         $check1->execute([
@@ -64,9 +74,32 @@
         }
     }
 
+    function checkAllReady($pdo, $userVerifiedData, $postData){
+        //Query to return developers part of this project and check their proceedStatus
+        $developers = $pdo->prepare("
+            select proceedStatus from projectDevelopers
+            where projectId = :requestedProject;
+        ");
+
+        $developers->execute([
+            'requestedProject' => $postData
+        ]);
+
+        if($developers->rowCount() > 0){
+            foreach($developers as $developerProceedStatus){
+                if($developerProceedStatus['proceedStatus'] == 0){
+                    //If any of the proceedStatus for each developer == 0 it means that developer is not ready to proceed
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     function proceedProjectStatus($pdo, $userVerifiedData, $postData, $currentStatus){
         $pdo->beginTransaction();
         try{
+
             //Update the projectStatus value in the projects table to the next stage
             $update = $pdo->prepare("
                 update projects inner join businesses on businesses.busId = projects.businessId 
@@ -83,15 +116,15 @@
             //A default message needs to be sent to the project allowing everyone involved know that
             //this action has taken place
 
-            // $insertMsg = $pdo->prepare('insert into projectMessages (projectId, fromWho, messageTime, sentMessage) 
-            // values (:projectId, :sender, :dateTime, :message)');
+            $insertMsg = $pdo->prepare('insert into projectMessages (projectId, fromWho, messageTime, sentMessage) 
+            values (:projectId, :sender, :dateTime, :message)');
 
-            // $insertMsg->execute([
-            //     'projectId' => $postData,
-            //     'sender'    => 'Connect Admin',
-            //     'dateTime'  => date("Y-m-d H:i:s"),
-            //     'message'   => 'The project has moved stages, well done! A proper default message needs to be included here'
-            // ]);
+            $insertMsg->execute([
+                'projectId' => $postData,
+                'sender'    => 'Connect Admin',
+                'dateTime'  => date("Y-m-d H:i:s"),
+                'message'   => 'The project has moved stages, well done! A proper default message needs to be included here'
+            ]);
 
             //We've got this far without an exception, so commit the changes.
             $pdo->commit();

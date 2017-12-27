@@ -21,6 +21,9 @@
                 case 4:
                     $projectStatusCode = "Completion Phase";
                     break;
+                case 5:
+                    $projectStatusCode = "Project Finished";
+                    break;
                 //For the same of time there will only be 4 phases for now 
                 // case 4:
                 //     $projectStatusCode = "Reviewing Phase";
