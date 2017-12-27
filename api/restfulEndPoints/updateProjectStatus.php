@@ -116,6 +116,9 @@
             //A default message needs to be sent to the project allowing everyone involved know that
             //this action has taken place
 
+            $AdminMsg = new DefaultMessage($currentStatus);
+            $AdminMsg = $AdminMsg->getDefaultMsg();
+
             $insertMsg = $pdo->prepare('insert into projectMessages (projectId, fromWho, messageTime, sentMessage) 
             values (:projectId, :sender, :dateTime, :message)');
 
@@ -123,7 +126,7 @@
                 'projectId' => $postData,
                 'sender'    => 'Connect Admin',
                 'dateTime'  => date("Y-m-d H:i:s"),
-                'message'   => 'The project has moved stages, well done! A proper default message needs to be included here'
+                'message'   => $AdminMsg
             ]);
 
             //Now that the project has moved stages the proceedStatus for each developers 
@@ -140,7 +143,7 @@
 
         }catch(Exception $e){
             $pdo->rollBack();
-            return Array('Error' => 'Error in proceeding project to the next stage');
+            return Array('Error' => $e);
         }
 
     }
