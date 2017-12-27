@@ -126,6 +126,14 @@
                 'message'   => 'The project has moved stages, well done! A proper default message needs to be included here'
             ]);
 
+            //Now that the project has moved stages the proceedStatus for each developers 
+            //needs to be set back to 0 meaning not ready to proceed stages
+            $defaultStatus = $pdo->prepare('update projectDevelopers set proceedStatus = 0 where projectId = :thisProject');
+
+            $defaultStatus->execute([
+                'thisProject' => $postData
+            ]);
+
             //We've got this far without an exception, so commit the changes.
             $pdo->commit();
             return Array('Success' => 'Successfully updated project status');
