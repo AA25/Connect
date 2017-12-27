@@ -73,6 +73,9 @@
     }
 
     function createProjectMessage($pdo, $postData){
+        $AdminMsg = new DefaultMessage(1);
+        $AdminMsg = $AdminMsg->getDefaultMsg();
+
         $pdo->beginTransaction();
         try{
             $insertMsg = $pdo->prepare('insert into projectMessages (projectId, fromWho, messageTime, sentMessage) 
@@ -82,7 +85,7 @@
                 'projectId' => $postData,
                 'sender'    => 'Connect Admin',
                 'dateTime'  => date("Y-m-d H:i:s"),
-                'message'   => 'I should include a default message here that explains how this shit works and how to use it. Maybe create an auto response class...'
+                'message'   => $AdminMsg
             ]);
 
             //We've got this far without an exception, so commit the changes.
