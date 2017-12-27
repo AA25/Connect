@@ -7,8 +7,8 @@
     if(isset($headers['Authorization'])){
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
         $verifiedJWT = new Jwt ($tokenInAuth);
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
-        //This API endpoint should only be accessible if JWT token  is verified and user is a developer
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //This API endpoint should only be accessible if JWT token is verified and user is a business
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
             $postData = (int)$this->args[0];
             return setProjectStatus($pdo, $userVerifiedData, $postData);

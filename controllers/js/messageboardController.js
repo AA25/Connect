@@ -157,3 +157,8 @@ function renderDeveloperListHTML(developers) {
         $("#developerList").append(developer);
     }
 }
+
+function proceedProject() {
+    var projectId = (window.location.pathname).replace('/dashboard/forum/', '');
+    var url = '/api/project/proceedStage/' + projectId;
+}

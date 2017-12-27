@@ -45,7 +45,7 @@
                                     <h5 class="cl-blue-connect">
                                         Proceed to the next stage
                                     </h5>
-                                    <button class="btn cl-white bg-cl-blue-connect">Proceed</button>
+                                    <button id="proceedProject" class="btn cl-white bg-cl-blue-connect" onclick="proceedProject()">Proceed</button>
                                     <p class="cl-white padt-5">
                                         To proceed forward ensure all the developers are ready, indicated by a 
                                         <i class="fa fa-check cl-success" aria-hidden="true"></i>

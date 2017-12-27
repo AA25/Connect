@@ -123,6 +123,9 @@
                 }elseif($this->verb == 'start' && !empty($this->args)){
                     //return Array("Error" => "You wanna start project ".$this->args[0]);
                     return include('restfulEndpoints/updateStartProject.php');
+                }elseif($this->verb == 'proceedStage' && !empty($this->args)){
+                    //return Array("Test" => "Testing");
+                    return include('restfulEndpoints/updateProjectStatus.php');
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 

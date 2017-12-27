@@ -19,14 +19,18 @@
                     $projectStatusCode = "Implementation Phase";
                     break;
                 case 4:
-                    $projectStatusCode = "Reviewing Phase";
+                    $projectStatusCode = "Completion Phase";
                     break;
-                case 5:
-                    $projectStatusCode = "Live Phase";
-                    break;
-                case 6:
-                    $projectStatusCode = "Project Finished";
-                    break;
+                //For the same of time there will only be 4 phases for now 
+                // case 4:
+                //     $projectStatusCode = "Reviewing Phase";
+                //     break;
+                // case 5:
+                //     $projectStatusCode = "Live Phase";
+                //     break;
+                // case 6:
+                //     $projectStatusCode = "Project Finished";
+                //     break;
             }
 
             $this->projectStatusCode = $projectStatusCode;
