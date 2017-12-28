@@ -112,7 +112,10 @@
 
                 if($this->verb == 'request'){
                     return include('restfulEndpoints/deleteProjectRequest.php');
-                    //return Array("Error" => "Delete");
+                    //return Array("Info" => "Delete request");
+                }elseif($this->verb == 'delete' && !empty($this->args[0])){
+                    return include('restfulEndpoints/deleteProject.php');
+                    //return Array("Info" => "Delete project");
                 }
                 return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");
 
