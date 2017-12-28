@@ -33,7 +33,8 @@
                 $projectStatus = new ProjectStatusConverter($info['projectStatus']);
                 $tempArr =  [
                     $info['projectId'], $info['projectName'], $info['projectCategory'], $info['projectBio'], 
-                    $info['projectCurrency'], $info['projectBudget'], $info['projectCountry'], $projectStatus->getStatus()
+                    $info['projectCurrency'], $info['projectBudget'], $info['projectCountry'], $projectStatus->getStatus(),
+                    $info['projectStatus']
                 ];
                 array_push($returnProjects, $tempArr);
             }

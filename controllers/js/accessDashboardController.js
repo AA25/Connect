@@ -347,17 +347,32 @@ function renderStartProjectHTML(projects, projectIds) {
 }
 
 function renderManageProjectsHTML(projects) {
+
+    console.log(projects);
     $("#manageProjectTableBody").empty();
+
     for (var i = 0; i < projects.length; i++) {
-        var basicRowDetail =
+        var deleteProject = '<td class="txt-ctr"><i class="fa fa-ban" aria-hidden="true"></i></td>';
+        var viewForum = '<td class="txt-ctr"><i class="fa fa-lock" aria-hidden="true"></i></td>';
+        if (projects[i][8] >= 2) {
+            // If this project is past the start project phase then a forum link is available
+            //A check is also done on the server side before allowing user access to this page
+            viewForum = '<td class="txt-ctr"><a href="http://localhost:8081/dashboard/forum/' + projects[i][0] + '" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>';
+        }
+        if (projects[i][8] < 2) {
+            //If the project hasn't been started yet, then the delete button is available
+            // A serverside check is done to make sure project hasn't been started
+            deleteProject = '<td class="txt-ctr"><button class="btn btn-danger pad-0 padl-5 padr-5" data-project="' + projects[i][0] + '" onclick="deleteProject(this)">Delete</button></td>';
+        }
+        var manageProjectRow =
             '<tr>' +
             '<td>' + projects[i][1] + '</td>' +
             '<td>' + projects[i][7] + '</td>' +
-            '<td class=""><button class="btn btn-danger pad-0 padl-5 padr-5" data-project="' + projects[i][0] + '" onclick="deleteProject(this)">Delete</button></td>' +
-            '<td class=""><a href="http://localhost:8081/dashboard/forum/' + projects[i][0] + '" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>' +
+            deleteProject +
+            viewForum +
             '</tr>';
 
-        $("#manageProjectTableBody").append(basicRowDetail);
+        $("#manageProjectTableBody").append(manageProjectRow);
     }
 }
 
@@ -378,7 +393,6 @@ function retrieveBusinessesProjects() {
             if (response['Error']) {
                 console.log(response['Error']);
             } else {
-                console.log(response['Success']);
                 renderManageProjectsHTML(response['Success']);
             }
         }
