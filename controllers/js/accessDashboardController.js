@@ -436,3 +436,25 @@ function renderCurrentProjectHTML(currentProject) {
     $("table").show();
     $("#manageProjectTableBody").append(currentProjectRow);
 }
+
+function deleteProject(buttonClicked) {
+    var projectId = deleteButtonClicked.getAttribute("data-project");
+    $.ajax({
+        url: '../api/project/delete/' + projectReqId,
+        type: 'delete',
+        method: 'DELETE',
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                console.log(response);
+            } else {
+                console.log(response);
+            }
+        }
+    });
+}
