@@ -33,7 +33,7 @@ function retrieveProjectDevelopers() {
         success: function(response) {
             if (response['Error']) {
                 console.log(response['Error']);
-            } else if (response['Success'].length > 0) {
+            } else if (response['Success']['Developers'].length > 0) {
                 renderDeveloperListHTML(response['Success']['Developers']);
             }
         }
