@@ -348,7 +348,6 @@ function renderStartProjectHTML(projects, projectIds) {
 
 function renderManageProjectsHTML(projects) {
 
-    console.log(projects);
     $("#manageProjectTableBody").empty();
 
     for (var i = 0; i < projects.length; i++) {
@@ -438,9 +437,9 @@ function renderCurrentProjectHTML(currentProject) {
 }
 
 function deleteProject(buttonClicked) {
-    var projectId = deleteButtonClicked.getAttribute("data-project");
+    var projectId = buttonClicked.getAttribute("data-project");
     $.ajax({
-        url: '../api/project/delete/' + projectReqId,
+        url: '../api/project/delete/' + projectId,
         type: 'delete',
         method: 'DELETE',
         beforeSend: function(request) {
@@ -454,6 +453,7 @@ function deleteProject(buttonClicked) {
                 console.log(response);
             } else {
                 console.log(response);
+                retrieveBusinessesProjects();
             }
         }
     });
