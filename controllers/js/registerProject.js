@@ -13,6 +13,8 @@ $('#registerProjectForm').submit(function(e) {
         'projectLanguage': $('#registerProjectForm select[name=projectLanguage]').val(),
         'projectCurrency': $('#registerProjectForm select[name=projectCurrency]').val(),
     };
+
+    //Send an ajax request to the rest api endpoint to request a project
     $.ajax({
         url: "/api/project/",
         data: JSON.stringify(data),
@@ -25,7 +27,14 @@ $('#registerProjectForm').submit(function(e) {
             //Error in setting status
         },
         success: function(response) {
-            console.log(response);
+            if (response['Success']) {
+                //On success, hide form and display success section
+                $('#registerProject').hide();
+                $('#successfulProject').show();
+            } else {
+                //On error, display success alert
+                errorDisplay(response['Error']);
+            }
         }
     });
 });

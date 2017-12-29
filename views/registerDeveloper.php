@@ -125,26 +125,26 @@
         </div>
     </div>
 
-    <div id="successfulReg" class="padt-56">
-            <div class="section-alt padb-40">
-                <div class="container">
-                    <div class="padt-40 padb-60 min-h-770">
-                        <div class="txt-ctr">
-                            <h3 class="cl-blue-connect">
-                                Successful Registeration
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </h3>
-                            <p>
-                                Your account has been successfully registered.
-                            </p>
-                            <p>
-                                You can now log into your account using the navigation bar at the top.
-                            </p>
-                        </div>
+    <div id="successfulReg" class="padt-56 disp-none">
+        <div class="section-alt padb-40">
+            <div class="container">
+                <div class="padt-40 padb-60 min-h-770">
+                    <div class="txt-ctr">
+                        <h3 class="cl-blue-connect">
+                            Successful Registeration
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </h3>
+                        <p>
+                            Your account has been successfully registered.
+                        </p>
+                        <p>
+                            You can now log into your account using the navigation bar at the top.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     <?php include('./includes/footer.inc.php')?>
 
