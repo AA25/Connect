@@ -24,7 +24,6 @@ $('#registerBusForm').submit(function(e) {
             //Error in setting status
         },
         success: function(response) {
-            console.log(response);
             if (response['Success']) {
                 //On success, hide form and display success section
                 $('#registerContent').hide();
@@ -41,6 +40,7 @@ $('#registerBusForm').submit(function(e) {
 $('#registerDevForm').submit(function(e) {
     e.preventDefault();
 
+    //Select the languages selected and join together separated by a comma
     var languagesSelected = '';
     $.each($('.languages option:selected'), function() {
         languagesSelected = languagesSelected + ',' + $(this).val();
@@ -59,6 +59,7 @@ $('#registerDevForm').submit(function(e) {
         'phone': $('#registerDevForm input[name=phone]').val()
     };
 
+    //Make an ajax request to the rest api endpoint to register the developer
     $.ajax({
         url: "/api/developer/register/",
         data: JSON.stringify(data),
@@ -67,8 +68,15 @@ $('#registerDevForm').submit(function(e) {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
-        success: function(result) {
-            console.log(result);
+        success: function(response) {
+            if (response['Success']) {
+                //On success, hide form and display success section
+                $('#registerContent').hide();
+                $('#successfulReg').show();
+            } else {
+                //On error, display success alert
+                errorDisplay(response['Error']);
+            }
         }
     });
 });

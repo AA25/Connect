@@ -101,7 +101,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register Your Business</button>
+                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer" style="">Register Your Business</button>
                     </form>
                 </div>
             </div>

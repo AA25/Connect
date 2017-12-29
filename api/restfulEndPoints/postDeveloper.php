@@ -52,7 +52,7 @@
             //An exception has occured, which means that the registration failed from the try
             //Rollback the transaction.
             $pdo->rollBack();
-            return Array('Error' => 'Registration failed');
+            return Array('Error' => 'Registration failed, please try another email or username');
         }
     }
 ?>

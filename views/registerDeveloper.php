@@ -98,14 +98,53 @@
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register</button>
+                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer" style="">Register</button>
                     </form>
 
                 </div>
             </div>
         </div>
 
+        <div id="alertContainer" class="alertPosition disp-none">
+            <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show alertSuccess disp-none" role="alert">
+                <button type="button" class="close cl-white pointer" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+        </div>
     </div>
+
+    <div id="successfulReg" class="padt-56">
+            <div class="section-alt padb-40">
+                <div class="container">
+                    <div class="padt-40 padb-60 min-h-770">
+                        <div class="txt-ctr">
+                            <h3 class="cl-blue-connect">
+                                Successful Registeration
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </h3>
+                            <p>
+                                Your account has been successfully registered.
+                            </p>
+                            <p>
+                                You can now log into your account using the navigation bar at the top.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <?php include('./includes/footer.inc.php')?>
 
