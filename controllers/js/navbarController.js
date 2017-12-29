@@ -29,24 +29,6 @@ $('#loginForm').submit(function(e) {
     });
 });
 
-function errorDisplay(response) {
-    //Show the container containing alerts
-    $("#alertContainer").show();
-    //First we want to stop the timer for any previous alerts
-    clearInterval(timer);
-    //Attach the response to the alert
-    $(".alertError p").empty();
-    $(".alertError p").text(response);
-    //Display the specific alert
-    $(".alertError").show();
-    //Hide alert after 2 seconds
-    var timer = setTimeout(function() {
-        //$(".alertError").alert('close');
-        $(".alertError").hide();
-        $("#alertContainer").hide();
-    }, 2000);
-}
-
 function logOut() {
     //Make an ajax request to the logout controller php file
     $.ajax({
@@ -88,3 +70,39 @@ function getCookie(cname) {
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
+
+function errorDisplay(response) {
+    //Show the container containing alerts
+    $("#alertContainer").show();
+    //First we want to stop the timer for any previous alerts
+    clearInterval(timer);
+    //Attach the response to the alert
+    $(".alertError p").empty();
+    $(".alertError p").text(response);
+    //Display the specific alert
+    $(".alertError").show();
+    //Hide alert after 2 seconds
+    var timer = setTimeout(function() {
+        //$(".alertError").alert('close');
+        $(".alertError").hide();
+        $("#alertContainer").hide();
+    }, 2000);
+}
+
+function successDisplay(response) {
+    //Show the container containing alerts
+    $("#alertContainer").show();
+    //First we want to stop the timer for any previous alerts
+    clearInterval(timer);
+    //Attach the response to the alert
+    $(".alertSuccess p").empty();
+    $(".alertSuccess p").text(response);
+    //Display the specific alert
+    $(".alertSuccess").show();
+    //Hide alert after 2 seconds
+    var timer = setTimeout(function() {
+        //$(".alertError").alert('close');
+        $(".alertSuccess").hide();
+        $("#alertContainer").hide();
+    }, 2000);
+}

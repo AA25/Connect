@@ -6,6 +6,7 @@ function retrieveProjectDetails() {
         data: {},
         type: 'get',
         method: 'GET',
+        //Attach a cookie that contains the user token for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -14,10 +15,14 @@ function retrieveProjectDetails() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //On error the error div will show
+                $('#notFound').show();
             } else if (response['Success']) {
-                console.log(response);
+                //Show the page
+                $('#projectDescription').show();
+                //Add the project details to the page
                 renderMainDisplay(response['Success'][0]);
+                //Add options to the side bar
                 renderSideDisplay(response['Success'][0]['projectStatusCode'], response['Success']['userType']);
             }
         }
@@ -40,7 +45,7 @@ $('#projectRequestForm').submit(function(e) {
     };
 
     $.ajax({
-        //url: "../api/endpoints/sendProjectReq.php",
+        //Make ajax request to send the project request to the rest api endpoint
         url: "../api/project/request/" + projectId,
         data: JSON.stringify(data),
         type: 'post',
@@ -51,15 +56,22 @@ $('#projectRequestForm').submit(function(e) {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
-        success: function(result) {
+        success: function(response) {
             //Close the modal
             $("#pitchNowModal").modal("hide");
-            console.log(result);
+            if (response['Success']) {
+                //Display success alert
+                successDisplay(response['Success']);
+            } else {
+                //Display error alert
+                errorDisplay(response['Error']);
+            }
         }
     });
 });
 
 function renderMainDisplay(projectData) {
+    //We take the project data from the ajax response and add it to the respective parts
     dateEntered = projectData['dateEntered'].split(" ");
 
     $("#projectName").text(projectData['projectName']);
@@ -79,11 +91,12 @@ function renderMainDisplay(projectData) {
 }
 
 function renderSideDisplay(projectStatusCode, userType) {
+    //Depending on the user viewing the page we show different options
     if (userType === 'developer' && (projectStatusCode < 2)) {
         //This will be the side view content if you are a developer
         $('#projectReq').show();
         $("#sideContentA p").text("Pitch now to send a request to join this project");
-        $("#sideContentA").append('<button class="btn cl-white btn-success" data-toggle="modal" data-target="#pitchNowModal">Pitch Now</button>');
+        $("#sideContentA").append('<button class="btn cl-white btn-success pointer" data-toggle="modal" data-target="#pitchNowModal">Pitch Now</button>');
         $("#sideContentB p").text("Want to register your project? Sign Up as a business to do just that");
         $("#sideContentB").append('<a href="http://localhost:8081/register/business" class="btn cl-white btn-success">Sign Up</a>');
 

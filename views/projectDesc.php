@@ -16,7 +16,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="projectDescription" class="container padt-56 h-100p">
+    <div id="projectDescription" class="container padt-56 h-100p disp-none">
         <div class="row padt-20 padb-20">
             <div class="col-lg-8 padb-20">
                 <div class="row">
@@ -80,6 +80,29 @@
                 </div>
             </div>
         </div>
+
+        <div id="alertContainer" class="alertPosition disp-none">
+            <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show alertSuccess disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="notFound" class="container padt-56 h-100p disp-none">
+        <h3 class="cl-blue-connect mart-20">This project was not found</h3>
     </div>
 
     <div class="modal fade" id="pitchNowModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
