@@ -19,11 +19,11 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="registerContent" class="padt-56">
+    <div id="registerContent" class="padt-56 disp-none">
 
         <div class="section-alt padb-40">
             <div class="container">
-                <div class="padt-40 padb-60" style="">
+                <div class="padt-40 padb-60">
                     <div class="padb-20">
                         <h5 class="cl-blue-connect">
                             Register Your Business 
@@ -37,31 +37,31 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="username">Username:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" >
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" >
+                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" >
+                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="password">password:</label>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="password" >
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="email">email:</label>
-                                    <input type="email" class="form-control" placeholder="Enter email" name="email" >
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="phone">Phone number:</label><br>
-                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" >
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
                                 </div>
                             </div>
                             
@@ -71,12 +71,12 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="busName">Company Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" >
+                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="busIndustry">Industry:</label>
                                     <!-- <input type="text" class="form-control" placeholder="Your companies industry" name="busIndustry" > -->
-                                    <select class="form-control" name="busIndustry">
+                                    <select class="form-control" name="busIndustry" required>
                                         <option selected disabled>Your companies industry</option>
                                         <option value="Information Technology">Information Technology</option>
                                         <option value="Finance">Finance</option>
@@ -93,7 +93,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for="busBio">Companies Bio:</label>
-                                    <textarea id="busBio" class="form-control" rows="8" placeholder="Enter a description of your company" name="busBio" ></textarea>
+                                    <textarea id="busBio" class="form-control" rows="8" placeholder="Enter a description of your company" name="busBio" required></textarea>
                                     <div>
                                         <span class="fs-14" id="busBioCount"></spanh6>
                                     </div>
@@ -107,6 +107,46 @@
             </div>
         </div>
 
+        <div id="alertContainer" class="alertPosition disp-none">
+            <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show alertSuccess disp-none" role="alert">
+                <button type="button" class="close cl-white pointer" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="successfulReg" class="padt-56">
+        <div class="section-alt padb-40">
+            <div class="container">
+                <div class="padt-40 padb-60 min-h-770">
+                    <div class="txt-ctr">
+                        <h3 class="cl-blue-connect">
+                            Successful Registeration
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </h3>
+                        <p>
+                            Your account has been successfully registered.
+                        </p>
+                        <p>
+                            You can now log into your account using the navigation bar at the top.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <?php include('./includes/footer.inc.php')?>

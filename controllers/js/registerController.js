@@ -13,7 +13,8 @@ $('#registerBusForm').submit(function(e) {
         'email': $('#registerBusForm input[name=email]').val(),
         'phone': $('#registerBusForm input[name=phone]').val()
     };
-    //TODO WHAT HAPPENS ON SUCCESSFUL/FAILED LOGIN
+
+    //Send ajax request to register business via the rest api endpoint
     $.ajax({
         url: "/api/business/register/",
         data: JSON.stringify(data),
@@ -22,8 +23,16 @@ $('#registerBusForm').submit(function(e) {
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
-        success: function(result) {
-            console.log(result);
+        success: function(response) {
+            console.log(response);
+            if (response['Success']) {
+                //On success, hide form and display success section
+                $('#registerContent').hide();
+                $('#successfulReg').show();
+            } else {
+                //On error, display success alert
+                errorDisplay(response['Error']);
+            }
         }
     });
 });
