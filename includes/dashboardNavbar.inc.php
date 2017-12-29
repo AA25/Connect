@@ -70,7 +70,7 @@
                             <?php echo 'Hi, '.$loginStatus['firstName'] ?>
                         </a>
                     </span>
-                    <button type="button" class="btn cl-white bg-cl-blue-connect marr-10" onclick="logOut()" style="width:60px; height:23px; padding:0px; padding-left: 5px; padding-right:5px; font-size:14px">Logout</button>
+                    <button type="button" class="btn cl-white bg-cl-blue-connect marr-10 pointer" onclick="logOut()" style="width:60px; height:23px; padding:0px; padding-left: 5px; padding-right:5px; font-size:14px">Logout</button>
                 </p>
             <?php } ?>
 
