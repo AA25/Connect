@@ -31,13 +31,19 @@ $('#loginForm').submit(function(e) {
 
 function errorDisplay(response) {
     //Show the container containing alerts
-    $("#alertContainer").show();
+    // $("#alertContainer").show();
+    //First we want to stop the timer for any previous alerts
+    clearInterval(timer);
     //Attach the response to the alert
+    $(".alertError p").empty();
     $(".alertError p").text(response);
     //Display the specific alert
     $(".alertError").show();
-    //Remove alert after 2 seconds
-    setTimeout(function() { $(".alertError").alert('close') }, 2000);
+    //Hide alert after 2 seconds
+    var timer = setTimeout(function() {
+        //$(".alertError").alert('close');
+        $(".alertError").hide();
+    }, 2000);
 }
 
 function logOut() {

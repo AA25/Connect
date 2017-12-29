@@ -126,7 +126,7 @@
             </div>
         </div>
 
-        <div id="alertContainer" class="alertPosition disp-none">
+        <div id="alertContainer" class="alertPosition">
             <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
                 <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
                     <span class="alertClose" aria-hidden="true">&times;</span>

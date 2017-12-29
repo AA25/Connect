@@ -51,13 +51,33 @@
                         </table>
                     </div>
                     <div class="txt-ctr padt-20">
-                        <button type="business" class="btn cl-white bg-cl-blue-connect" onclick="loadMore()">
+                        <button type="business" class="btn cl-white bg-cl-blue-connect pointer" onclick="loadMore()">
                             Load More Projects
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="alertContainer" class="alertPosition">
+            <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show alertSuccess disp-none" role="alert">
+                <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                    <span class="alertClose" aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success</strong>
+                <p class="marb-0">
+                </p>
+            </div>
+        </div>
+
     </div>
     
     <!-- <div id="marketplace" style="display:none">

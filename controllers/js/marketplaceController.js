@@ -3,6 +3,7 @@ var returnFrom = 0;
 var returnAmount = 8;
 
 function retrieveProjects() {
+    //Send a request to rest api endpoint to return projects between X and Y
     var url = '/api/projects/from/' + returnFrom + '/' + returnAmount;
     $.ajax({
         url: url,
@@ -10,20 +11,21 @@ function retrieveProjects() {
         type: 'get',
         method: 'GET',
         beforeSend: function(request) {
+            //Attach token to the request for authentication
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             //Error in setting status
         },
         success: function(response) {
-            //We want to set the returnFrom value to be the number of projects  returned
+            //We want to set the returnFrom value to be the number of projects returned
             //So next time it can pick up from where it ended and return the next batch forward
             returnFrom = returnFrom + returnAmount;
             if (response['Error']) {
-                //No more to load
-                console.log(response['Error']);
+                //Display the error alert from the function inside the navbar controller
+                errorDisplay(response['Error']);
             } else {
-                console.log(response);
+                //Add the projects to the table
                 renderProjects(response['Success']['Projects']);
             }
         }
