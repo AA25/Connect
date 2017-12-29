@@ -25,35 +25,33 @@
         include('./includes/dashboardNavbar.inc.php');
     ?>
 
-    <div class="section-alt padt-56 h-100p">
-        <div class="container">
-            <div class="padt-40 padb-60" style="">
-                <div class="padb-20">
-                    <h5 class="cl-blue-connect">
-                        Register Your Project 
-                    </h5>
-                    <h6>
-                        And be one step closer to kickstarting your project on the marketplace
-                    </h6>
-                </div>
+    <div id="registerProject" class="padt-56">
+        <div class="section-alt padb-40">
+            <div class="container">
+                <div class="padt-40 padb-60" style="">
+                    <div class="padb-20">
+                        <h5 class="cl-blue-connect">
+                            Register Your Project 
+                        </h5>
+                        <h6>
+                            And be one step closer to kickstarting your project on the marketplace
+                        </h6>
+                    </div>
 
-                <form method="post" action="" id="registerProjectForm">
-                    <div class="pad-30 marb-30 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                    <form method="post" action="" id="registerProjectForm">
+                        <div class="pad-30 padb-50 marb-30 bg-cl-white bord-rd" style="border-style: solid; border-width:1px; border-color:#1a1a1a;">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
                                     <label for="projectName">Project Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter a project name" name="projectName">
+                                    <input type="text" class="form-control" placeholder="Enter a project name" name="projectName" required>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                            
+                            <div class="row">
+                                <div class="form-group col-lg-6">
                                     <label for="projectCategory">Project Category:</label><br>
                                     <select name="projectCategory">
-                                        <option disabled selected value> Select the category that best fits your project</option>
+                                        <option disabled selected value> Select the category that fits your project</option>
                                         <option value="Website Creation">Website Creation</option>
                                         <option value="Web Application">Web Application</option>
                                         <option value="Backend Development">Backend Development</option>
@@ -63,12 +61,10 @@
                                         <option value="Machine Learning">Machine Learning</option>
                                     </select> 
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <label for="projectCountry">Project Country:</label><br>
                                     <select name="projectCountry">
-                                        <option disabled selected value> Select the country your project will take place</option>
+                                        <option disabled selected value> Select the country location of your project</option>
                                         <option value="Ireland">Ireland</option>
                                         <option value="United Kingdom">United Kingdom</option>
                                         <option value="Spain">Spain</option>
@@ -80,23 +76,19 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
                                     <label for="projectCurrency">Project Currency:</label><br>
                                     <select name="projectCurrency">
-                                        <option disabled selected value> Select the appropriate currency for this project</option>
+                                        <option disabled selected value> Select the appropriate currency</option>
                                         <option value="€">Euro</option>
                                         <option value="£">Pound</option>
                                         <option value="$">Dollar</option>
                                         <option value="¥">Yen</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <label for="projectBudget">Project Budget:</label><br>
                                     <select name="projectBudget">
                                         <option disabled selected value> Select your budget range </option>
@@ -108,41 +100,36 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
                                     <label for="projectLanguage">Enter a language required for this project</label>
                                     <select name="projectLanguage">
                                         <option disabled selected value> Select the main language required </option>
                                         <option value="English">English</option>
                                         <option value="Irish">Irish</option>
-                                    </select>  
+                                    </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="form-group col-lg-12">
-                                <label for="projectBio">Project Bio:</label>
-                                <textarea id="projectBio" class="form-control" rows="8" placeholder="Enter a description of what this project involves" name="projectBio" ></textarea>
-                                <div>
-                                    <span class="fs-14" id="projectBioCount"></spanh6>
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label for="projectBio">Project Bio:</label>
+                                    <textarea id="projectBio" class="form-control" rows="8" placeholder="Enter a description of what this project involves" name="projectBio" ></textarea>
+                                    <div>
+                                        <span class="fs-14" id="projectBioCount"></spanh6>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- <div class="">
+                                <label for="projectDeadline">Project Deadline:</label>
+                                <input type="text" class="form-control" placeholder="Enter a deadline date for the project" name="projectDeadline">
+                            </div> -->
+                            <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register Project</button>
+
                         </div>
-                        <!-- <div class="">
-                            <label for="projectDeadline">Project Deadline:</label>
-                            <input type="text" class="form-control" placeholder="Enter a deadline date for the project" name="projectDeadline">
-                        </div> -->
-                    </div>
-                    <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right" style="">Register Project</button>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

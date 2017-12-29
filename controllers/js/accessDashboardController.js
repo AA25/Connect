@@ -1,9 +1,11 @@
 var userType = '';
 
-//Depending on the option clickd on the sidebar the correct html file and initial start function will be called
 function renderSidebarOption(userType, file) {
     $(function() {
+        //Load the correct dashboard sidebar depending on the user account type
         $("#renderOption").load("/views/dashboard/sidebarOptions/" + userType + "/" + file + ".html");
+
+        //Depending on the option clickd on the sidebar the correct html will be displayed in the main view
         switch (file) {
             case "projectRequests":
                 projectRequests();
