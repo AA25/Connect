@@ -19,7 +19,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="registerContent" class="padt-56 disp-none">
+    <div id="registerContent" class="padt-56">
 
         <div class="section-alt padb-40">
             <div class="container">
@@ -128,7 +128,7 @@
 
     </div>
 
-    <div id="successfulReg" class="padt-56">
+    <div id="successfulReg" class="padt-56 disp-none">
         <div class="section-alt padb-40">
             <div class="container">
                 <div class="padt-40 padb-60 min-h-770">
