@@ -118,7 +118,7 @@
                                 <th class="min-w-130">Budget</th>
                             </tr>
                             </thead>
-                            <tbody id="slimMarketplaceTableBody">
+                            <tbody id="slimMarketplaceTableBody" class="pointer">
                             </tbody>
                         </table>
                     </div>

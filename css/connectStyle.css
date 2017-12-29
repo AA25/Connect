@@ -559,6 +559,10 @@ body {
     overflow: auto;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .noTransition {
     -webkit-transition: all .5s linear;
     -o-transition: all .5s linear;

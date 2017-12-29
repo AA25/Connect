@@ -45,11 +45,11 @@
                     <i class="fa fa-user-circle cl-white marr-10" aria-hidden="true"></i>
                     <input class="form-control marr-10" type="email" placeholder="Email" name="email" style="max-width:150px; max-height:25px" required>
                     <input class="form-control marr-10" type="password" placeholder="Password" name="password" style="max-width:150px; max-height:25px" required>
-                    <select class="custom-select marr-10" id="inlineFormCustomSelect" name="location" style="max-width:180px; max-height:25px; padding:0px; padding-left:5px; padding-right:25px" required>
+                    <select class="custom-select marr-10 pointer" id="inlineFormCustomSelect" name="location" style="max-width:180px; max-height:25px; padding:0px; padding-left:5px; padding-right:25px" required>
                         <option value="businesses">business</option>
                         <option value="developers">developer</option>
                     </select>
-                    <input type="submit" name="Submit" value="Log In" id="loginBtn" class="btn cl-white bg-cl-blue-connect" style="width:60px; height:23px; padding:0px; padding-left: 5px; padding-right:5px; font-size:14px"></input>
+                    <input type="submit" name="Submit" value="Log In" id="loginBtn" class="btn cl-white bg-cl-blue-connect pointer" style="width:60px; height:23px; padding:0px; padding-left: 5px; padding-right:5px; font-size:14px"></input>
                 </form>
             <?php }else { ?>
                 <ul class="navbar-nav mr-auto">

@@ -46,9 +46,8 @@
                                 <th class="min-w-130">Budget</th>
                             </tr>
                             </thead>
-                            <tbody id="marketplaceTableBody">
-                            <tr onclick="window.location='/project/11'">
-                                <!-- <td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td><td>Website Creation</td><td>Alice was here</td><td>£100 - 1,000</td></tr><tr onclick="window.location='/project/10'"><td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td><td>Backend Development</td><td>rest</td><td>$2,500 - 5,000</td></tr><tr onclick="window.location='/project/9'"><td><i class="fa fa-globe" aria-hidden="true"></i> Ireland</td><td>Website Creation</td><td>rest</td><td>€100 - 1,000</td></tr><tr onclick="window.location='/project/8'"><td><i class="fa fa-globe" aria-hidden="true"></i> Ireland</td><td>Website Creation</td><td>rest</td><td>€100 - 1,000</td></tr><tr onclick="window.location='/project/5'"><td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td><td>Backend Development</td><td>I dont know</td><td>£1,000 - 2,500</td></tr><tr onclick="window.location='/project/4'"><td><i class="fa fa-globe" aria-hidden="true"></i> United Kingdom</td><td>Backend Development</td><td>Richard McClintock, a Latin professor at Hampden-Sydney Colle...</td><td>£5,000 - 10,000</td></tr></tbody> -->
+                            <tbody id="marketplaceTableBody" class="pointer">
+                            </tbody>
                         </table>
                     </div>
                     <div class="txt-ctr padt-20">
