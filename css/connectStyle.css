@@ -588,3 +588,28 @@ body {
     margin-top: -19px;
     margin-left: -19px;
 }
+
+.alertPosition {
+    height: 200px;
+    width: 300px;
+    position: fixed;
+    right: 10px;
+    bottom: 0px;
+    z-index: 2;
+}
+
+.alertClose {
+    color: white;
+}
+
+.alertError {
+    background-color: #d61726;
+    color: white;
+    border-color: #d61726
+}
+
+.alertSuccess {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
