@@ -31,7 +31,7 @@ $('#loginForm').submit(function(e) {
 
 function errorDisplay(response) {
     //Show the container containing alerts
-    // $("#alertContainer").show();
+    $("#alertContainer").show();
     //First we want to stop the timer for any previous alerts
     clearInterval(timer);
     //Attach the response to the alert
@@ -43,6 +43,7 @@ function errorDisplay(response) {
     var timer = setTimeout(function() {
         //$(".alertError").alert('close');
         $(".alertError").hide();
+        $("#alertContainer").hide();
     }, 2000);
 }
 
