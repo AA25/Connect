@@ -430,12 +430,14 @@ function retrieveBusinessesProjects() {
 }
 
 function retrieveCurrentProject() {
+    //ajax request to the rest api endpoint to return the project the developer is currently assigned
+    //to if any
     $.ajax({
-        //url: '../api/endpoints/retrieveCurrentProject.php',
         url: '../api/developer/project/',
         data: {},
         type: 'GET',
         method: 'get',
+        //
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -444,8 +446,10 @@ function retrieveCurrentProject() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //If error then show error div
+                $("#noCurrentProject").show();
             } else {
+                //On success then add the current project to the table html
                 renderCurrentProjectHTML(response['Success']);
             }
         }
@@ -453,12 +457,10 @@ function retrieveCurrentProject() {
 }
 
 function renderCurrentProjectHTML(currentProject) {
-    console.log(currentProject);
-    $("#noProject").hide();
-
+    //Add the current project as a row to the table
     var currentProjectRow =
         '<tr>' +
-        '<td><a href="http://localhost:8081/project/' + currentProject[0] + '" target="_blank">' + currentProject[1] + '</a></td>' +
+        '<td><a href="http://localhost:8081/project/' + currentProject[0] + '">' + currentProject[1] + '</a></td>' +
         '<td>' + currentProject[7] + '</td>' +
         '<td class=""><a href="http://localhost:8081/dashboard/forum/' + currentProject[0] + '" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>' +
         '</tr>';
