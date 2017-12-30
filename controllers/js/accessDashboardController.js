@@ -278,17 +278,16 @@ function renderDevProjectHTML(projects) {
 
 };
 
+//Function to start a project once it has developers assigned to it
 function startTheProject(buttonClicked) {
-    // var data = {
-    //     projectId: buttonClicked.getAttribute("data-project")
-    // };
     var projectId = buttonClicked.getAttribute("data-project");
+
+    //Send an ajax request to the rest api endpoint for starting a project
     $.ajax({
-        //url: '../api/endpoints/startProject.php',
-        //data: JSON.stringify(data),
         url: '../api/project/start/' + projectId,
         type: 'PUT',
         method: 'PUT',
+        //Attach a cookie which contains user token for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -297,9 +296,11 @@ function startTheProject(buttonClicked) {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //if error display error alert using the function from the navbarcontroller 
+                errorDisplay(response['Error']);
             } else {
-                console.log(response);
+                //If success then display success alert and reload the begin your journey html
+                successDisplay(response['Success']);
                 retrieveDevPerProject(1);
             }
         }
@@ -319,7 +320,7 @@ function renderStartProjectHTML(projects, projectIds) {
             '<td class="" data-toggle="collapse" data-target="#' + keyId + 'Div"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
             '<td class="">' + key + '</td>' +
             '<td class="">Pending Start</td>' +
-            '<td class=""><button type="button" data-project=' + projectIds[projectCounter][key] + ' onclick="startTheProject(this)" class="btn btn-success cl-white pad-0 h-30 w-60">Start</button></td>'
+            '<td class=""><button type="button" data-project=' + projectIds[projectCounter][key] + ' onclick="startTheProject(this)" class="btn btn-success cl-white pad-0 h-30 w-60 pointer">Start</button></td>'
         '</tr>';
         $("#beginJourneyTableBody").append(projectRow);
 
