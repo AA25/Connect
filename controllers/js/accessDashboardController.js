@@ -139,12 +139,13 @@ function addDevProjectRequestsHTML(devProjectRequests) {
     for (var i = 0; i < devProjectRequests.length; i++) {
         var basicRowDetail =
             '<tr>' +
-            '<td class="pointer" data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eyes" aria-hidden="true"></td>' +
+            '<td class="pointer" data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye" aria-hidden="true"></td>' +
             '<td><a href="http://localhost:8081/project/' + devProjectRequests[i]['projectId'] + '">' + devProjectRequests[i]['projectName'] + '</a></td>' +
             '<td>' + devProjectRequests[i]['status'] + '</td>' +
-            '<td><button type="btn" class="btn cl-white bg-cl-blue-connect pad-0 h-30 w-60" data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">Delete</button></td>' +
+            '<td><button type="btn" class="btn cl-white bg-cl-blue-connect pad-0 h-30 w-60 pointer" data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">Delete</button></td>' +
             '</tr>';
 
+        //A more detailed row of the requests is provided when basic row is clicked
         var indepthRowDetail =
             '<tr>' +
             '<td colspan="12">' +
@@ -161,8 +162,7 @@ function addDevProjectRequestsHTML(devProjectRequests) {
 }
 
 function developerRequests() {
-    //Send an ajax request to the rest api endpoint to retrieve project requests to any of the project
-    //the business owns
+    //Send an ajax request to the rest api endpoint to retrieve a developers requests
     $.ajax({
         url: '../api/developer/requests/',
         data: {},
@@ -178,7 +178,7 @@ function developerRequests() {
         success: function(response) {
             if (response['Error']) {
                 //if error then show message
-                //$("#noRequests").show();
+                $("#noDevRequests").show();
             } else {
                 //If success add the project requests to the table html
                 addDevProjectRequestsHTML(response['Success']);
@@ -188,12 +188,15 @@ function developerRequests() {
 }
 
 function deleteProjectRequest(deleteButtonClicked) {
+    //Pull out the developer request to be deleted from the delete button
     var projectReqId = deleteButtonClicked.getAttribute("data-project-request");
+
+    //Ajax request to the rest api endpoint to delete the project request
     $.ajax({
-        //url: '../api/endpoints/deleteProjectRequest.php?projectReqId=' + projectReqId,
         url: '../api/project/request/' + projectReqId,
         type: 'delete',
         method: 'DELETE',
+        //Attach cookie which contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -202,9 +205,11 @@ function deleteProjectRequest(deleteButtonClicked) {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //If error then display error alert
+                errorDisplay(response['Error']);
             } else {
-                console.log(response);
+                //On success display success alert and reload the project requests table
+                successDisplay(response['Success']);
                 //Maybe consider a function that deletes the html instead of calling the ajax again
                 developerRequests();
             }
