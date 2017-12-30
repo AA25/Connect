@@ -377,12 +377,12 @@ function renderStartProjectHTML(projects, projectIds) {
 function renderManageProjectsHTML(projects) {
     //Create a row for each project
     $("#manageProjectTableBody").empty();
-
+    console.log(projects);
     for (var i = 0; i < projects.length; i++) {
         var deleteProject = '<td class="txt-ctr"><i class="fa fa-ban" aria-hidden="true"></i></td>';
         var viewForum = '<td class="txt-ctr"><i class="fa fa-lock" aria-hidden="true"></i></td>';
-        if (projects[i][8] >= 2) {
-            // If this project is past the start project phase then a forum link is available
+        if (projects[i][8] >= 2 && projects[i][8] < 5) {
+            // If this project is past the start project phase and not finished then a forum link is available
             //A check is also done on the server side before allowing user access to this page
             viewForum = '<td class="txt-ctr"><a href="http://localhost:8081/dashboard/forum/' + projects[i][0] + '" class="btn cl-white bg-cl-blue-connect pad-0 padl-5 padr-5">Forum</a></td>';
         }

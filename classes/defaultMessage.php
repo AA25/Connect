@@ -17,7 +17,7 @@
                     $defaultMessage = "The project has moved from the Implementation Phase to the Completion Phase, well done on successful completing the project!
                     <br> You can take the time now and do some reviewing of the project and do some finalisation. <br>
                     Once the business owner and all developers are ready to end the project, please press the 'proceed' button.
-                    <br> Please note that once the project has ended this message will not be accessible anymore and all developers will be able to join new projects";
+                    <br> Please note that once the project has ended this message board will not be accessible anymore and all developers will be able to join new projects";
                     break;
                 //For the same of time there will only be 4 phases for now 
                 // case 4:

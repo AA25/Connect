@@ -170,6 +170,9 @@ function proceedProject() {
             if (response['Error']) {
                 //If error display error alert
                 errorDisplay(response['Error']);
+            } else if (response['Success'] == 'Ended') {
+                //The project has been ended, redirect user to the dashboard page
+                window.location = "http://localhost:8081/dashboard";
             } else if (response['Success']) {
                 //If successful then we want to reload the sidebar and main display
                 initialise();

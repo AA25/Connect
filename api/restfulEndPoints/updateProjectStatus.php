@@ -38,9 +38,9 @@
                         return proceedProjectStatus($pdo, $userVerifiedData, $postData, $currentStatus);
                         break;
                     case 4:
-                        //There are more stages that can be seen in projectStatusConverter but with little time left
+                        //There are more stages that can be seen in projectStatusConverter class but with little time left
                         //after 3 phases the project is complete
-                        //return endProject($pdo, $userVerifiedData, $postData, $currentStatus);
+                        return endProject($pdo, $userVerifiedData, $postData, $currentStatus);
                         break;
                     default:
                         return Array('Error' => 'Error in proceeding project to the next stage');
@@ -146,5 +146,58 @@
             return Array('Error' => $e);
         }
 
+    }
+
+    function endProject($pdo, $userVerifiedData, $postData, $currentStatus){
+        $pdo->beginTransaction();
+        try{
+            //Update the projectStatus value in the projects table to the end stage
+            $update = $pdo->prepare("
+                update projects inner join businesses on businesses.busId = projects.businessId 
+                set projects.projectStatus = :updateStatusTo 
+                where businesses.email = :userEmail and projects.projectId = :thisProject;
+            ");
+
+            $update->execute([
+                'updateStatusTo' => $currentStatus+1,
+                'userEmail'      => $userVerifiedData['email'],
+                'thisProject'    => $postData
+            ]);
+
+            //Once the project has ended all developers need to be removed from the project
+            $deassign1 = $pdo->prepare("
+                delete from projectDevelopers where projectId = :deleteProject
+            ");
+
+            $deassign1->execute([
+                'deleteProject' => $postData
+            ]);
+
+            //Now set those developers currentProject back to null
+            $deassign2 = $pdo->prepare("
+                update developers set currentProject = NULL where currentProject = :deletedProject
+            ");
+
+            $deassign2->execute([
+                'deletedProject' => $postData
+            ]);
+
+            //Now delete all messages from that project
+            $deassignMsg = $pdo->prepare("
+                delete from projectMessages where projectId = :deleteProject
+            ");
+
+            $deassignMsg->execute([
+                'deleteProject' => $postData
+            ]);
+
+            //We've got this far without an exception, so commit the changes.
+            $pdo->commit();
+            return Array('Success' => 'Ended');
+
+        }catch(Exception $e){
+            $pdo->rollBack();
+            return Array('Error' => 'Error with updating project status');
+        }
     }
 ?>
