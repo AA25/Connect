@@ -234,8 +234,10 @@ function retrieveDevPerProject(projectStatus) {
         success: function(response) {
             if (response['Error']) {
                 console.log(response);
-                //For the begin your journey section we show the error div
+                //For the begin your journey section we show the error message div
                 $("#noProject").show();
+                //For the project developers section we show the error message div
+                $("#noDevelopers").show();
             } else {
                 if (projectStatus == '') {
                     //Add the html view the developers per project
@@ -258,7 +260,7 @@ function renderDevProjectHTML(projects) {
         keyId = key.replace(/ /g, "");
         var projectRow =
             '<tr class="row" data-toggle="collapse" data-target="#' + keyId + '">' +
-            '<td class="col-xs-1"><i class="fa fa-eye cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
+            '<td class="col-xs-1"><i class="fa fa-eye pointer cl-blue-connect padl-20" aria-hidden="true"></i></td>' +
             '<td class="col-xs-11">' + key + '</td>' +
             '</tr>';
         $("#projectDevelopersTableBody").append(projectRow);
