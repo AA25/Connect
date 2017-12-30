@@ -11,7 +11,20 @@
         //verbs and arguements if a route is found it calls the appropriate php file to handle
         //the requests and return a result. If route is not found and error is provided
 
-        //The functions below are the REST API's endpoints
+        //The functions below are the REST API's endpoints, each method is an endpoint
+
+        protected function login($args){
+            if($this->method == 'POST') {
+                if($this->verb == '' && empty($this->args)) {
+                    //return Array("Info" => "Testing login endpoint");
+                    return include('restfulEndPoints/loginUser.php');
+                }
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");                           
+            }else {
+                return Array("Error" => "Endpoint only accepts POST requests");
+            }
+        }
+
          protected function projects($args){
             if ($this->method == 'GET') {
                 if($this->verb == 'from' && is_numeric($this->args[0]) && is_numeric($this->args[1])){
