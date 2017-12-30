@@ -43,8 +43,11 @@
                 }
             }
 
+            //Create a new token object that will be the token we return to the user
             $userToken = new Jwt('');
+            //The token will contain some of the basic user details
             $userToken->setToken($userInfo);
+            //Then return the token string that needs to be attached to future requests
             $value = $userToken->getToken();
             setUserCookies($userInfo, $loginJSON['location'], $userToken->getToken());
             echo json_encode(array('Success' => 'Successful login'));
@@ -56,29 +59,34 @@
     }
 
     function prepDevSQL(&$pdo){
+        //Prepare statement to return developer details
         return $pdo->prepare(
             "select username, firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
         );  
     }
 
     function prepBusSQL(&$pdo){
+        //Prepare statement to return business details
         return $pdo->prepare(
             "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
         );  
     }
 
     function pushDevDetails(&$userInfo, $info){
+        //Push user details to the array
         $userInfo['username'] = $info['username']; $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; 
         $userInfo['dob'] = $info['dob']; $userInfo['languages'] = $info['languages']; $userInfo['email'] = $info['email']; $userInfo['devBio'] = $info['devBio'];
         $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
     function pushBusDetails(&$userInfo, $info){
+    //Push user details to the array
         $userInfo['busName'] = $info['busName']; $userInfo['busIndustry'] = $info['busIndustry']; $userInfo['busBio'] = $info['busBio'];
         $userInfo['username'] = $info['username']; $userInfo['firstName'] = $info['firstName']; $userInfo['lastName'] = $info['lastName']; 
         $userInfo['email'] = $info['email']; $userInfo['phone'] = $info['phone']; $userInfo['type'] = $info['type'];
     }
 
     function setUserCookies($userInfo,$location,$userToken){
+        //Set a cookie containing the user token
         $cookiePath = "/";
         $cookieExp = time()+(60*60*24);//one day -> seconds*minutes*hours
         if($location == 'developers'){
