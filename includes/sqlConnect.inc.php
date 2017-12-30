@@ -1,5 +1,6 @@
 <?php
 
+//Database connector
 function get_db()
 {
     $host ='127.0.0.1';

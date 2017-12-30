@@ -10,14 +10,14 @@
             $userVerifiedData = $tokenToVerify->getDataFromJWT($tokenToVerify->token);  
 
             if($tokenToVerify->verifyJWT($tokenToVerify->token)){
-                //echo 'token exists and valid';
+                //Valid verification
                 return $userVerifiedData;
             }else{
-                //echo 'token isnt valid';
+                //'token isnt valid';
                 return false;
             }
         }else{
-            //echo 'no token';
+            //'no token';
             return false;
         }
     }
