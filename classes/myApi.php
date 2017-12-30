@@ -1,11 +1,15 @@
-<?php 
+<?php
     class MyAPI extends API
     {
-    
+
+        //Use the API class contructor to break down the request e.g. DELETE /api/project/delete/13
         public function __construct($request, $origin) {
             parent::__construct($request);
         }
 
+        //Everything below is just routing the request based on its the the method, endpoint,
+        //verbs and arguements if a route is found it calls the appropriate php file to handle
+        //the requests and return a result. If route is not found and error is provided
 
         //The functions below are the REST API's endpoints
          protected function projects($args){

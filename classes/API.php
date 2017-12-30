@@ -45,33 +45,26 @@
             array_shift($this->args);
             //Gets rid of /api
             array_shift($this->args);
+            //array_shift($this->args) now contains the endpoint eg (/api)/project
             $this->endpoint = array_shift($this->args);
+            //If the next exists and isn't a num then we know its the verb /project/delete
             if (array_key_exists(0, $this->args) && !is_numeric($this->args[0])) {
                 $this->verb = array_shift($this->args);
             }
+            //everything left in $this->args is the arguements eg. /project/delete/1
 
             $this->method = $_SERVER['REQUEST_METHOD'];
-            // if ($this->method == 'POST' && array_key_exists('HTTP_X_HTTP_METHOD', $_SERVER)) {
-            //     if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'DELETE') {
-            //         $this->method = 'DELETE';
-            //     } else if ($_SERVER['HTTP_X_HTTP_METHOD'] == 'PUT') {
-            //         $this->method = 'PUT';
-            //     } else {
-            //         throw new Exception("Unexpected Header");
-            //     }
-            // }
 
             switch($this->method) {
                 case 'DELETE':
                 case 'POST':
-                    //$this->request = $this->_cleanInputs($_POST);
+                    //the data of the request will be assigned to file
                     $this->file = file_get_contents("php://input");
                     break;
                 case 'GET':
-                    //$this->request = $this->_cleanInputs($_GET);
                     break;
                 case 'PUT':
-                    //$this->request = $this->_cleanInputs($_GET);
+                    //the data of the request will be assigned to file
                     $this->file = file_get_contents("php://input");
                     break;
                 default:
@@ -81,22 +74,23 @@
         }
 
         public function processAPI() {
+            //check to see if the endpoint trying to be accessed exists
             if (method_exists($this, $this->endpoint)) {
-                //return json_encode($this->{$this->endpoint}($this->args));
                 return $this->_response($this->{$this->endpoint}($this->args));
             }
             return $this->_response(Array("Error" => "No Endpoint: $this->endpoint"), 404);
         }
-    
+
+        //return the response of the endpoint to the user
         private function _response($data, $status = 200) {
             header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
             return json_encode($data);
         }
 
         private function _requestStatus($code) {
-            $status = array(  
+            $status = array(
                 200 => 'OK',
-                404 => 'Not Found',   
+                404 => 'Not Found',
                 405 => 'Method Not Allowed',
                 500 => 'Internal Server Error',
             ); 
