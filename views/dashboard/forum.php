@@ -45,9 +45,9 @@
                                     <h5 class="cl-blue-connect">
                                         Proceed to the next stage
                                     </h5>
-                                    <button id="proceedProject" class="btn cl-white bg-cl-blue-connect" onclick="proceedProject()">Proceed</button>
+                                    <button id="proceedProject" class="btn cl-white bg-cl-blue-connect pointer" onclick="proceedProject()">Proceed</button>
                                     <p class="cl-white padt-5">
-                                        To proceed forward ensure all the developers are ready, indicated by a 
+                                        To proceed forward ensure all the developers are ready, indicated by a
                                         <i class="fa fa-check cl-success" aria-hidden="true"></i>
                                     </p>
                                 </div>
@@ -67,7 +67,7 @@
                                         To proceed forward all developers have to be ready, indicated by a 
                                         <i class="fa fa-check cl-success" aria-hidden="true"></i>
                                     </p>
-                                    <button class="btn btn-success cl-white marb-10" onclick="toggleReadyStatus()">Toggle Ready</button>
+                                    <button class="btn btn-success cl-white marb-10 pointer" onclick="toggleReadyStatus()">Toggle Ready</button>
                                 </div>
                             <?php } ?>
                         </div>
@@ -81,33 +81,12 @@
                 <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
                     <h4 class="cl-blue-connect marb-20 txt-ctr">
                         Welcome to the message board
-                        <i class="fa fa-refresh cl-blue-connect" onclick="retrieveProjectMessages()" aria-hidden="true"></i>
+                        <i class="fa fa-refresh cl-blue-connect pointer" onclick="retrieveProjectMessages()" aria-hidden="true"></i>
                     </h4>
                     <div id="renderOption" class="">
                         <!-- Messages -->
                         <div class="scrollable row" style="height:500px">
                             <div id="messages" class="col-sm-9 push-sm-1">
-                                <!-- <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    <br>
-                                    <span class="txt-right cl-white fs-11">
-                                        Ademola Akingbade 25th June 1994 10:50pm
-                                    </span>
-                                </p>
-                                <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    <br>
-                                    <span class="txt-right cl-white fs-11">
-                                        Ademola Akingbade 25th June 1994 10:50pm
-                                    </span>
-                                </p>
-                                <p class="speech-bubble padl-20 padr-20 padt-10 padb-10">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    <br>
-                                    <span class="txt-right cl-white fs-11">
-                                        Ademola Akingbade 25th June 1994 10:50pm
-                                    </span>
-                                </p> -->
                             </div>
                         </div>
                         <!-- Input box -->
@@ -125,7 +104,7 @@
                                         </div>
                                         <div class="col-sm-12 col-lg-2">
                                             <div class="txt-ctr">
-                                                <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30" style="">Post Message</button>
+                                                <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30 pointer" style="">Post Message</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,6 +115,25 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="alertContainer" class="alertPosition disp-none">
+        <div class="alert alert-warning alert-dismissible fade show alertError disp-none" role="alert">
+            <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                <span class="alertClose" aria-hidden="true">&times;</span>
+            </button>
+            <strong>Error</strong>
+            <p class="marb-0">
+            </p>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show alertSuccess disp-none" role="alert">
+            <button type="button" class="close cl-white" data-dismiss="alert" aria-label="Close">
+                <span class="alertClose" aria-hidden="true">&times;</span>
+            </button>
+            <strong>Success</strong>
+            <p class="marb-0">
+            </p>
         </div>
     </div>
 

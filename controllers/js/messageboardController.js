@@ -7,8 +7,11 @@ $('#messageInputted').keyup(function() {
     $('#messageCount').html(remainingText + ' remaining');
 });
 
+
 function initialise() {
+    //Retrieve the developers for the side bar
     retrieveProjectDevelopers();
+    //Retrieve project messages for the main display
     retrieveProjectMessages();
 }
 
@@ -16,6 +19,8 @@ window.onload = initialise();
 
 //Make a request to the RESTful api to retrieve developers working on the current project
 function retrieveProjectDevelopers() {
+    //Creating the rest api endpoint which will be where the ajax request will be made 
+    //to retrieve the developers on the current project
     var endpoint = (window.location.pathname).replace('/dashboard/forum/', '/forum/developers/');
     var url = '/api' + endpoint;
 
@@ -24,6 +29,7 @@ function retrieveProjectDevelopers() {
         data: {},
         type: 'get',
         method: 'GET',
+        //Attach cookie which contains the user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -32,16 +38,20 @@ function retrieveProjectDevelopers() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //On error display error alert
+                errorDisplay(response['Error']);
             } else if (response['Success']['Developers'].length > 0) {
+                //If response is not empty then add the developers to the sidebar html
                 renderDeveloperListHTML(response['Success']['Developers']);
             }
         }
     });
 }
 
-//Make a request to the RESTful api to retrieve projectMessages
+//Make a request to the rest api endpoint to retrieve projectMessages
 function retrieveProjectMessages() {
+    //Creating the rest api endpoint which will be where the ajax request will be made 
+    //to retrieve the messages for this project so far
     var endpoint = (window.location.pathname).replace('/dashboard', '');
     var url = '/api' + endpoint;
 
@@ -50,6 +60,7 @@ function retrieveProjectMessages() {
         data: {},
         type: 'get',
         method: 'GET',
+        //Attach cookie which contains user token used for authenication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -58,10 +69,13 @@ function retrieveProjectMessages() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //If error display errr alert
+                errorDisplay(response['Error']);
             } else if (response['Success']) {
+                //Add the project name and project status to the page
                 $('#projectName').text(response['Success']['projectName']);
                 $('#projectStatus').text(response['Success']['projectStatus']);
+                //create the html that displays each message to the main display
                 renderMessagesHTML(response['Success']['Messages']);
             }
         }
@@ -77,6 +91,8 @@ $('#messagePost').submit(function(e) {
         'sentMessage': $('#messagePost textarea[name=messageInputted]').val(),
     };
 
+    //Creating the rest api endpoint which will be where the ajax request will be made 
+    //to post a message to the project
     var endpoint = (window.location.pathname).replace('/dashboard', '');
     var url = '/api' + endpoint;
 
@@ -85,6 +101,7 @@ $('#messagePost').submit(function(e) {
         data: JSON.stringify(data),
         type: 'post',
         method: 'POST',
+        //Attach cookie which contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -93,9 +110,10 @@ $('#messagePost').submit(function(e) {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //If error display error alert
+                errorDisplay(response['Error'])
             } else if (response['Success']) {
-                console.log(response['Success']);
+                //If successful then wipe the input field and reload the messages html
                 $("#messagePost").trigger("reset");
                 retrieveProjectMessages();
             }
@@ -104,11 +122,14 @@ $('#messagePost').submit(function(e) {
 });
 
 function toggleReadyStatus() {
+    //Creating the rest api endpoint which will be where the ajax request will be made 
+    //to say if a developer is ready or not to proceed stages
     $.ajax({
         url: '/api/developer/toggleProceedStatus',
         data: {},
         type: 'put',
         method: 'PUT',
+        //Attach cookie which contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -117,9 +138,41 @@ function toggleReadyStatus() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //if error then display error display
+                errorDisplay(response['Error']);
             } else if (response['Success']) {
+                //If successful then reload sidebar
                 retrieveProjectDevelopers();
+            }
+        }
+    });
+}
+
+function proceedProject() {
+    //Creating the rest api endpoint which will be where the ajax request will be made 
+    //to proceed the project to the next stage
+    var projectId = (window.location.pathname).replace('/dashboard/forum/', '');
+    var url = '/api/project/proceedStage/' + projectId;
+
+    $.ajax({
+        url: url,
+        data: {},
+        type: 'put',
+        method: 'PUT',
+        //Attach cookie which contains user token used for authentication
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                //If error display error alert
+                errorDisplay(response['Error']);
+            } else if (response['Success']) {
+                //If successful then we want to reload the sidebar and main display
+                initialise();
             }
         }
     });
@@ -128,6 +181,7 @@ function toggleReadyStatus() {
 function renderMessagesHTML(retrieveMsgs) {
     $("#messages").empty();
 
+    //Create a p that represents each message
     for (var i = 0; i < retrieveMsgs.length; i++) {
 
         var messageHTML =
@@ -143,6 +197,7 @@ function renderMessagesHTML(retrieveMsgs) {
 
 function renderDeveloperListHTML(developers) {
     $("#developerList").empty();
+    //Create a li for each developer and attach to the ul in sidebar
     for (var i = 0; i < developers.length; i++) {
         if (developers[i]['proceedStatus'] === 1) {
             var proceedStatus = '<i class="fa fa-check cl-success pull-right" aria-hidden="true"></i>';
@@ -156,29 +211,4 @@ function renderDeveloperListHTML(developers) {
 
         $("#developerList").append(developer);
     }
-}
-
-function proceedProject() {
-    var projectId = (window.location.pathname).replace('/dashboard/forum/', '');
-    var url = '/api/project/proceedStage/' + projectId;
-
-    $.ajax({
-        url: url,
-        data: {},
-        type: 'put',
-        method: 'PUT',
-        beforeSend: function(request) {
-            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            //Error in setting status
-        },
-        success: function(response) {
-            if (response['Error']) {
-                console.log(response['Error']);
-            } else if (response['Success']) {
-                initialise();
-            }
-        }
-    });
 }
