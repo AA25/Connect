@@ -13,7 +13,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="developerProfileContent" class="container padt-56 min-h-770">
+    <div id="businessProfileContent" class="container padt-56 min-h-770 disp-none">
         <div class="padt-20 padb-20">
             <div class="row">
                 <div class="col-lg-3">
@@ -69,6 +69,14 @@
                     <!-- Return the list of projects by this business -->
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="noUser" class="container padt-56 min-h-770 disp-none">
+        <div class="padt-20 padb-20 txt-ctr">
+            <h3 class="cl-blue-connect">
+                Oops, This user does not seem to exist.
+            </h3>
         </div>
     </div>
 

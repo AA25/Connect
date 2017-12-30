@@ -1,10 +1,12 @@
 function retrieveDeveloperDetails() {
     var url = window.location.pathname;
+    //ajax request to the rest api endpoint to retrieve data on a developer
     $.ajax({
         url: '/api' + url,
         data: {},
         type: 'get',
         method: 'GET',
+        //Attach cookie which contains user token for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -13,9 +15,11 @@ function retrieveDeveloperDetails() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                // On error show no user message
+                $("#noUser").show();
             } else {
-                console.log(response['Success'][0]);
+                //On success show user found div and create html for user
+                $("#developerProfileContent").show();
                 renderContent(response['Success'][0]);
             }
         }
@@ -23,6 +27,7 @@ function retrieveDeveloperDetails() {
 };
 
 function renderContent(profileData) {
+    //Add the user data to the different id hooks on the page to create user profile
     profileData['dob'] = userAge(profileData['dob']);
 
     $("#name").text(profileData['firstName'] + ' ' + profileData['lastName']);

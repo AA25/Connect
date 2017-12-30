@@ -13,7 +13,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="developerProfileContent" class="container padt-56 min-h-770">
+    <div id="developerProfileContent" class="container padt-56 min-h-770 disp-none">
         <div class="padt-20 padb-20">
             <div class="row">
                 <div class="col-lg-3">
@@ -60,7 +60,6 @@
                 <div class="col-lg-9 padt-20">
                     <h5 class="cl-blue-connect">Profile Description</h5>
                     <p id="profileDescription">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,
                     </p>
                 </div>
             </div>
@@ -69,6 +68,14 @@
                     <h5 id="projectStatus" class="marb-0"></h5>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="noUser" class="container padt-56 min-h-770 disp-none">
+        <div class="padt-20 padb-20 txt-ctr">
+            <h3 class="cl-blue-connect">
+                Oops, This user does not seem to exist.
+            </h3>
         </div>
     </div>
 
