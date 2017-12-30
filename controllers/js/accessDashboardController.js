@@ -370,7 +370,7 @@ function renderStartProjectHTML(projects, projectIds) {
 }
 
 function renderManageProjectsHTML(projects) {
-
+    //Create a row for each project
     $("#manageProjectTableBody").empty();
 
     for (var i = 0; i < projects.length; i++) {
@@ -384,7 +384,7 @@ function renderManageProjectsHTML(projects) {
         if (projects[i][8] < 2) {
             //If the project hasn't been started yet, then the delete button is available
             // A serverside check is done to make sure project hasn't been started
-            deleteProject = '<td class="txt-ctr"><button class="btn btn-danger pad-0 padl-5 padr-5" data-project="' + projects[i][0] + '" onclick="deleteProject(this)">Delete</button></td>';
+            deleteProject = '<td class="txt-ctr"><button class="btn btn-danger pad-0 padl-5 padr-5 pointer" data-project="' + projects[i][0] + '" onclick="deleteProject(this)">Delete</button></td>';
         }
         var manageProjectRow =
             '<tr>' +
@@ -399,12 +399,13 @@ function renderManageProjectsHTML(projects) {
 }
 
 function retrieveBusinessesProjects() {
+    //Send an ajax request to the rest api endpoint to return all projects owned by the busienss
     $.ajax({
-        //url: '../api/endpoints/retrieveBusinessProjects.php',
         url: '/api/business/projects/',
         data: {},
         type: 'GET',
         method: 'get',
+        //Attach cookie which contains user user token for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -413,8 +414,10 @@ function retrieveBusinessesProjects() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response['Error']);
+                //If error display error alert
+                errorDisplay(response['Error']);
             } else {
+                //If projects are returned then add them to the html table
                 renderManageProjectsHTML(response['Success']);
             }
         }
@@ -460,11 +463,14 @@ function renderCurrentProjectHTML(currentProject) {
 }
 
 function deleteProject(buttonClicked) {
+    //Pull the project id from the button clicked to delete that specific project
     var projectId = buttonClicked.getAttribute("data-project");
+    //Send an ajax request to the rest api endpoint to delete the project
     $.ajax({
         url: '../api/project/delete/' + projectId,
         type: 'delete',
         method: 'DELETE',
+        //Attach cookie with contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -473,9 +479,11 @@ function deleteProject(buttonClicked) {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //If error then display error alert using function from the navbar controller
+                errorDisplay(response['Error']);
             } else {
-                console.log(response);
+                //On success we display the success alert and reload that table html
+                successDisplay(response['Success'])
                 retrieveBusinessesProjects();
             }
         }
