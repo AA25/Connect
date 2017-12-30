@@ -3,6 +3,9 @@
     //Testers within my tribe helped with validation and security
     //Got some basic ideas of php form validation from https://www.w3schools.com/php/php_form_validation.asp
     // And how to remove script tags from https://stackoverflow.com/questions/28255873/removing-script-tags-using-preg-replace
+
+    //Main 2 steps is to sanitise inputs then validate.
+
     class ServerValidation{
 
         //Remove scripts and convert html tags to prevent certain attacks
