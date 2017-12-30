@@ -32,14 +32,17 @@ function renderSidebarOption(userType, file) {
     });
 }
 
+//Once a developer request has been accepted or rejected this function is called
 function respondToRequest(buttonClicked) {
+    //Pull the data from the button clicked (accepted or rejected) via the custom data tags
     var data = {
         'busResponse': buttonClicked.getAttribute("data-request-response"),
         'devId': buttonClicked.getAttribute("data-dev"),
         'projectId': buttonClicked.getAttribute("data-project")
     };
+
+    //Send an ajax request to the rest endpoint api to updates the database accordingly 
     $.ajax({
-        //url: '../api/endpoints/updateProjectRequest.php',
         url: '../api/project/requests/',
         data: JSON.stringify(data),
         type: 'put',
@@ -52,9 +55,11 @@ function respondToRequest(buttonClicked) {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //If error then display error alert using function from navbar controller
+                errorDisplay(response['Error']);
             } else {
-                console.log(response);
+                //If successful then display success alert and reload the table html
+                successDisplay(response['Success']);
                 projectRequests();
             }
         }
@@ -63,11 +68,11 @@ function respondToRequest(buttonClicked) {
 
 function projectRequests() {
     $.ajax({
-        //url: '../api/endpoints/retrieveProjectRequests.php',
+        //Sends an ajax request to retrieve the current project requests to any project the user owns
         url: '../api/project/requests/',
-        //data: { 'userType': userType }, // review this line, is it needed?
         type: 'get',
         method: 'GET',
+        //Attach cookie token to request
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -76,11 +81,13 @@ function projectRequests() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //On error we display error alert using function from navbar controller
+                errorDisplay(response['Error']);
             } else if (typeof(response['Success']) === 'string') {
-                console.log('No project requests');
+                //No project requests so we display the message to inform user of this
+                $("#noRequests").show();
             } else {
-                console.log(response['Success']);
+                //If success then we add the project requests to the table to display
                 addProjectRequestsHTML(response['Success']);
             }
         }
@@ -90,16 +97,18 @@ function projectRequests() {
 function addProjectRequestsHTML(pendingRequests) {
     $("#requestTableBody").empty();
 
+    //Add each project request to the table 
     for (var i = 0; i < pendingRequests.length; i++) {
         var basicRowDetail =
             '<tr>' +
-            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye cl-blue-connect" aria-hidden="true"></i></td>' +
+            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye cl-blue-connect pointer" aria-hidden="true"></i></td>' +
             '<td>' + pendingRequests[i]['projectName'] + '</td>' +
             '<td>' + pendingRequests[i]['projectCategory'] + '</td>' +
             '<td>' + pendingRequests[i]['devName'] + '</td>' +
             '<td>' + pendingRequests[i]['status'] + '</td>' +
             '</tr>';
 
+        //Once a row is clicked another row containing more detail of the requests is collapsed
         var indepthRowDetail =
             '<tr>' +
             '<td colspan="12">' +
@@ -111,13 +120,14 @@ function addProjectRequestsHTML(pendingRequests) {
             '<br><br>' +
             //rework this and make it work with dev username instead of dev id
             '<div class="txt-ctr">' +
-            '<button class="btn bg-cl-blue-connect cl-white mar-10" data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
-            '<button class="btn navbar-bg cl-white mar-10" data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
+            '<button class="btn bg-cl-blue-connect cl-white mar-10 pointer" data-request-response="Accepted" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Accept</button>' +
+            '<button class="btn navbar-bg cl-white mar-10 pointer" data-request-response="Rejected" data-dev="' + pendingRequests[i]['devId'] + '" data-project="' + pendingRequests[i]['projectId'] + '" onclick="respondToRequest(this)">Reject</button>' +
             '</div>' +
             '</div>' +
             '</td>' +
             '</tr>';
 
+        //Attach rows to the table
         $("#requestTableBody").append(basicRowDetail);
         $("#requestTableBody").append(indepthRowDetail);
     }
@@ -125,10 +135,11 @@ function addProjectRequestsHTML(pendingRequests) {
 
 function addDevProjectRequestsHTML(devProjectRequests) {
     $("#devRequestTableBody").empty();
+    //Take the project requests returned and create rows for each requests
     for (var i = 0; i < devProjectRequests.length; i++) {
         var basicRowDetail =
             '<tr>' +
-            '<td data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eye" aria-hidden="true"></td>' +
+            '<td class="pointer" data-toggle="collapse" data-target="#requestDetail' + (i + 1) + '"><i class="fa fa-eyes" aria-hidden="true"></td>' +
             '<td><a href="http://localhost:8081/project/' + devProjectRequests[i]['projectId'] + '">' + devProjectRequests[i]['projectName'] + '</a></td>' +
             '<td>' + devProjectRequests[i]['status'] + '</td>' +
             '<td><button type="btn" class="btn cl-white bg-cl-blue-connect pad-0 h-30 w-60" data-project-request=' + devProjectRequests[i]['projectReqId'] + ' onclick="deleteProjectRequest(this)">Delete</button></td>' +
@@ -150,12 +161,14 @@ function addDevProjectRequestsHTML(devProjectRequests) {
 }
 
 function developerRequests() {
+    //Send an ajax request to the rest api endpoint to retrieve project requests to any of the project
+    //the business owns
     $.ajax({
-        //url: '../api/endpoints/retrieveDeveloperRequests.php',
         url: '../api/developer/requests/',
         data: {},
         type: 'get',
         method: 'GET',
+        //Attach cookie with request that contains user token for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -164,9 +177,10 @@ function developerRequests() {
         },
         success: function(response) {
             if (response['Error']) {
-                console.log(response);
+                //if error then show message
+                //$("#noRequests").show();
             } else {
-                console.log(response);
+                //If success add the project requests to the table html
                 addDevProjectRequestsHTML(response['Success']);
             }
         }
