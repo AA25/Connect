@@ -202,10 +202,11 @@ function retrieveDevPerProject(projectStatus) {
     $("#beginJourneyTableBody").empty();
     $("#projectDevelopersTableBody").empty();
 
-    //A condition can be attached to the REST api endpoint to return developers per projects (projects in a particular status)
+    //A condition can be attached to the REST api endpoint to return developers per projects 
+    //(Only projects in a particular status)
     (projectStatus == null) ? projectStatus = '': projectStatus = projectStatus;
+    //Send an ajax request to the rest api endpoint for the developers on a project
     $.ajax({
-        //url: '../api/endpoints/retrieveDevelopersPerProject.php' + conditionParams,
         url: '../api/project/developers/' + projectStatus,
         data: {},
         type: 'get',
@@ -219,12 +220,14 @@ function retrieveDevPerProject(projectStatus) {
         success: function(response) {
             if (response['Error']) {
                 console.log(response);
+                //For the begin your journey section we show the error div
+                $("#noProject").show();
             } else {
-                //console.log(response['Success']);
                 if (projectStatus == '') {
+                    //Add the html view the developers per project
                     renderDevProjectHTML(response['Success']['ProjectDevelopers']);
                 } else {
-                    //console.log(response);
+                    //Add the html view the developers per project and then an option to start the project
                     renderStartProjectHTML(response['Success']['ProjectDevelopers'], response['ProjectIds']);
                 }
             }
@@ -303,6 +306,7 @@ function startTheProject(buttonClicked) {
     })
 }
 
+//Add html to create the table containing all projects ready to be started and their respective developers
 function renderStartProjectHTML(projects, projectIds) {
     $("#beginJourneyTableBody").empty();
     var projectCounter = 0;
