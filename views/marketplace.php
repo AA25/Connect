@@ -28,11 +28,22 @@
                             </h6>
                         </div>
                         <div class="col-lg-4">
-                            <div class="txt-right">
-                                <form class="form-inline" method="get" action="/">
-                                    <i class="fa fa-search cl-blue-connect marr-10" aria-hidden="true"></i>
-                                    <input id="search-input" class="form-control input-lg" placeholder="Search projects by project name" style="width:270px">
-                                </form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="txt-right">
+                                        <form class="form-inline" method="get" action="/">
+                                            <i class="fa fa-search cl-blue-connect marr-10" aria-hidden="true"></i>
+                                            <input id="search-input" class="form-control input-lg" placeholder="Search projects by project name" onkeyup="showProjectSuggestions(this.value)" style="width:270px">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="livesearch" class="disp-none mart-5 pad-10 bord-rd" style="border:1px solid rgba(0,0,0,.15);">
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -79,26 +90,6 @@
         </div>
 
     </div>
-    
-    <!-- <div id="marketplace" style="display:none">
-        <div id="projectMarketplace">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Location</th>
-                    <th>Project Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Budget</th>
-                </tr>
-                </thead>
-                <tbody id="marketplaceTableBody"></tbody>
-            </table>
-        </div>
-        <button onclick="loadMore()">
-            LOAD
-        </button>
-    </div> -->
 
 </body>
     <script src="controllers/js/jQuery/jquery.min.js"></script>

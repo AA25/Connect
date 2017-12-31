@@ -1,4 +1,4 @@
-<?php 
+<?php
     require "../../includes/init.inc.php";
     $pdo = get_db();
 

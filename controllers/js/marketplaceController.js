@@ -65,4 +65,31 @@ function limitProjectDescription(projectDesc) {
     return projectDesc;
 }
 
+function showProjectSuggestions(input) {
+    //Function for live search in marketplace
+    //https://www.w3schools.com/php/php_ajax_livesearch.asp
+
+    //If the input key is less than 3 letters don't send ajax requests yet
+    if (input.length < 2) {
+        $("#livesearch").show();
+        $("#livesearch").html('<span>More letters needed</span>');
+    } else {
+        $("#livesearch").empty();
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else { // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                $("#livesearch").show();
+                $("#livesearch").html(this.responseText);
+            }
+        }
+        xmlhttp.open("GET", "/controllers/php/liveSearchController.php?q=" + input, true);
+        xmlhttp.send();
+    }
+}
+
 window.onload = retrieveProjects();
