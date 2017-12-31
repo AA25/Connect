@@ -96,7 +96,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-9">
                                             <div class="form-group">
-                                                <textarea id="messageInputted" class="form-control" rows="6" placeholder="Enter a message" name="messageInputted" ></textarea>
+                                                <textarea id="messageInputted" class="form-control" rows="6" placeholder="Enter a message" name="messageInputted" maxlength="500"></textarea>
                                                 <div>
                                                     <span class="fs-14" id="messageCount"></spanh6>
                                                 </div>

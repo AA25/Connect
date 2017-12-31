@@ -3,32 +3,34 @@ var userType = '';
 function renderSidebarOption(userType, file) {
     $(function() {
         //Load the correct dashboard sidebar depending on the user account type
-        $("#renderOption").load("/views/dashboard/sidebarOptions/" + userType + "/" + file + ".html");
-
-        //Depending on the option clickd on the sidebar the correct html will be displayed in the main view
-        switch (file) {
-            case "projectRequests":
-                projectRequests();
-                break;
-            case "beginProjectJourney":
-                retrieveDevPerProject(1);
-                break;
-            case "projectDevelopers":
-                retrieveDevPerProject(null);
-                break;
-            case "manageProjects":
-                retrieveBusinessesProjects();
-                break;
-            case "developerRequests":
-                developerRequests();
-                break;
-            case "currentProject":
-                retrieveCurrentProject();
-                break;
-            case "myAccount":
-                //retrieveBusinessesProjects();
-                break;
-        }
+        $("#renderOption").load("/views/dashboard/sidebarOptions/" + userType + "/" + file + ".html",
+            function() {
+                //When the sidebar html has loaded
+                //Depending on the option clickd on the sidebar the correct html will be displayed in the main view
+                switch (file) {
+                    case "projectRequests":
+                        projectRequests();
+                        break;
+                    case "beginProjectJourney":
+                        retrieveDevPerProject(1);
+                        break;
+                    case "projectDevelopers":
+                        retrieveDevPerProject(null);
+                        break;
+                    case "manageProjects":
+                        retrieveBusinessesProjects();
+                        break;
+                    case "developerRequests":
+                        developerRequests();
+                        break;
+                    case "currentProject":
+                        retrieveCurrentProject();
+                        break;
+                    case "myAccount":
+                        //retrieveBusinessesProjects();
+                        break;
+                }
+            });
     });
 }
 

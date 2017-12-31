@@ -104,3 +104,5 @@ where developers.email = 'test2@test.com';
 --Returns all projects within the recruiting stage between two numbers
 select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency, projectStatus 
 from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit 0, 2
+
+CREATE DATABASE `connect` /*!40100 DEFAULT CHARACTER SET utf8 */;

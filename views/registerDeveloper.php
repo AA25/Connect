@@ -38,27 +38,27 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="username" class="">username:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" maxlength="100" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" maxlength="56" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" maxlength="500" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="phone">Phone Number:</label>
-                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" maxlength="45" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter first name" name="firstName" required>
+                                    <input type="text" class="form-control" placeholder="Enter first name" name="firstName" maxlength="56" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="dob">Date of Birth:</label>
@@ -68,7 +68,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" required>
+                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" rmaxlength="56" equired>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="languages">Languages Spoken:</label>
@@ -90,7 +90,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label>Developer Bio:</label><br>
-                                    <textarea id="devBio" class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." required></textarea>
+                                    <textarea id="devBio" class="form-control" rows="4" cols="50" name="devBio" placeholder="Describe yourself here..." maxlength="500" required></textarea>
                                     <div>
                                         <span class="fs-14" id="msgCount"></spanh6>
                                     </div>

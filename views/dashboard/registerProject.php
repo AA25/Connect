@@ -43,7 +43,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="projectName">Project Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter a project name" name="projectName" required>
+                                    <input type="text" class="form-control" placeholder="Enter a project name" name="projectName" maxlength="45" required>
                                 </div>
                             </div>
                             
@@ -108,6 +108,11 @@
                                         <option disabled selected value> Select the main language required </option>
                                         <option value="English">English</option>
                                         <option value="Irish">Irish</option>
+                                        <option value="Italian">Italian</option>
+                                        <option value="Spanish">Spanish</option>
+                                        <option value="German">German</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="Chinese">Chinese</option>
                                     </select>
                                 </div>
                             </div>
@@ -115,7 +120,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for="projectBio">Project Bio:</label>
-                                    <textarea id="projectBio" class="form-control" rows="8" placeholder="Enter a description of what this project involves" name="projectBio" required></textarea>
+                                    <textarea id="projectBio" class="form-control" rows="8" placeholder="Enter a description of what this project involves" name="projectBio" maxlength="500" required></textarea>
                                     <div>
                                         <span class="fs-14" id="projectBioCount"></spanh6>
                                     </div>

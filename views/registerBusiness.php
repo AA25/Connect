@@ -37,31 +37,31 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="username">Username:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+                                    <input type="text" class="form-control" placeholder="Enter your username" name="username" maxlength="100" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your name" name="firstName" maxlength="56" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your last name" name="lastName" maxlength="56" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="password">password:</label>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="password" maxlength="500" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="email">email:</label>
-                                    <input type="email" class="form-control" placeholder="Enter email" name="email" required>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email" maxlength="56" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="phone">Phone number:</label><br>
-                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                    <input type="phone" class="form-control" placeholder="Enter phone number" name="phone" maxlength="45" required>
                                 </div>
                             </div>
                             
@@ -71,7 +71,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="busName">Company Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" required>
+                                    <input type="text" class="form-control" placeholder="Enter your companies name" name="busName" maxlength="56" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="busIndustry">Industry:</label>
@@ -93,7 +93,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for="busBio">Companies Bio:</label>
-                                    <textarea id="busBio" class="form-control" rows="8" placeholder="Enter a description of your company" name="busBio" required></textarea>
+                                    <textarea id="busBio" class="form-control" rows="8" placeholder="Enter a description of your company" name="busBio" maxlength="500" required></textarea>
                                     <div>
                                         <span class="fs-14" id="busBioCount"></spanh6>
                                     </div>
