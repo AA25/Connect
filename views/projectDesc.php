@@ -119,7 +119,7 @@
                         <div>
                             <div class="">
                                 <label for="devMsg">Why you should be chosen for this project:</label><br>
-                                <textarea rows="10" cols="56" placeholder="Enter a personalised message to the business owner as to why they should accept your request to join this project " id="devMsg" name="devMsg" maxlength="500"></textarea>
+                                <textarea rows="10" cols="56" maxlength="500" placeholder="Enter a personalised message to the business owner as to why they should accept your request to join this project " id="devMsg" name="devMsg" maxlength="500"></textarea>
                             </div>
                             <div>
                                 <div>
