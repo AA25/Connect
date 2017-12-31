@@ -28,30 +28,45 @@
 
         $r->execute([
             'email' => $loginJSON['email'],
-            'password' => $loginJSON['password']
         ]);
 
-        //If num of rows returned is greater than 0 we know we have a result
+        $correctDetails = true;
+
+        //If num of rows returned is greater than 0 we know the account exists
         if($r->rowCount() > 0){
             $userInfo = [];
             $userInfo['Success'] = 'Successful login';
             foreach($r as $info){
-                if($loginJSON['location'] == 'developers'){
-                    pushDevDetails($userInfo, $info);
-                }elseif($loginJSON['location'] == 'businesses'){
-                    pushBusDetails($userInfo, $info);
+                //But first we check if the password given matches the hashed password for the account
+                if(password_verify($loginJSON['password'], $info['password'])){
+                    //Then continue to push the project details to the userInfo array 
+                    if($loginJSON['location'] == 'developers'){
+                        pushDevDetails($userInfo, $info);
+                    }elseif($loginJSON['location'] == 'businesses'){
+                        pushBusDetails($userInfo, $info);
+                    }
+                }else{
+                    $correctDetails = false;
+                    break;
                 }
             }
 
-            //Create a new token object that will be the token we return to the user
-            $userToken = new Jwt('');
-            //The token will contain some of the basic user details
-            $userToken->setToken($userInfo);
-            //Then return the token string that needs to be attached to future requests
-            $value = $userToken->getToken();
-            setUserCookies($userInfo, $loginJSON['location'], $userToken->getToken());
-            echo json_encode(array('Success' => 'Successful login'));
+            if($correctDetails){
+                //Create a new token object that will be the token we return to the user
+                $userToken = new Jwt('');
+                //The token will contain some of the basic user details
+                $userToken->setToken($userInfo);
+                //Then return the token string that needs to be attached to future requests
+                $value = $userToken->getToken();
+                setUserCookies($userInfo, $loginJSON['location'], $userToken->getToken());
+                echo json_encode(array('Success' => 'Successful login'));
+            }else{
+                //Passwords did not match
+                echo json_encode(array('Error' => 'Incorrect login details'));                
+            }
+
         }else{
+            //Account does not exist
             echo json_encode(array('Error' => 'Incorrect login details'));
         }
     }else{
@@ -61,14 +76,14 @@
     function prepDevSQL(&$pdo){
         //Prepare statement to return developer details
         return $pdo->prepare(
-            "select username, firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
+            "select username, firstName, lastName, dob, languages, email, devBio, phone, type, password from developers where email = :email"
         );  
     }
 
     function prepBusSQL(&$pdo){
         //Prepare statement to return business details
         return $pdo->prepare(
-            "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
+            "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type, password from businesses where email = :email"
         );  
     }
 

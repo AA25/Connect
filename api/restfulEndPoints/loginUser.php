@@ -22,20 +22,28 @@
             break;
         }
 
+        //Hash the entered password to see if it matches the hashed password in the db
+        //$password = password_hash($loginDetails['password'], PASSWORD_DEFAULT);
         $r->execute([
             'email' => $loginDetails['email'],
-            'password' => $loginDetails['password']
         ]);
 
-        //If num of rows returned is greater than 0 we know we have a result
+
+        //If num of rows returned is greater than 0 we know the account exists
         if($r->rowCount() > 0){
             $userInfo = [];
             $userInfo['Success'] = 'Successful login';
             foreach($r as $info){
-                if($loginDetails['location'] == 'developers'){
-                    pushDevDetails($userInfo, $info);
-                }elseif($loginDetails['location'] == 'businesses'){
-                    pushBusDetails($userInfo, $info);
+                //But first we check if the password given matches the hashed password for the account
+                if(password_verify($loginDetails['password'], $info['password'])){
+                    //Then continue to push the project details to the userInfo array 
+                    if($loginDetails['location'] == 'developers'){
+                        pushDevDetails($userInfo, $info);
+                    }elseif($loginDetails['location'] == 'businesses'){
+                        pushBusDetails($userInfo, $info);
+                    }
+                }else{
+                    return Array('Error' => 'Incorrect login details'); 
                 }
             }
 
@@ -47,6 +55,7 @@
             $value = $userToken->getToken();
             return Array('Success' => $userToken->getToken());
         }else{
+            //Account does not exist
             return Array('Error' => 'Incorrect login details');
         }
     }else{
@@ -56,14 +65,14 @@
     function prepDevSQL(&$pdo){
         //Prepare statement to return developer details
         return $pdo->prepare(
-            "select username, firstName, lastName, dob, languages, email, devBio, phone, type from developers where email = :email and password = :password"
+            "select username, firstName, lastName, dob, languages, email, devBio, phone, type, password from developers where email = :email"
         );  
     }
 
     function prepBusSQL(&$pdo){
         //Prepare statement to return business details
         return $pdo->prepare(
-            "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type from businesses where email = :email and password = :password"
+            "select busName, busIndustry, busBio, username, firstName, lastName, email, phone, type, password from businesses where email = :email"
         );  
     }
 

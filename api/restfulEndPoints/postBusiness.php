@@ -27,13 +27,16 @@
                 businesses (busName, busIndustry, busBio, firstName, lastName, password, email, phone, type, username)
                 values(:busName, :busIndustry, :busBio, :firstName, :lastName, :password, :email, :phone, :type, :username);"
             );
+
+            //Hash password before entering it into the db
+            $password = password_hash($registerJSON['password'], PASSWORD_DEFAULT);
             $r->execute([
                 'busName' => $registerJSON['busName'],
                 'busIndustry' => $registerJSON['busIndustry'],
                 'busBio' => $registerJSON['busBio'],
                 'firstName' => $registerJSON['firstName'],
                 'lastName' => $registerJSON['lastName'],
-                'password' => $registerJSON['password'],
+                'password' => $password,
                 'email' => $registerJSON['email'],
                 'phone' => $registerJSON['phone'],
                 'type' => 'business',
@@ -41,7 +44,7 @@
             ]);
         
             //We've got this far without an exception, so commit the changes.
-            $pdo->commit();        
+            $pdo->commit();
             return Array('Success' => 'Successful registration');
             
         }

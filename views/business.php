@@ -63,12 +63,11 @@
                     </p>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12 padt-20">
                     <h5 id="currentProjects" class="cl-blue-connect">Current Projects Open For Developers</h5>
-                    <!-- Return the list of projects by this business -->
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

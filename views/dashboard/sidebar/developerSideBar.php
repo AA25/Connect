@@ -30,12 +30,12 @@
         </div>
     </div>
 
-    <div class="row" style="border-bottom: 1px solid black;">
+    <!-- <div class="row" style="border-bottom: 1px solid black;">
         <div class="col-sm-12 padl-30">
             <p class="marb-15 mart-15 cl-black-connect pointer" onclick="renderSidebarOption('<?php echo $userVerifiedData['type'] ?>', 'myAccount')">
                 My Account
             </p>
         </div>
-    </div>
+    </div> -->
 
 </div>

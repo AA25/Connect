@@ -31,13 +31,15 @@
                 values(:firstName, :lastName, :dob, :languages, :email, :password, :devBio, :phone, :type, :username);"
             );
 
+            //Hash password before entering it into the db
+            $password = password_hash($registerJSON['password'], PASSWORD_DEFAULT);
             $r->execute([
                 'firstName' => $registerJSON['firstName'],
                 'lastName' => $registerJSON['lastName'],
                 'dob' => $registerJSON['dob'],
                 'languages' => $registerJSON['languages'],
                 'email' => $registerJSON['email'],
-                'password' => $registerJSON['password'],
+                'password' => $password,
                 'devBio' => $registerJSON['devBio'],
                 'phone' => $registerJSON['phone'],
                 'type' => 'developer',
