@@ -5,11 +5,15 @@
 
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
-        $projectReqJSON = json_decode($this->file,true);        
+        //Assign the body of the post request to this var
+        $projectReqJSON = json_decode($this->file,true);
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
-        //This API endpoint should only be accessible if JWT token  is verified and user is a developer
+        //Getting data out from the sent token object
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'developer'){
             //Creating server validation object to sanitise and valid the data sent in the request
             $validation = new ServerValidation();
@@ -28,6 +32,7 @@
     //Need to check that the developer is not already part of a project
     function checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON){
         $currentProject = '';
+        //Return the current project of the developer
         $check = $pdo->prepare("
             select currentProject from developers where email = :devEmail
         ");
@@ -38,10 +43,11 @@
 
         if($check->rowCount() > 0){
             foreach($check as $row){
+                //Assign the current project to this var
                 $currentProject = $row['currentProject'];
             }
         }
-
+        //If the developer is not part of a project then continue
         if($currentProject == null){
             return checkDuplicateReqs($pdo, $userVerifiedData, $projectReqJSON);
         }else{

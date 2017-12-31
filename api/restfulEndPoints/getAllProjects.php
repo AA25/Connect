@@ -24,10 +24,10 @@
         }
     }
 
-
     return prepareProjects($pdo, $returnProjects, $returnFrom, $returnAmount);
     
     function prepareProjects($pdo, $returnProjects, $returnFrom, $returnAmount){
+        //Query to return the projects within the stage 0 or 1
         $result = $pdo->prepare("
             select projectId, projectName, projectCategory, projectBio, projectBudget, projectCountry, projectCurrency, projectStatus 
             from projects where (projectStatus = 0 or projectStatus = 1) order by dateEntered desc limit :returnFrom, :returnAmount
@@ -40,6 +40,7 @@
 
         if($result->rowCount() > 0){
             foreach($result as $info){
+                //Push the results into an array that will be returned at the end
                 pushProjectDetails($returnProjects['Projects'], $info);
             }
             return Array('Success' => $returnProjects); 

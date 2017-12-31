@@ -5,10 +5,13 @@
 
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
+        //Getting data out from the sent token object
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
-        //This API endpoint should only be accessible if JWT token is verified and user is a business
+        //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
             $postData = (int)$this->args[0];
             return prepareProceedings($pdo, $userVerifiedData, $postData);
@@ -54,6 +57,7 @@
     }
 
     function checkCurrentStatus($pdo, $userVerifiedData, $postData, $shouldBe){
+        //Query to return current status of a project
         $check1 = $pdo->prepare("select projects.projectStatus from projects inner 
         join businesses on projects.businessId = businesses.busId
         where projects.projectId = :projectId and businesses.email = :email");

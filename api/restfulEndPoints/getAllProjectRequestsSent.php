@@ -4,9 +4,13 @@
 
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
+        //Getting data out from the sent token object
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'developer'){
             return prepareSelectRequest($pdo, $userVerifiedData);
         }else{
@@ -18,7 +22,7 @@
 
     function prepareSelectRequest($pdo, $userVerifiedData){
         $returnDevReqs = [];
-
+        //Query to return all project requests sent by a developer
         $result = $pdo->prepare("select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projectRequests.devMsg, projectRequests.status 
             from ((projectRequests inner join developers on projectRequests.devId = developers.devId)
             inner join projects on projectRequests.projectId = projects.projectId)
@@ -28,6 +32,7 @@
             'devEmail' => $userVerifiedData['email']
         ]);
         if($result->rowCount() > 0){
+            //Push the requests to an array that will be returned at the end
             foreach($result as $requests){
                 pushRequestDetails($returnDevReqs,$requests);
             }

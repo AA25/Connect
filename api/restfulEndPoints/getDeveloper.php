@@ -15,22 +15,25 @@
         //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
         //Getting data out from the sent token object
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
         //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token)){
             //Setting the userType to be the type of the account accessing this data
             $returnProject['AccessType'] = $userVerifiedData['type'];
         }
     }
+
     return getDeveloperInfo($pdo, $username, $returnProject);
 
     function getDeveloperInfo($pdo, $username, $returnProject){
+        //Query to return developer information
         $result = $pdo->prepare("select firstName, lastName, dob, languages, email, devBio, phone, type, currentProject from developers where username = :username");
         $result->execute([
             'username' => $username
         ]);
     
         if($result->rowCount() > 0){
+            //Push developer info into an array that will returned at the end
             foreach($result as $row){
                 pushDevDetails($returnProject, $row);
             }

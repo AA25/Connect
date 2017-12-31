@@ -3,13 +3,17 @@
     //POST new message to the project
 
     $pdo = get_db();
+
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
+        //Getting data out from the sent token object
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
 
-        //This action should only be accessible if JWT is verified and you're a business or a developer
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && ( ($userVerifiedData['type'] == 'business') ||  ($userVerifiedData['type'] == 'developer'))){
             $projectId = $this->args[0];
             $sentMessage = json_decode($this->file,true);

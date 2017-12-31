@@ -4,13 +4,17 @@
     $pdo = get_db();
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        //Getting data out from the sent token object
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
 
-        //This page should only be accessible if JWT is verified and you're a business
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
-            $projectJSON = json_decode($this->file,true);            
+            //Assign the body of the post request to this var
+            $projectJSON = json_decode($this->file,true);
             return prepareInsertProject($pdo, $userVerifiedData, $projectJSON);
         }else{
             return Array('Error' => 'Permission denied');

@@ -24,13 +24,17 @@
         }
     }
 
-    $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus, projectName from projects where projectId = :projectId");
+    //Query to return project detatils
+    $result = $pdo->prepare("select projectCategory, projectBio, projectBudget, projectDeadline, projectCountry, projectLanguage, projectCurrency, dateEntered, startDate, projectStatus, projectName 
+        from projects where projectId = :projectId"
+    );
 
     $result->execute([
         'projectId' => $reqProjectId
     ]);
 
     if($result->rowCount() > 0){
+        //Push result into an array that will be returned at the end
         foreach($result as $row){
             pushProjectDetails($returnProject['Success'], $row);
         }

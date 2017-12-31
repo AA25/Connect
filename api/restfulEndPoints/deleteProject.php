@@ -9,9 +9,9 @@
             //Creating a token object from the token sent
             $verifiedJWT = new Jwt ($tokenInAuth);
             //Getting data out from the sent token object
-            $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+            $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
             //If the token passes verification then we know the data it contains is also valid and true
-            //This action can only be preformed by businesses also 
+            //This action can only be preformed by businesses also
             if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
                 $deleteProject = $this->args[0];
                 return prepareDeleteProject($pdo, $userVerifiedData, $deleteProject);
@@ -80,6 +80,7 @@
         }
 
         function checkOwnershipAndState($pdo, $userVerifiedData, $deleteProject){
+            //query that returns the current state of a project (if the user owns the project)
             $check1 = $pdo->prepare("
                 select projects.projectStatus from projects
                 inner join businesses on businesses.busId = projects.businessId 

@@ -1,6 +1,6 @@
 <?php
-    //Delete a project request you have made from the developer perspective
-    //Or delete a request incoming to your project from a business perspective
+    //Delete a project request you have made as the developer
+    //Or delete a request incoming to your project as a business
 
     $pdo = get_db();
     $headers = apache_request_headers();
@@ -10,7 +10,7 @@
         //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
         //Getting data out from the sent token object
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
         //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token)){
             $deleteRequest = $this->args[0];

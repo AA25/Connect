@@ -3,8 +3,10 @@
 
     $pdo = get_db();
 
+    //assign the body of the post request to this var
     $registerJSON = json_decode($this->file,true);
 
+    //Create validation object that will sanitise and validate data posted in the request
     $validationCheck = new ServerValidation();
 
     if($validationCheck->registerBusinessSanitisation(
@@ -12,6 +14,7 @@
         $registerJSON['lastName'],$registerJSON['password'],$registerJSON['email'],
         $registerJSON['phone'],$registerJSON['username'])){
 
+        //Once it passes validation then insert the new business
         return insertBusiness($pdo,$registerJSON);
 
     }else{

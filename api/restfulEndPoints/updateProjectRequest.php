@@ -6,10 +6,14 @@
     $pdo = get_db();
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
-        $requestResponse = json_decode($this->file,true);      
+        $requestResponse = json_decode($this->file,true);
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        //Getting data out from the sent token object
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
         //This API endpoint should only be accessible if JWT token  is verified and user is a developer
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
             return updateProjectRequest($pdo, $userVerifiedData, $requestResponse);

@@ -5,9 +5,13 @@
 
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        //Getting data out from the sent token object
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
+        //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'business'){
             return prepareSelectRequest($pdo, $userVerifiedData);
         }else{
@@ -17,15 +21,14 @@
         return Array('Error' => 'Please log in to view this page');
     }
 
-
-    //I need a query where I can pull the project requests to all projects owned by a business
     function prepareSelectRequest($pdo, $userVerifiedData){
+        //Query that returns all project requests made to any of the projects a business owns
         $returnProjectReqs = ['Success' => []];
         $result = $pdo->prepare(
-            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projects.projectCategory, projects.projectBio, developers.devId, developers.firstName, developers.lastName, developers.email, developers.username, projectRequests.status, projectRequests.devMsg 
-            from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId) 
-            inner join developers on projectRequests.devId = developers.devId) 
-            inner join businesses on projectRequests.busId = businesses.busId) 
+            "select projectRequests.projectReqId, projectRequests.projectId, projects.projectName, projects.projectCategory, projects.projectBio, developers.devId, developers.firstName, developers.lastName, developers.email, developers.username, projectRequests.status, projectRequests.devMsg
+            from (((projectRequests inner join projects on projectRequests.projectId = projects.projectId)
+            inner join developers on projectRequests.devId = developers.devId)
+            inner join businesses on projectRequests.busId = businesses.busId)
             where businesses.email = :busEmail and projectRequests.status = :status"
         );
         $result->execute([
@@ -33,6 +36,7 @@
             'status' => 'pending'
         ]);
         if($result->rowCount() > 0){
+            //Push these projects into the array that will be returned at the end
             foreach($result as $requests){
                 pushProjectDetails($returnProjectReqs['Success'],$requests);
             }

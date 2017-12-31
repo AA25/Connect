@@ -4,10 +4,12 @@
     $pdo = get_db();
     $headers = apache_request_headers();
     if(isset($headers['Authorization'])){
+        //Getting the token sent
         $tokenInAuth = str_replace("Bearer ", "", $headers['Authorization']);
+        //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
+        //Getting data out from the sent token object
         $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
-
         //This page should only be accessible if JWT is verified and you're a business or a developer
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && ( ($userVerifiedData['type'] == 'business') ||  ($userVerifiedData['type'] == 'developer'))){
             $projectId = $this->args[0];
@@ -38,9 +40,11 @@
                 foreach($messages as $message){
 
                     $returnMessages['projectName'] = $message['projectName'];
+                    //Convert project current status to its string equivalent
                     $projectStatus = new ProjectStatusConverter($message['projectStatus']);
                     $returnMessages['projectStatus'] = $projectStatus->getStatus();
 
+                    //Push messages into an array that will be returned at the end
                     pushMessages($returnMessages['Messages'], $message);
                 }
                 return Array('Success' => $returnMessages);

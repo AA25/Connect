@@ -16,7 +16,7 @@
         //Creating a token object from the token sent
         $verifiedJWT = new Jwt ($tokenInAuth);
         //Getting data out from the sent token object
-        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);  
+        $userVerifiedData = $verifiedJWT->getDataFromJWT($verifiedJWT->token);
         //If the token passes verification then we know the data it contains is also valid and true
         if($verifiedJWT->verifyJWT($verifiedJWT->token)){
             //Setting the AccessType to be the type of the account accessing this data
@@ -26,6 +26,7 @@
     return getBusinessInfo($pdo, $username, $returnProject);
 
     function getBusinessInfo($pdo, $username, $returnProject){
+        //Query to return business information
         $result = $pdo->prepare("select busName, busIndustry, busBio, firstName, lastName, email, phone, type, username from businesses where username = :username");
 
         $result->execute([
@@ -33,6 +34,7 @@
         ]);
 
         if($result->rowCount() > 0){
+            //Push business info into an array that will be returned at the end
             foreach($result as $row){
                 pushBusDetails($returnProject, $row);
             }
