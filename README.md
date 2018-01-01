@@ -9,5 +9,6 @@ forward.
 *Ensure to run php on localhost:8081 <br>
 *A mysqldump was also done and that dump is the connect.sql in the sql folder <br>
 *A sql file also exists just to create the tables without the data <br> <br>
+*An exported file of Connect in Postman is provided in the Postman folder where the rest api endpoints can be tested and used <br>
 
 This is a project for a university assignment. 
