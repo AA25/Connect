@@ -1,0 +1,770 @@
+{
+	"info": {
+		"name": "Connect",
+		"_postman_id": "e61b8bfc-7d85-5646-b1ce-628b3262abc9",
+		"description": "The folder contains sample GET/POST/DELETE/PUT requests that someone can make to the Connect rest api.\n\nIf an error of \"permission denied\" or \"please login\" is return then you are trying to access a developer, business or signed up user restricted endoint.\n\nUse the login request to log into an account, a user token will be returned in the response. When making future requests attach an Authorization header with the token included, example... \n\n‘Authorization :Bearer xxxxxx.xxxxxx.xxxxxx’",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"description": "Detele requests to connects rest api interface \n\nIf an error of \"permission denied\" or \"please login\" is return then you are trying to access a developer, business or signed up user restricted endoint.\n\nUse the login request to log into an account, a user token will be returned in the response. When making future requests attach an Authorization header with the token included, example... \n\n‘Authorization :Bearer xxxxxx.xxxxxx.xxxxxx’\n",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"test1@test.com\",\"password\":\"pass\",\"location\":\"businesses\"}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Provide the correct email, password and location to log into an account. \n\nlocation is either businesses or developers.\n\nNo token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Send a project request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectId\":1,\"devMsg\":\"asdasasd\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/project/request/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"request",
+								"1"
+							]
+						},
+						"description": "Input the id of the project you'd like to send a project request to. Only developers can make this request.\n\nDeveloper Token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Register as a business",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"busName\":\"restbusiness\",\n  \"busIndustry\":\"RESTFUL\",\n  \"busBio\":\"Restful\",\n  \"firstName\":\"Mr\",\n  \"lastName\":\"rest\",\n  \"password\":\"pass\",\n  \"email\":\"restapi@rest.com\",\n  \"phone\":1,\n  \"username\":\"postman\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/business/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"business",
+								"register",
+								""
+							]
+						},
+						"description": "Register a new business\n\nNo token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Register as a developer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\":\"restletdev\",\n  \"firstName\":\"restdeveloper\",\n  \"lastName\":\"RESTFUL\",\n  \"dob\":\"1994-06-25\",\n  \"languages\":\"Mr\",\n  \"email\":\"testrest@test.com\",\n  \"password\":\"pass\",\n  \"devBio\":\"restful bio\",\n  \"phone\":\"1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/developer/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"developer",
+								"register",
+								""
+							]
+						},
+						"description": "Register a new developer.\n\nNo token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Register a new project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"projectName\":\"\",\n \"projectCategory\":\"Website Creation\",\n \"projectBio\":\"\",\n \"projectBudget\":\"100 - 1,000\",\n \"projectDeadline\":\"\",\n \"projectCountry\":\"\",\n \"projectLanguage\":\"\",\n \"projectCurrency\":\"\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/project",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project"
+							]
+						},
+						"description": "Post a new project as a business.\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Post a message to the forum of a project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"sentMessage\":\"This is the business owner testing out the message feature\"\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/forum/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forum",
+								"5"
+							]
+						},
+						"description": "The last arguement in the rest url must be the project id.\n\nbusiness or developer token required."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET",
+			"description": "GET requests to connects rest api interface \n\nIf an error of \"permission denied\" or \"please login\" is return then you are trying to access a developer, business or signed up user restricted endoint.\n\nUse the login request to log into an account, a user token will be returned in the response. When making future requests attach an Authorization header with the token included, example... \n\n‘Authorization :Bearer xxxxxx.xxxxxx.xxxxxx’",
+			"item": [
+				{
+					"name": "Get All Developers On Your Projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/developers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"developers"
+							]
+						},
+						"description": "Return all developers who are currently working on a business project that you own.\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Project Requests to your business",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/requests/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"requests",
+								""
+							]
+						},
+						"description": "Return all pending project requests to any of the projects that you as a business owns.\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Return all projects on the marketplace",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/projects/from/0/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"projects",
+								"from",
+								"0",
+								"2"
+							]
+						},
+						"description": "Return all projects currently accepting requests.\n\nTwo arguements are required in the url to return projects from X to Y\n\nNo token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Return all project requests sent",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/developer/requests/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"developer",
+								"requests",
+								""
+							]
+						},
+						"description": "Return all project requests sent by you the developer.\n\ndeveloper token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Return info about a business",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/business/info/rest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"business",
+								"info",
+								"rest"
+							]
+						},
+						"description": "Returning information about a business\n\nbusiness username is required as an arguement in the url\n\nno token required."
+					},
+					"response": []
+				},
+				{
+					"name": "Return info about a developer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/developer/info/restletdev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"developer",
+								"info",
+								"restletdev"
+							]
+						},
+						"description": "Return the information about a developer, \n\nthe developer username is required in the url.\n\nno token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Return the current project you are working on",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/developer/project/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"developer",
+								"project",
+								""
+							]
+						},
+						"description": "Return the current you the developer are working on if any.\n\nuser token is required."
+					},
+					"response": []
+				},
+				{
+					"name": "Return the messages within a projects forum",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/forum/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"forum",
+								"5"
+							]
+						},
+						"description": "Return the messages made so far within a projects message board. \n\nthe project id is required as an arguement at the end of the url\n\na business or developer token is needed."
+					},
+					"response": []
+				},
+				{
+					"name": "Return info about a project ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"1"
+							]
+						},
+						"description": "Return the information about a project.\n\nuser token is not required"
+					},
+					"response": []
+				},
+				{
+					"name": "Return all projects owned by you",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/business/projects/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"business",
+								"projects",
+								""
+							]
+						},
+						"description": "Return all projects owned by you the business\n\na business token is required\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"description": "Detele requests to connects rest api interface \n\nIf an error of \"permission denied\" or \"please login\" is return then you are trying to access a developer, business or signed up user restricted endoint.\n\nUse the login request to log into an account, a user token will be returned in the response. When making future requests attach an Authorization header with the token included, example... \n\n‘Authorization :Bearer xxxxxx.xxxxxx.xxxxxx’",
+			"item": [
+				{
+					"name": "Delete a project ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/delete/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"delete",
+								"13"
+							]
+						},
+						"description": "Detele a project owned by you a business.\n\nthe project id is required as an arguement at the end of the url\n\nA business token is required"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/request/222",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"request",
+								"222"
+							]
+						},
+						"description": "Delete a project request sent by you a developer\n\nthe project request id is required at the end of the url\n\ndeveloper token required."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"description": "PUT requests to connects rest api interface \n\nIf an error of \"permission denied\" or \"please login\" is return then you are trying to access a developer, business or signed up user restricted endoint.\n\nUse the login request to log into an account, a user token will be returned in the response. When making future requests attach an Authorization header with the token included, example... \n\n‘Authorization :Bearer xxxxxx.xxxxxx.xxxxxx’",
+			"item": [
+				{
+					"name": "Respond to a project request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"busResponse\":\"Rejected\",\n \"devId\":99,\n \"projectId\":99\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/project/requests/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"requests",
+								""
+							]
+						},
+						"description": "Respond to a project request that was sent one of your business projects.\n\nbusResponse can be Accepted or Rejected\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Update your project to the 'start' stage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/start/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"start",
+								"5"
+							]
+						},
+						"description": "Update your project from 'pending start' to 'started'\n\nthe project id is the arguement at the end of the url\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Move project to the next stage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/project/proceedStage/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"project",
+								"proceedStage",
+								"5"
+							]
+						},
+						"description": "Move project to the next stage of the project life cycle\n\nproject id is required at the end of the url as an arguement\n\nbusiness token required"
+					},
+					"response": []
+				},
+				{
+					"name": "Update your ready status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/developer/toggleProceedStatus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"developer",
+								"toggleProceedStatus"
+							]
+						},
+						"description": "Once part of a project, a developer can be ready or not to move for the project to move to the next stage.\n\nThis request will toggle that ready status.\n\na developer token is required"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

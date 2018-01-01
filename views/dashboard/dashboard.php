@@ -36,9 +36,16 @@
                 ?>
 
                 <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
-                    <div id="renderOption" class="scrollable">
+                    <div id="renderOption" class="scrollable" style="padding-left:2px">
                         <!--Content shown here will be determined by the link clicked in the sidebar-->
                         <h2 class="cl-blue-connect">Welcome to the dashboard</h2>
+                        <p>
+                            The dashboard is a private space only for businesses and developers who are registered with Connect. 
+                        </p>
+                        <p>
+                            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            To the left are a range of options and features accessible to you.
+                        </p>
                     </div>
                 </div>
 

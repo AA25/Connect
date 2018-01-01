@@ -40,7 +40,7 @@
             }
             return Array('Success' => $returnProject);
         }else{
-            return Array('Error' => "Oops, the user you're looking doesn't seem to exist");
+            return Array('Error' => "Oops, the business you're looking doesn't seem to exist");
         }
     }
 

@@ -6,8 +6,8 @@ It allows businesses to sign up and register projects they would like done (e.g.
 ensure that all parties are ready to move on to the next stage of the products lifecycle when moving 
 forward.
 
-*Ensure to run php on localhost:8081
-*A mysqldump was also done and that dump is the connect.sql un the sql folder
-*A sql file also exists just to create the tables without the data
+*Ensure to run php on localhost:8081 <br>
+*A mysqldump was also done and that dump is the connect.sql in the sql folder <br>
+*A sql file also exists just to create the tables without the data <br> <br>
 
 This is a project for a university assignment. 

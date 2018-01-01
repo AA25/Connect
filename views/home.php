@@ -97,7 +97,7 @@
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-6 pull-lg-6">
-                            <img src="/images/preview.png" alt="" width="370" height="" class="slider-center">
+                            <img src="/images/homepage/dashboard.png" alt="" width="500" height="250" class="slider-center bord-rd">
                         </div>
                     </div>
                 </div>
