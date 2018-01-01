@@ -604,6 +604,40 @@
 						"description": "Delete a project request sent by you a developer\n\nthe project request id is required at the end of the url\n\ndeveloper token required."
 					},
 					"response": []
+				},
+				{
+					"name": "Delete your account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "userToken",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8081/api/user/delete/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								""
+							]
+						},
+						"description": "Only developers can delete their account for the time being\n\ndeveloper token required"
+					},
+					"response": []
 				}
 			]
 		},
