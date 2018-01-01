@@ -89,6 +89,14 @@
             noPage();
         }
 
+    }elseif($endpoint == 'user'){
+
+        if($verb == 'deleted' && empty($args)){
+            include(__DIR__.'/views/deletedAccount.php');
+        }else{
+            noPage();
+        }
+
     }else{
         noPage();
     }

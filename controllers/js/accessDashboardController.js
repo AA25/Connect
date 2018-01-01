@@ -520,9 +520,26 @@ function deleteAccount() {
                 errorDisplay(response['Error']);
             } else {
                 //On success log out user and take the user to a page
-                logOut();
-                window.location.href = "http://localhost:8081/user/deleted";
+                deletedLogout();
             }
         }
     })
+}
+
+function deletedLogout() {
+    //Make an ajax request to the logout controller php file
+    $.ajax({
+        url: "/controllers/php/logoutController.php",
+        data: {},
+        type: 'get',
+        method: 'GET',
+        error: function formError(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+            //console.log("error ajax post to checklogin");
+        },
+        success: function formSuccess(response) {
+            //Cookie containing token has been deleted, now take user to the deleted page
+            window.location.href = "http://localhost:8081/user/deleted";
+        }
+    });
 }

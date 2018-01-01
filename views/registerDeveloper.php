@@ -68,7 +68,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="lastName">Last Name:</label>
-                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" rmaxlength="56" equired>
+                                    <input type="text" class="form-control" placeholder="Enter last name" name="lastName" rmaxlength="56" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="languages">Languages Spoken:</label>
