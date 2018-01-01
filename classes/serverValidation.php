@@ -196,7 +196,12 @@
             if( !(ctype_alpha($lastName)) || (strlen($lastName) >56) || empty($lastName)){
                 return false;
             }
-            if( strtotime($dob) == '' || empty($dob) ){
+
+            //Ensure the user is at least 16
+            $userDob = new DateTime($dob);
+            $current = new DateTime(date("Y-m-d"));
+            $userAge = $current->diff($userDob)->y;
+            if( strtotime($dob) == '' || empty($dob) || $userAge < 16){
                 return false;
             }
             if( (strlen($languages) > 500) || empty($languages) ){
