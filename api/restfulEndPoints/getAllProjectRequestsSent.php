@@ -37,7 +37,7 @@
                 pushRequestDetails($returnDevReqs,$requests);
             }
         }else{
-            $returnDevReqs = "No requests";
+            return Array('Error' => 'No requests');
         }
         return Array('Success' => $returnDevReqs);
     }

@@ -46,7 +46,7 @@
                 );
             }
         }else{
-            $currentProject = 'Not part of a project';
+            return Array('Error' => 'Not part of a project');
         }
 
         return Array('Success' => $currentProject);

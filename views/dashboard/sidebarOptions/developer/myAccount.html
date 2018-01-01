@@ -1,3 +1,45 @@
 <div>
     <!--This page should allow users to update their account details -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="cl-blue-connect">My Account</h2>
+            <p>Below is your curret account details that can be updated</p>
+            <p>An option to delete your account is also available</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div clas="col-sm-12">
+            <div class="marl-15">
+                <button class="btn btn-danger pad-5 cl-white" data-toggle="modal" data-target="#deleteAccountModal">
+                    Delete account
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header navbar-bg">
+                <h5 class="modal-title cl-blue-connect" id="">Connect</h5>
+                <button type="button" class="close cl-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body txt-ctr">
+                <p>
+                    Are you sure that you want to delete your account ?
+                    <button class="btn btn-danger pad-5 cl-white" onclick="deleteAccount()">
+                        Delete account
+                    </button>
+                </p>
+                <p class="fs-11">
+                    *If you are currently part of a project, you will not be able to delete your account. <br> *All information about you will be deleted including current pending requests.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

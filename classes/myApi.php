@@ -182,6 +182,23 @@
 
             }
          }
+
+         protected function user($args){
+            if($this->method == 'DELETE') {
+                
+                if($this->verb == 'delete' && empty($this->args)){
+                    //return Array("Info" => "Endpoint to delete account");
+                    return include('restfulEndpoints/deleteAccount.php');
+                }
+
+                return Array("Error" => "Invalid verb, Invalid arguement, Argument required or no Arguement required");                
+
+            }else {
+
+                return Array("Error" => "Endpoint only accepts DELETE requests");
+
+            }
+         }
      }
 
 ?>

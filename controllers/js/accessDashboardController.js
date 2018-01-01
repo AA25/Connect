@@ -439,7 +439,7 @@ function retrieveCurrentProject() {
         data: {},
         type: 'GET',
         method: 'get',
-        //
+        //Attach cookie which contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -479,7 +479,7 @@ function deleteProject(buttonClicked) {
         url: '../api/project/delete/' + projectId,
         type: 'delete',
         method: 'DELETE',
-        //Attach cookie with contains user token used for authentication
+        //Attach cookie which contains user token used for authentication
         beforeSend: function(request) {
             request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
         },
@@ -497,4 +497,32 @@ function deleteProject(buttonClicked) {
             }
         }
     });
+}
+
+function deleteAccount() {
+    $("#deleteAccountModal").modal("hide");
+    //An ajax request to the rest api endpoint to delete this account
+    $.ajax({
+        url: '../api/user/delete/',
+        data: {},
+        type: 'DELETE',
+        method: 'delete',
+        //Attach cookie which contains user token used for authentication
+        beforeSend: function(request) {
+            request.setRequestHeader('Authorization', 'Bearer ' + getCookie('JWT').replace(" ", "+"));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            //Error in setting status
+        },
+        success: function(response) {
+            if (response['Error']) {
+                //If error then show error alert
+                errorDisplay(response['Error']);
+            } else {
+                //On success log out user and take the user to a page
+                logOut();
+                window.location.href = "http://localhost:8081/user/deleted";
+            }
+        }
+    })
 }
