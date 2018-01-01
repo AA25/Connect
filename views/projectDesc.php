@@ -16,7 +16,7 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="projectDescription" class="container padt-56 h-100p disp-none">
+    <div id="projectDescription" class="container padt-56 disp-none">
         <div class="row padt-20 padb-20">
             <div class="col-lg-8 padb-20">
                 <div class="row">
@@ -65,14 +65,14 @@
             </div>
             <div id="projectReq" class="col-lg-3 offset-lg-1" style="display:none; background-color:">
                 <div class="txt-ctr">
-                    <img src="/images/preview.png" alt="" class="bord-rd" width="255">
+                    <img src="/images/projectDesc/developSide.jpg" alt="" class="bord-rd" width="255" height="292">
                 </div> 
                 <div id="sideContentA" class="txt-ctr">
                     <p id="sideContentMsg" class="padt-20">
                     </p>
                 </div>
                 <div class="txt-ctr padt-20">
-                    <img src="/images/preview.png" alt="" class="bord-rd" width="255">
+                    <img src="/images/projectDesc/businessSide.jpg" alt="" class="bord-rd" width="255" height="292">
                 </div> 
                 <div id="sideContentB" class="txt-ctr">
                     <p id="sideContentMsg" class="padt-20">

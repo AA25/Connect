@@ -7,6 +7,7 @@ ensure that all parties are ready to move on to the next stage of the products l
 forward.
 
 *Ensure to run php on localhost:8081
-*sql file is provided to create all the database tables.
+*A mysqldump was also done and that dump is the connect.sql un the sql folder
+*A sql file also exists just to create the tables without the data
 
 This is a project for a university assignment. 

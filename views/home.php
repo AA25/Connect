@@ -65,11 +65,14 @@
                                 What is Connect?
                             </h5>
                             <p class="marb-0">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            Connect is a web application for developers and businesses.
+                            It allows businesses to sign up and register projects they would like completed and these projects can be placed on the marketplace where developers who are signed up on the site can view and then make requests to join the project. Once developers have been accepted for a project and the project has been started, Connect provides a platform that guides the project through a product lifecycle, providing a message board for communication between all parties and a system to 
+                            ensure that all parties are ready to move on to the next stage of the products lifecycle when moving 
+                            forward.
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-6">
-                            <img src="/images/preview.png" alt="" width="370" height="" class="slider-center">
+                            <img src="/images/homepage/businessConnect.jpg" alt="" width="370" height="" class="slider-center">
                         </div>
                     </div>
                 </div>
@@ -85,7 +88,12 @@
                                 The Dashboard
                             </h5>
                             <p class="marb-0">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                The dashboard is a private space only for businesses and developers who are registered with Connect. 
+                                <br> For businesses it's a
+                                space that allows for you to register new projects, view incoming project requests, manage your projects and more.
+                                For developers it's a space where you can view your outgoing requests, your public profile and your final project.
+                                <br>But finally and more importantly it provides both users with access to the forum where businesses and developers can
+                                communicate while progression to the projects life cycle.
                             </p>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-6 pull-lg-6">
