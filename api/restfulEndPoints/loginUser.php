@@ -8,9 +8,11 @@
     //Santise and validate the login details in post request
     $validationCheck = new ServerValidation();
 
-    if ($validationCheck->loginSanitisation(
+    $isValid = $validationCheck->loginSanitisation(
         $loginDetails['email'],$loginDetails['password'],$loginDetails['location']
-    )){
+    );
+
+    if (gettype($isValid) == boolean && $isValid == true){
         //Attempt to retrieve user details from provided login details and then prepares sql query
         if($loginDetails['location'] == 'developers'){
             $r = prepDevSQL($pdo);
@@ -59,7 +61,8 @@
             return Array('Error' => 'Incorrect login details');
         }
     }else{
-        return Array('Error' => 'Validation Failure');
+        //If isValid is not true it contains a validation error message
+        return Array('Error' => $isValid);
     }
 
     function prepDevSQL(&$pdo){

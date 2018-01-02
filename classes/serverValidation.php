@@ -143,13 +143,16 @@
         public function loginValidation($email,$password,$searchLocation){
 
             if( !filter_var($email, FILTER_VALIDATE_EMAIL) || (strlen($email) > 56) || empty($email)){
-                return false;
+                //return false;
+                return "Email must be valid, not empty and no longer than 56 characters";
             }
             if( (strlen($password) > 500) || empty($password)){
-                return false;
+                //return false;
+                return "Password cannot be longer than 500 or empty";
             }
             if( (strlen($searchLocation) > 20) || empty($searchLocation)){
-                return false;
+                //return false;
+                return "Location cannot be longer than 20 or empty";
             }
 
             return true;
