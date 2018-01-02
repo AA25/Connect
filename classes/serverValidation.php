@@ -92,10 +92,12 @@
 
         public function sendRequestValidation($projectId,$devMsg){
             if( (gettype($projectId) == integer) || empty($projectId) ){
-                return false;
+                //return false;
+                return "Project id has to be a number and not empty";
             }
             if( (strlen($devMsg) > 500) || empty($devMsg) ){
-                return false;
+                //return false;
+                return "Project category cannot be longer than 500 characters or empty";
             }
 
             return true;

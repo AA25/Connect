@@ -17,10 +17,14 @@
         if($verifiedJWT->verifyJWT($verifiedJWT->token) && $userVerifiedData['type'] == 'developer'){
             //Creating server validation object to sanitise and valid the data sent in the request
             $validation = new ServerValidation();
-            if($validation->sendRequestSanitisation($projectReqJSON['projectId'],$projectReqJSON['devMsg'])){
+
+            $isValid = $validation->sendRequestSanitisation($projectReqJSON['projectId'],$projectReqJSON['devMsg']);
+
+            if(gettype($isValid) == boolean && $isValid == true){
                 return checkDevelopersCurrentProject($pdo, $userVerifiedData, $projectReqJSON);
             }else{
-                return Array('Error' => 'Validation Failed');
+                //If isValid is not true it contains a validation error message
+                return Array('Error' => $isValid);
             }
         }else{
             return Array('Error' => 'Permission denied');
