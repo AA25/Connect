@@ -28,7 +28,7 @@
 
     <div class="padt-56 h-100p">
         <div class="section h-100p">
-            <div class="row h-100p" style="">
+            <div class="row h-100p">
 
                 <!-- Left hand column -->
                 <div id="dashboardSidebar" class="col-sm-12 col-md-5 col-lg-3 padb-20 padr-0 section sidebar-border-connect">
@@ -78,7 +78,7 @@
                 </div>
 
                 <!-- Right hand column -->
-                <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
+                <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt">
                     <h4 class="cl-blue-connect marb-20 txt-ctr">
                         Welcome to the message board
                         <i class="fa fa-refresh cl-blue-connect pointer" onclick="retrieveProjectMessages()" aria-hidden="true"></i>
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="col-sm-12 col-lg-2">
                                             <div class="txt-ctr">
-                                                <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30 pointer" style="">Post Message</button>
+                                                <button type="submit" class="btn cl-white bg-cl-blue-connect mart-30 pointer">Post Message</button>
                                             </div>
                                         </div>
                                     </div>

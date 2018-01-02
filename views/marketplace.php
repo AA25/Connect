@@ -14,9 +14,9 @@
 
     <?php include('./includes/navBar.inc.php')?>
 
-    <div id="marketplace" style="display:none">
+    <div id="marketplace" class="disp-none">
         <div class="section padt-80 padb-40">
-            <div id="marketplace" class="container disp-none pad-0" style="display: block;">
+            <div id="marketplace" class="container disp-none pad-0 disp-bl">
                 <div id="" class="">
                     <div class="padl-10 padr-10 padb-40 row">
                         <div class="col-lg-8">

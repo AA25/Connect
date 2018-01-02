@@ -63,7 +63,7 @@
                     </p>
                 </div>
             </div>
-            <div id="projectReq" class="col-lg-3 offset-lg-1" style="display:none; background-color:">
+            <div id="projectReq" class="col-lg-3 offset-lg-1 disp-none">
                 <div class="txt-ctr">
                     <img src="/images/projectDesc/developSide.jpg" alt="" class="bord-rd" width="255" height="292">
                 </div> 

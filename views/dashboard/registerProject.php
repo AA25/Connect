@@ -28,7 +28,7 @@
     <div id="registerProject" class="padt-56">
         <div class="section-alt padb-40">
             <div class="container">
-                <div class="padt-40 padb-60" style="">
+                <div class="padt-40 padb-60">
                     <div class="padb-20">
                         <h5 class="cl-blue-connect">
                             Register Your Project 
@@ -130,7 +130,7 @@
                                 <label for="projectDeadline">Project Deadline:</label>
                                 <input type="text" class="form-control" placeholder="Enter a deadline date for the project" name="projectDeadline">
                             </div> -->
-                            <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer" style="">Register Project</button>
+                            <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer">Register Project</button>
 
                         </div>
                     </form>

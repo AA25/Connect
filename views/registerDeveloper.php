@@ -23,7 +23,7 @@
 
         <div class="section-alt padb-40">
             <div class="container">
-                <div class="padt-40 padb-60" style="">
+                <div class="padt-40 padb-60">
                     <div class="padb-20">
                         <h5 class="cl-blue-connect">
                             Register as a Developer
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer" style="">Register</button>
+                        <button type="submit" class="btn cl-white bg-cl-blue-connect pull-right pointer">Register</button>
                     </form>
 
                 </div>
