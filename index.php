@@ -102,6 +102,6 @@
     }
 
     function noPage(){
-        echo '404 Page';
+        include(__DIR__.'/views/404.php');
     }
 ?>
