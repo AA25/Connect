@@ -38,14 +38,17 @@
             //Validate data before inserting into the database
             $validation = new ServerValidation();
 
-            if($validation->registerProjectSanitisation($projectJSON['projectCategory'],$projectJSON['projectBio'],$projectJSON['projectBudget'],
+            $isValid = $validation->registerProjectSanitisation($projectJSON['projectCategory'],$projectJSON['projectBio'],$projectJSON['projectBudget'],
             $projectJSON['projectDeadline'],$projectJSON['projectCountry'],$projectJSON['projectLanguage'],$projectJSON['projectCurrency'],
-            $projectJSON['projectName'])){
+            $projectJSON['projectName']);
+
+            if(gettype($isValid) == boolean && $isValid == true){
 
                 return insertProject($projectJSON, $pdo, $busId,$userVerifiedData);
 
             }else{
-                return Array("Error" => "Validation Error");
+                //If isValid is not true it contains a validation error message
+                return Array('Error' => $isValid);
             }
         }else{
             //Error with retriving the business id for particular account

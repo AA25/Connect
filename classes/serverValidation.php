@@ -105,25 +105,31 @@
         ,$projectCurrency,$projectName){
 
             if( (strlen($projectCategory) > 56) || empty($projectCategory)){
-                return false;
+                //return false;
+                return "Project category cannot be longer than 56 characters or empty";
             }
             if( (strlen($projectBio) > 500) || empty($projectBio) ){
-                return false;
+                //return false;
+                return "Project bio cannot be longer than 500 characters or empty";
             }
             if( (strlen($projectBudget) > 56) || empty($projectBudget)){
-                return false;
+                //return false;
+                return "Project budget cannot be longer than 56 characters or empty";
             }
             // if(empty($projectDeadline)){
             //     return false;
             // }
             if( (strlen($projectCountry) > 56) || empty($projectCountry)){
-                return false;
+                //return false;
+                return "Project country cannot be longer than 56 characters or empty";
             }
             if( (strlen($projectLanguage) > 100) || empty($projectLanguage)){
-                return false;
+                //return false;
+                return "Project language cannot be longer than 56 characters or empty";
             }
             if( (strlen($projectCurrency) > 56) || empty($projectCurrency)){
-                return false;
+                //return false;
+                return "Project currency cannot be longer than 56 characters or empty";
             }
             // if(empty($dateEntered)){
             //     return false;
@@ -135,7 +141,8 @@
             //     return false;
             // }
             if( (strlen($projectName) > 56) || empty($projectName)){
-                return false;
+                //return false;
+                return "Project name cannot be longer than 56 characters or empty";
             }
             return true;
         }
