@@ -32,7 +32,8 @@
             //Creating server validation object to sanitise and valid the data sent in the request
             $validation = new ServerValidation();
             //Second check is server side validation of the message
-            if($validation->sendProjectMessageSanitisation($sentMessage['sentMessage'])){
+            $isValid = $validation->sendProjectMessageSanitisation($sentMessage['sentMessage']);
+            if(gettype($isValid) == boolean && $isValid == true){
                 $pdo->beginTransaction();
                 try{
                     $insertMessage = $pdo->prepare("
@@ -57,7 +58,8 @@
                 }
 
             }else{
-                return Array('Error' => 'Validation failed');
+                //If isValid is not true it contains a validation error message
+                return Array('Error' => $isValid);
             }
 
         }else{

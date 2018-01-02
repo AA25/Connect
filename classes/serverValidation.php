@@ -84,7 +84,8 @@
 
         public function sendProjectMessageValidation($sentMessage){
             if( (strlen($sentMessage) > 500) || empty($sentMessage) ){
-                return false;
+                //return false;
+                return "Message cannot be longer than 500 characters or empty";
             }
 
             return true;
