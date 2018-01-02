@@ -8,16 +8,20 @@
 
     $validationCheck = new ServerValidation();
 
-    //If the serside validation passes then proceed with the inseration of the project
-    if($validationCheck->registerDeveloperSanitisation(
+    $isValid = $validationCheck->registerDeveloperSanitisation(
         $registerJSON['firstName'],$registerJSON['lastName'],$registerJSON['dob'],
         $registerJSON['languages'],$registerJSON['email'],$registerJSON['password'],$registerJSON['devBio'],
-        $registerJSON['phone'],$registerJSON['username'])){
+        $registerJSON['phone'],$registerJSON['username']);
 
-            return insertDeveloper($pdo,$registerJSON);
+    //If the serside validation passes then proceed with the inseration of the project
+    if(gettype($isValid) == boolean && $isValid == true){
+
+        //Once it passes validation then insert the new developer
+        return insertDeveloper($pdo,$registerJSON);
 
     }else{
-        return Array('Error' => 'Validation failed');
+        //If isValid is not true it contains a validation error message
+        return Array('Error' => $isValid);
     }
 
     function insertDeveloper($pdo,$registerJSON){

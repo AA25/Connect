@@ -20,6 +20,7 @@
         return insertBusiness($pdo,$registerJSON);
 
     }else{
+        //If isValid is not true it contains a validation error message
         return Array('Error' => $isValid);
     }
 

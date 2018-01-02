@@ -171,11 +171,11 @@
             }
             if( !(ctype_alpha($firstName)) || (strlen($firstName) > 56) || empty($firstName) ){
                 //return false;
-                return "First cannot be longer than 56 characters or empty and only contain letters";
+                return "First name cannot be longer than 56 characters or empty and only contain letters";
             }
             if( !(ctype_alpha($lastName)) || (strlen($lastName) > 56) || empty($lastName)){
                 //return false;
-                return "First cannot be longer than 56 characters or empty and only contain letters";
+                return "Last name cannot be longer than 56 characters or empty and only contain letters";
             }
             if( (strlen($password) > 500) || empty($password) ){
                 //return false;
@@ -200,10 +200,12 @@
         public function registerDeveloperValidation($firstName,$lastName,$dob,$languages,$email,$password,$devBio,$phone,$username){
 
             if( !(ctype_alpha($firstName)) || (strlen($firstName) >56) || empty($firstName) ){
-                return false;
+                //return false;
+                return "First name cannot be longer than 56 characters or empty and only contain letters";
             }
             if( !(ctype_alpha($lastName)) || (strlen($lastName) >56) || empty($lastName)){
-                return false;
+                //return false;
+                return "Last name cannot be longer than 56 characters or empty and only contain letters";
             }
 
             //Ensure the user is at least 16
@@ -211,25 +213,32 @@
             $current = new DateTime(date("Y-m-d"));
             $userAge = $current->diff($userDob)->y;
             if( strtotime($dob) == '' || empty($dob) || $userAge < 16){
-                return false;
+                //return false;
+                return "DoB must be a date, not empty and user must be older than 16";
             }
             if( (strlen($languages) > 500) || empty($languages) ){
-                return false;
+                //return false;
+                return "Languages cannot be longer than 500 characters or empty";
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || (strlen($email) > 56) ) {
-                return false;
+                //return false;
+                return "Email must be valid, not empty and no longer than 56 characters";
             }
             if( (strlen($password) > 500) || empty($password) ){
-                return false;
+                //return false;
+                return "Password cannot be longer than 500 or empty";
             }
             if( (strlen($devBio) > 500) || empty($devBio) ){
-                return false;
+                //return false;
+                return "Bio cannot be longer than 500 characters or empty";
             }
             if( (strlen($phone) > 45) || empty($phone) ){
-                return false;
+                //return false;
+                return "Phone cannot be longer than 45 characters or empty";
             }
             if( (strlen($username) > 100) || empty($username) ){
-                return false;
+                //return false;
+                return "Username cannot be longer than 100 characters or empty";
             }
 
             return true;
