@@ -4,7 +4,7 @@
     //Got some basic ideas of php form validation from https://www.w3schools.com/php/php_form_validation.asp
     // And how to remove script tags from https://stackoverflow.com/questions/28255873/removing-script-tags-using-preg-replace
 
-    //Main 2 steps is to sanitise inputs then validate.
+    //Main steps are to sanitise inputs then validate.
 
     class ServerValidation{
 
@@ -158,31 +158,40 @@
         public function registerBusinessValidation($busName,$busIndustry,$busBio,$firstName,$lastName,$password,$email,$phone,$username){
 
             if( (strlen($busName) > 56) || empty($busName)){
-                return false;
+                //return false;
+                return "Company name cannot be longer than 56 characters or empty";
             }
             if( (strlen($busIndustry) > 56) || empty($busIndustry) ){
-                return false;
+                //return false;
+                return "Industry cannot be longer than 56 characters or empty";
             }
             if( (strlen($busBio) > 500) || empty($busBio)){
-                return false;
+                //return false;
+                return "Bio cannot be longer than 500 characters or empty";
             }
             if( !(ctype_alpha($firstName)) || (strlen($firstName) > 56) || empty($firstName) ){
-                return false;
+                //return false;
+                return "First cannot be longer than 56 characters or empty and only contain letters";
             }
             if( !(ctype_alpha($lastName)) || (strlen($lastName) > 56) || empty($lastName)){
-                return false;
+                //return false;
+                return "First cannot be longer than 56 characters or empty and only contain letters";
             }
             if( (strlen($password) > 500) || empty($password) ){
-                return false;
+                //return false;
+                return "Password cannot be longer than 500 or empty";
             }
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || (strlen($email) > 56) ) {
-                return false;
+                //return false;
+                return "Email must be valid, not empty and no longer than 56 characters";
             }
             if( (strlen($phone) > 45) || empty($phone) ){
-                return false;
+                //return false;
+                return "Phone cannot be longer than 45 characters or empty";
             }
             if( (strlen($username) > 100) || empty($username) ){
-                return false;
+                //return false;
+                return "Username cannot be longer than 100 characters or empty";
             }
 
             return true;

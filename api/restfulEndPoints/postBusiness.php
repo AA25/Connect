@@ -9,16 +9,18 @@
     //Create validation object that will sanitise and validate data posted in the request
     $validationCheck = new ServerValidation();
 
-    if($validationCheck->registerBusinessSanitisation(
+    $isValid = $validationCheck->registerBusinessSanitisation(
         $registerJSON['busName'],$registerJSON['busIndustry'],$registerJSON['busBio'],$registerJSON['firstName'],
         $registerJSON['lastName'],$registerJSON['password'],$registerJSON['email'],
-        $registerJSON['phone'],$registerJSON['username'])){
+        $registerJSON['phone'],$registerJSON['username']);
+
+    if(gettype($isValid) == boolean && $isValid == true){
 
         //Once it passes validation then insert the new business
         return insertBusiness($pdo,$registerJSON);
 
     }else{
-        return Array('Error' => 'Validation failed');
+        return Array('Error' => $isValid);
     }
 
     function insertBusiness($pdo,$registerJSON){
