@@ -28,14 +28,14 @@
 
     <div class="padt-56 h-100p">
         <div class="section h-100p">
-            <div class="row h-100p" style="">
+            <div class="row h-100p">
 
                 <?php
                     //Load the correct sidebar html depending on what the user account type is
                     include_once('sidebar/'.$userVerifiedData['type'].'Sidebar.php');
                 ?>
 
-                <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt" style="">
+                <div class="col-sm-12 col-md-7 col-lg-9 pad-30 section-alt">
                     <div id="renderOption" class="scrollable" style="padding-left:2px">
                         <!--Content shown here will be determined by the link clicked in the sidebar-->
                         <h2 class="cl-blue-connect">Welcome to the dashboard</h2>
