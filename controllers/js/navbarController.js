@@ -22,8 +22,8 @@ $('#loginForm').submit(function(e) {
                 //On fail error show error alert
                 errorDisplay(response['Error']);
             } else if (response['Success']) {
-                //On success reload the page
-                location.reload();
+                //Redirect to home page
+                location.href = "http://localhost:8081/home";
             }
         }
     });
