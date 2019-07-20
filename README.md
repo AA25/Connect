@@ -1,3 +1,5 @@
+This is a project for a university assignment
+
 # connect
 
 Connect is a web application for developers and businesses.
@@ -11,4 +13,3 @@ forward.
 *A sql file also exists just to create the tables without the data <br> 
 *A postman file of Connect can be imported to postman provided in the Postman folder,  where the rest api endpoints can be tested and used <br><br>
 
-This is a project for a university assignment.
